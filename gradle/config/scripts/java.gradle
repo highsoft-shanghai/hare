@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply from: "$rootDir/gradle/config/scripts/style.gradle"
+
+sourceCompatibility = "${javaSourceCompatibility}" as String
+targetCompatibility = "${javaTargetCompatibility}" as String
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly libs.general.lombok
+    annotationProcessor libs.general.lombok
+    implementation libs.general.guava
+    implementation libs.general.commons.lang3
+    testCompileOnly libs.general.lombok
+    testImplementation libs.test.junit.jupiter
+    testImplementation libs.test.junit.jupiter.engine
+    testImplementation libs.test.assertj.core
+    testImplementation libs.test.mockito.junit.jupiter
+    testImplementation libs.test.hamcrest
+    testImplementation libs.test.hamcrest.date
+    testAnnotationProcessor libs.general.lombok
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        html
+        xml
+    }
+}
+
+check.dependsOn(jacocoTestReport)

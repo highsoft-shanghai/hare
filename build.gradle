@@ -1,0 +1,29 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+    }
+
+    allprojects {
+        repositories {
+            maven { url 'https://maven.aliyun.com/repository/google' }
+            maven { url 'https://maven.aliyun.com/repository/central' }
+            maven { url 'https://maven.aliyun.com/repository/public' }
+        }
+    }
+}
+
+apply from: "$rootDir/gradle/config/scripts/root.gradle"
+
+group = 'ltd.highsoft'
+version = '1.0.0'
+
+dependencies {
+    implementation project(":iam.gateways")
+    implementation libs.spring.boot.starter.jdbc
+    implementation libs.migration.flyway
+    runtimeOnly libs.persistence.postgresql
+    testImplementation project(":frameworks.test.postgres")
+    annotationProcessor libs.spring.boot.configuration.processor
+}

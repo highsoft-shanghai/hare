@@ -1,0 +1,25 @@
+apply from: "$rootDir/gradle/config/scripts/web.gradle"
+apply from: "$rootDir/gradle/config/scripts/enable-boot.gradle"
+
+dependencies {
+    testImplementation project(":frameworks.test.web")
+    testImplementation libs.test.testcontainers.junit.jupiter
+}
+
+subprojects {
+    if (!(projectDir.parentFile in [rootProject.file("frameworks"), rootProject.file("modules")])) return
+    apply from: "$rootDir/gradle/config/scripts/library.gradle"
+}
+
+subprojects {
+    if (!rootProject.hasProperty('chain-tests')) return
+    if (!tasks.findByName('test')) return
+    tasks.named('test') { test ->
+        rootProject.tasks.named('test') {
+            it.dependsOn(test)
+        }
+    }
+}
+
+apply from: "$rootDir/gradle/config/scripts/coverage-all.gradle"
+apply from: "$projectDir/coverage.gradle"

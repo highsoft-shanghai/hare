@@ -1,0 +1,5 @@
+dependencies {
+    api project(':frameworks.context.core')
+    implementation libs.test.junit.jupiter
+    implementation libs.test.junit.jupiter.engine
+}

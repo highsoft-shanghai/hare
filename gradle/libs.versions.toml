@@ -1,0 +1,57 @@
+[versions]
+spring-dependency-management = "1.1.0"
+spring-boot = "3.0.5"
+spring-restdocs = "3.0.0"
+spring = "6.0.7"
+spring-security-core = "6.0.2"
+general-lombok = "1.18.26"
+general-guava = "31.1-jre"
+general-commons-lang3 = "3.12.0"
+general-uuid-generator = "4.1.0"
+persistence-postgresql = "42.5.4"
+migration-flyway = "9.5.1"
+test-junit = "5.9.2"
+test-assertj = "3.23.1"
+test-mockito = "4.8.1"
+test-hamcrest = "2.2"
+test-hamcrest-date = "2.0.8"
+test-moco = "1.4.0"
+test-testcontainers = "1.17.6"
+test-asciidoctor = "3.3.2"
+logging-logback = "1.4.6"
+
+[libraries]
+spring-dependency-management-plugin = { module = "io.spring.gradle:dependency-management-plugin", version.ref = "spring-dependency-management" }
+spring-boot-plugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "spring-boot" }
+asciidoctor-plugin = { module = "org.asciidoctor:asciidoctor-gradle-jvm", version.ref = "test-asciidoctor" }
+spring-boot-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
+spring-boot-websocket = { module = "org.springframework.boot:spring-boot-starter-websocket", version.ref = "spring-boot" }
+spring-boot-starter-jdbc = { module = "org.springframework.boot:spring-boot-starter-jdbc", version.ref = "spring-boot" }
+spring-boot-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring-boot" }
+spring-boot-aop = { module = "org.springframework.boot:spring-boot-starter-aop", version.ref = "spring-boot" }
+spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot" }
+spring-security-core = { module = "org.springframework.security:spring-security-core", version.ref = "spring-security-core" }
+spring-context = { module = "org.springframework:spring-context", version.ref = "spring" }
+spring-tx = { module = "org.springframework:spring-tx", version.ref = "spring" }
+spring-web = { module = "org.springframework:spring-web", version.ref = "spring" }
+general-lombok = { module = "org.projectlombok:lombok", version.ref = "general-lombok" }
+general-guava = { module = "com.google.guava:guava", version.ref = "general-guava" }
+general-commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "general-commons-lang3" }
+general-uuid-generator = { module = "com.fasterxml.uuid:java-uuid-generator", version.ref = "general-uuid-generator" }
+persistence-postgresql = { module = "org.postgresql:postgresql", version.ref = "persistence-postgresql" }
+migration-flyway = { module = "org.flywaydb:flyway-core", version.ref = "migration-flyway" }
+test-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "test-junit" }
+test-junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "test-junit" }
+test-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "test-junit" }
+test-mockito-core = { module = "org.mockito:mockito-core", version.ref = "test-mockito" }
+test-mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "test-mockito" }
+test-assertj-core = { module = "org.assertj:assertj-core", version.ref = "test-assertj" }
+test-hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "test-hamcrest" }
+test-hamcrest-date = { module = "org.exparity:hamcrest-date", version.ref = "test-hamcrest-date" }
+test-moco = { module = "com.github.dreamhead:moco-core", version.ref = "test-moco" }
+test-spring-boot-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+test-testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "test-testcontainers" }
+test-testcontainers-mongodb = { module = "org.testcontainers:mongodb", version.ref = "test-testcontainers" }
+test-testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "test-testcontainers" }
+test-spring-restdocs-restassured = { module = "org.springframework.restdocs:spring-restdocs-restassured", version.ref = "spring-restdocs" }
+logging-logback = { module = "ch.qos.logback:logback-classic", version.ref = "logging-logback" }

@@ -1,0 +1,25 @@
+pluginManagement {
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { url "https://maven.aliyun.com/repository/spring-plugin" }
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'monolithic'
+
+void includeModulesFrom(String path, String prefix = "") {
+    def directory = file(path)
+    if (!directory.exists()) return
+    directory.eachDir {
+        include it.name
+        def descriptor = project(":${it.name}")
+        descriptor.projectDir = it
+        descriptor.name = (prefix + descriptor.name)
+    }
+}
+
+includeModulesFrom('modules')
+includeModulesFrom('services')
+includeModulesFrom('frameworks', 'frameworks.')
+includeModulesFrom('frontends', 'frontends.')

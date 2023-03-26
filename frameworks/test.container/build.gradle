@@ -1,0 +1,6 @@
+dependencies {
+    implementation libs.test.junit.jupiter
+    implementation libs.test.junit.jupiter.engine
+    implementation libs.test.testcontainers.junit.jupiter
+    implementation libs.logging.logback
+}

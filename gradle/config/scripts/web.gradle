@@ -1,0 +1,37 @@
+import org.asciidoctor.gradle.jvm.AsciidoctorJPlugin
+
+buildscript {
+    repositories {
+        maven {
+            url "${pluginRepositoryUrl}"
+        }
+    }
+    dependencies {
+        classpath(project.extensions.getByType(VersionCatalogsExtension).named("libs").findLibrary("asciidoctor-plugin").get())
+    }
+}
+
+apply plugin: AsciidoctorJPlugin
+apply from: "$rootDir/gradle/config/scripts/boot-lib.gradle"
+
+ext {
+    set('snippetsDir', file("build/generated-snippets"))
+}
+
+dependencies {
+    implementation libs.spring.boot.actuator
+    implementation libs.spring.boot.web
+    testImplementation libs.test.spring.boot.test
+    testImplementation libs.test.spring.restdocs.restassured
+}
+
+tasks.named('test') {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+}
+
+tasks.named('asciidoctor') {
+    inputs.dir snippetsDir
+    attributes 'snippets': snippetsDir
+    dependsOn test
+}

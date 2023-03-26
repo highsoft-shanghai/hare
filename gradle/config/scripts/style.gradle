@@ -1,0 +1,31 @@
+if (project.extensions.findByName('style')) {
+    return
+}
+
+class StyleExtension {
+    @SuppressWarnings('unused')
+    List<String> excludePackages
+    @SuppressWarnings('unused')
+    List<String> excludeClasses
+}
+
+project.extensions.create('style', StyleExtension)
+
+apply plugin: 'checkstyle'
+
+checkstyle {
+    configFile = file("$rootDir/gradle/config/checkstyle/checkstyle.xml")
+    toolVersion = '10.1'
+}
+
+checkstyleTest.enabled = false
+
+checkstyleMain.doFirst {
+    style.excludePackages.each() {
+        checkstyleMain.exclude "${'**/' + it.replaceAll('\\.', '/') + '/**'}"
+    }
+
+    style.excludeClasses.each() {
+        checkstyleMain.exclude "${'**/' + it.replaceAll('\\.', '/') + '.java'}"
+    }
+}

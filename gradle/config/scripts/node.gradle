@@ -1,0 +1,27 @@
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath "com.github.node-gradle:gradle-node-plugin:3.5.1"
+    }
+}
+
+apply plugin: com.github.gradle.node.NodePlugin
+
+tasks.register('build') {
+    group = 'build'
+    args = ['build']
+}
+
+tasks.register('test') {
+    group = 'verification'
+    args = ['test:unit']
+}
+
+tasks.register('check') {
+    group = 'verification'
+    args = ['test:unit:coverage']
+}
+
+build.dependsOn(check)

@@ -1,0 +1,4 @@
+dependencies {
+    api project(":iam.domain")
+    implementation project(":frameworks.application.core")
+}

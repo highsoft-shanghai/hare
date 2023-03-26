@@ -1,0 +1,13 @@
+===== 查询参数
+
+|===
+|Parameter|Type|Description|Constraints
+
+{{#parameters}}
+|{{#tableCellContent}}`+{{name}}+`{{/tableCellContent}}
+|{{#tableCellContent}}{{#type}}{{.}}{{/type}}{{/tableCellContent}}
+|{{#tableCellContent}}{{description}}{{/tableCellContent}}
+|{{#tableCellContent}}{{#constraints}}{{.}}{{/constraints}}{{/tableCellContent}}
+
+{{/parameters}}
+|===

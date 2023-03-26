@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+target='39.98.207.111'
+
+bash scripts/utils/cmd.sh $target "docker rm -f lockers.server"
+bash scripts/utils/cmd.sh $target "docker rmi registry.cn-zhangjiakou.aliyuncs.com/highsoft/lockers.server:latest"
+bash scripts/utils/cmd.sh $target "docker run --name lockers.server -p 38000:8080 -d --env-file /srv/lockers/environment --restart always registry.cn-zhangjiakou.aliyuncs.com/highsoft/lockers.server:latest"
+if [ $? -ne 0 ]; then
+  echo "Failed to deploy lockers.server!"
+  exit 1
+fi
+
+bash scripts/utils/cmd.sh $target "docker rm -f lockers.client.adapter"
+bash scripts/utils/cmd.sh $target "docker rmi registry.cn-zhangjiakou.aliyuncs.com/highsoft/lockers.client.adapter:latest"
+bash scripts/utils/cmd.sh $target "docker run --name lockers.client.adapter -p 38200:8080 -d --env-file /srv/lockers/environment --restart always registry.cn-zhangjiakou.aliyuncs.com/highsoft/lockers.client.adapter:latest"
+if [ $? -ne 0 ]; then
+  echo "Failed to deploy lockers.client.adapter!"
+  exit 1
+fi
+
+bash scripts/utils/cmd.sh $target "docker rm -f lockers.management.webui"
+bash scripts/utils/cmd.sh $target "docker rmi registry.cn-zhangjiakou.aliyuncs.com/highsoft/lockers.management.webui:latest"
+bash scripts/utils/cmd.sh $target "docker run --name lockers.management.webui -p 38100:80 -d --restart always registry.cn-zhangjiakou.aliyuncs.com/highsoft/lockers.management.webui:latest"
+if [ $? -ne 0 ]; then
+  echo "Failed to deploy lockers.management.webui!"
+  exit 1
+fi

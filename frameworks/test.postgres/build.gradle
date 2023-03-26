@@ -1,0 +1,5 @@
+dependencies {
+    api project(":frameworks.test.container")
+    implementation libs.test.testcontainers.postgresql
+    testImplementation libs.persistence.postgresql
+}

@@ -1,0 +1,3 @@
+#! /usr/bin/env sh
+
+chmod +x ./gradlew && ./gradlew --parallel -P chain-tests -P release --stacktrace clean build

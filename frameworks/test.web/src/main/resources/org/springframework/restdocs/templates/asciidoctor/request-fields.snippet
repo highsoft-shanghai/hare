@@ -1,0 +1,14 @@
+===== 请求内容
+
+[cols="2,0,5,5"]
+|===
+|Path|Type|Description|Constraints
+
+{{#fields}}
+|{{#tableCellContent}}`+{{path}}+`{{/tableCellContent}}
+|{{#tableCellContent}}`+{{#type}}{{.}}{{/type}}+`{{/tableCellContent}}
+|{{#tableCellContent}}{{description}}{{/tableCellContent}}
+|{{#tableCellContent}}{{#constraints}}{{.}}{{/constraints}}{{/tableCellContent}}
+
+{{/fields}}
+|===

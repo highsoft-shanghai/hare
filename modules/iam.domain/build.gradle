@@ -1,0 +1,4 @@
+dependencies {
+    api project(":frameworks.security.core")
+    testImplementation project(":frameworks.test.context")
+}

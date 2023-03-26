@@ -1,0 +1,8 @@
+apply from: "$rootDir/gradle/config/scripts/web.gradle"
+
+dependencies {
+    api project(":iam.application")
+//    api project(":frameworks.persistence.jpa")
+    implementation libs.spring.boot.starter.jdbc
+    implementation libs.spring.security.core
+}

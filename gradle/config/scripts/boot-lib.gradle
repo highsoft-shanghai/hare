@@ -1,0 +1,30 @@
+import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+buildscript {
+    repositories {
+        maven {
+            url "${pluginRepositoryUrl}"
+        }
+    }
+    dependencies {
+        classpath(project.extensions.getByType(VersionCatalogsExtension).named("libs").findLibrary("spring-dependency-management-plugin").get())
+        classpath(project.extensions.getByType(VersionCatalogsExtension).named("libs").findLibrary("spring-boot-plugin").get())
+    }
+}
+
+apply from: "$rootDir/gradle/config/scripts/java.gradle"
+apply plugin: DependencyManagementPlugin
+apply plugin: SpringBootPlugin
+
+dependencies {
+    annotationProcessor libs.spring.boot.configuration.processor
+}
+
+jar {
+    enabled = true
+}
+
+bootJar {
+    enabled = false
+}

@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+./gradlew -P chain-tests clean checkstyleMain checkstyleTest check

@@ -1,0 +1,8 @@
+apply from: "$rootDir/gradle/config/scripts/boot-lib.gradle"
+
+dependencies {
+    implementation project(":frameworks.security.core")
+    implementation libs.spring.boot.web
+    implementation libs.test.spring.boot.test
+    implementation libs.test.spring.restdocs.restassured
+}
