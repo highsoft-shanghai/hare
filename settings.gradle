@@ -19,7 +19,8 @@ void includeModulesFrom(String path, String prefix = "") {
     }
 }
 
+includeModulesFrom('frameworks', 'frameworks.')
+includeModulesFrom('foundations', 'foundations.')
+includeModulesFrom('frontends', 'frontends.')
 includeModulesFrom('modules')
 includeModulesFrom('services')
-includeModulesFrom('frameworks', 'frameworks.')
-includeModulesFrom('frontends', 'frontends.')

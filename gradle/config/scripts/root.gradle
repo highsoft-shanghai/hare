@@ -7,7 +7,8 @@ dependencies {
 }
 
 subprojects {
-    if (!(projectDir.parentFile in [rootProject.file("frameworks"), rootProject.file("modules")])) return
+    def dirs = [rootProject.file("frameworks"), rootProject.file("modules"), rootProject.file("foundations")]
+    if (!(projectDir.parentFile in dirs)) return
     apply from: "$rootDir/gradle/config/scripts/library.gradle"
 }
 
