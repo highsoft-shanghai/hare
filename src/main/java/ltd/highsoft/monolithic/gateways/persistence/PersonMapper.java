@@ -14,12 +14,17 @@ public class PersonMapper {
     private @Resource NamedParameterJdbcTemplate jdbc;
 
     public Person get(String id) {
-        String sql = "select t.id, t.code, t.name from mgmt_persons t where id=:id";
+        String sql = "select p.id, p.code, p.name, p.remarks from persons p where p.id=:id";
         return jdbc.queryForStream(sql, Map.of("id", id), asDomain()).findFirst().get();
     }
 
-    public RowMapper<Person> asDomain() {
-        return (rs, rowNumber) -> new Person(rs.getString("id"), rs.getString("code"), rs.getString("name"));
+    public void add(Person person) {
+        String sql = "insert into persons(id, code, name, remarks) values(:id, :code, :name, :remarks)";
+        jdbc.update(sql, Map.of("id", person.id(), "code", person.code(), "name", person.name(), "remarks", person.remarks()));
+    }
+
+    private RowMapper<Person> asDomain() {
+        return (rs, rowNumber) -> new Person(rs.getString("id"), rs.getString("code"), rs.getString("name"), rs.getString("remarks"));
     }
 
 }

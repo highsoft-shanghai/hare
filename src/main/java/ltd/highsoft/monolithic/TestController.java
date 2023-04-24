@@ -14,7 +14,7 @@ public class TestController {
 
     @GetMapping("/test")
     public Object test() {
-        return persons.forId("f354b3d03119475899de312f80c4c99e");
+        return persons.get("f354b3d03119475899de312f80c4c99e");
     }
 
 }
