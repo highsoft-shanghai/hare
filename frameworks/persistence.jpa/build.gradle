@@ -1,0 +1,11 @@
+apply from: "$rootDir/gradle/config/scripts/boot-lib.gradle"
+
+dependencies {
+    api project(":frameworks.domain.core")
+    api project(":frameworks.context.core")
+    api project(":frameworks.persistence.spring")
+    api libs.spring.boot.data.jpa
+    runtimeOnly libs.persistence.postgresql
+    testImplementation libs.test.spring.boot.test
+    testImplementation project(":frameworks.test.postgres")
+}

@@ -1,8 +1,8 @@
 package ltd.highsoft.hare;
 
-import ltd.highsoft.frameworks.test.container.WithTestContainers;
-import ltd.highsoft.frameworks.test.postgres.PostgresContainer;
-import ltd.highsoft.frameworks.test.web.RestTest;
+import ltd.highsoft.hare.frameworks.test.container.WithTestContainers;
+import ltd.highsoft.hare.frameworks.test.postgres.PostgresContainer;
+import ltd.highsoft.hare.frameworks.test.web.RestTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 

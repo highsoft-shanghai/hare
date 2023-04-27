@@ -2,7 +2,7 @@ apply from: "$rootDir/gradle/config/scripts/web.gradle"
 
 dependencies {
     api project(":foundations.iam.application")
-//    api project(":frameworks.persistence.jpa")
-    implementation libs.spring.boot.starter.jdbc
+    api project(":frameworks.persistence.jpa")
+    implementation libs.persistence.postgresql
     implementation libs.spring.security.core
 }

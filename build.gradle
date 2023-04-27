@@ -4,10 +4,16 @@ group = 'ltd.highsoft'
 version = '1.0.0'
 
 dependencies {
-    implementation project(":iam.gateways")
+    implementation project(":foundations.iam.gateways")
     implementation libs.spring.boot.starter.jdbc
     implementation libs.migration.flyway
     runtimeOnly libs.persistence.postgresql
     testImplementation project(":frameworks.test.postgres")
+    testImplementation project(":frameworks.test.web")
+    implementation project(":frameworks.domain.core")
+    implementation project(":frameworks.application.core")
+    implementation project(":frameworks.security.core")
+    implementation project(":frameworks.application.spring")
+    testImplementation project(":frameworks.test.moco")
     annotationProcessor libs.spring.boot.configuration.processor
 }

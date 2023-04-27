@@ -2,6 +2,7 @@
 spring-dependency-management = "1.1.0"
 spring-boot = "3.0.5"
 spring-restdocs = "3.0.0"
+spring-data-commons="3.0.5"
 spring = "6.0.7"
 spring-security-core = "6.0.2"
 general-lombok = "1.18.26"
@@ -51,7 +52,9 @@ test-hamcrest-date = { module = "org.exparity:hamcrest-date", version.ref = "tes
 test-moco = { module = "com.github.dreamhead:moco-core", version.ref = "test-moco" }
 test-spring-boot-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
 test-testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "test-testcontainers" }
+spring-boot-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "spring-boot" }
 test-testcontainers-mongodb = { module = "org.testcontainers:mongodb", version.ref = "test-testcontainers" }
 test-testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "test-testcontainers" }
 test-spring-restdocs-restassured = { module = "org.springframework.restdocs:spring-restdocs-restassured", version.ref = "spring-restdocs" }
 logging-logback = { module = "ch.qos.logback:logback-classic", version.ref = "logging-logback" }
+spring-data-commons = { module = "org.springframework.data:spring-data-commons", version.ref = "spring-data-commons" }

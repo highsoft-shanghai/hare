@@ -11,7 +11,7 @@ public class DbTags implements Tags {
     private @Resource TagMapper mapper;
 
     @Override
-    public Tag forId(String id) {
+    public Tag get(String id) {
         return mapper.get(id);
     }
 

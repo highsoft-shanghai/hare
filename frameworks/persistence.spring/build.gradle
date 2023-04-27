@@ -1,0 +1,4 @@
+dependencies {
+    api project(":frameworks.domain.core")
+    api libs.spring.data.commons
+}
