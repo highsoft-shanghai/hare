@@ -50,17 +50,17 @@ jobs:
         env:
           DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
       - name: Remove Previous Docker Container
-        run: ssh -i /home/id_rsa $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker rm -f hare.backend||true"
+        run: ssh -i /home/id_rsa -p 1022 $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker rm -f hare.backend||true"
         env:
           TARGET_MACHINE: ${{ secrets.TARGET_MACHINE }}
       - name: Pull Docker Image
-        run: ssh -i /home/id_rsa $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker pull $DOCKER_ADDRESS/$DOCKER_REPO_NAME:$(date "+%Y%m%d")"
+        run: ssh -i /home/id_rsa -p 1022 $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker pull $DOCKER_ADDRESS/$DOCKER_REPO_NAME:$(date "+%Y%m%d")"
         env:
           TARGET_MACHINE: ${{ secrets.TARGET_MACHINE }}
           DOCKER_ADDRESS: ${{ secrets.DOCKER_ADDRESS }}
           DOCKER_REPO_NAME: ${{secrets.DOCKER_REPO_NAME }}
       - name: Run Docker Container
-        run: ssh -i /home/id_rsa $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker run --name hare.backend -d -p 21000:8080 -e spring.profiles.active=prod -e spring.datasource.url=$DB_URL -e spring.datasource.username=$DB_USERNAME -e spring.datasource.password=$DB_PW --restart always $DOCKER_ADDRESS/$DOCKER_REPO_NAME:$(date "+%Y%m%d")"
+        run: ssh -i /home/id_rsa -p 1022 $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker run --name hare.backend -d -p 21000:8080 -e spring.profiles.active=prod -e spring.datasource.url=$DB_URL -e spring.datasource.username=$DB_USERNAME -e spring.datasource.password=$DB_PW --restart always $DOCKER_ADDRESS/$DOCKER_REPO_NAME:$(date "+%Y%m%d")"
         env:
           TARGET_MACHINE: ${{ secrets.TARGET_MACHINE }}
           DB_URL: ${{secrets.DB_URL }}
@@ -116,17 +116,17 @@ jobs:
         env:
           DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
       - name: Remove Previous Docker Container
-        run: ssh -i /home/id_rsa $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker rm -f hare.frontend||true"
+        run: ssh -i /home/id_rsa -p 1022 $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker rm -f hare.frontend||true"
         env:
           TARGET_MACHINE: ${{ secrets.TARGET_MACHINE }}
       - name: Pull Docker Image
-        run: ssh -i /home/id_rsa $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker pull $DOCKER_ADDRESS/$DOCKER_REPO_NAME_FE:$(date "+%Y%m%d")"
+        run: ssh -i /home/id_rsa -p 1022 $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker pull $DOCKER_ADDRESS/$DOCKER_REPO_NAME_FE:$(date "+%Y%m%d")"
         env:
           TARGET_MACHINE: ${{ secrets.TARGET_MACHINE }}
           DOCKER_ADDRESS: ${{ secrets.DOCKER_ADDRESS }}
           DOCKER_REPO_NAME_FE: ${{secrets.DOCKER_REPO_NAME_FE}}
       - name: Run Docker Container
-        run: ssh -i /home/id_rsa $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker run --name hare.frontend -d -p 11001:80 --restart always $DOCKER_ADDRESS/$DOCKER_REPO_NAME_FE:$(date "+%Y%m%d")"
+        run: ssh -i /home/id_rsa -p 1022 $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker run --name hare.frontend -d -p 11001:80 --restart always $DOCKER_ADDRESS/$DOCKER_REPO_NAME_FE:$(date "+%Y%m%d")"
         env:
           TARGET_MACHINE: ${{ secrets.TARGET_MACHINE }}
           DOCKER_ADDRESS: ${{ secrets.DOCKER_ADDRESS }}
