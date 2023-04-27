@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
-docker rm -f lockers.database
+docker rm -f hare.database
 
-if ! (docker run -d --name lockers.database --restart always -p 5434:5432 -e POSTGRES_USER=dbadmin -e POSTGRES_PASSWORD=highsoft postgres:14); then
+if ! (docker run -d --name hare.database --restart always -p 5444:5432 -e POSTGRES_USER=dbadmin -e POSTGRES_PASSWORD=highsoft postgres:14); then
   echo "Failed to start database service"
   exit 1
 fi
@@ -10,12 +10,12 @@ fi
 echo "Waiting database service to start..."
 sleep 3
 
-if ! (docker exec lockers.database psql -U dbadmin -c "create database lockers"); then
+if ! (docker exec hare.database psql -U dbadmin -c "create database hare"); then
   echo "Failed to create main database"
   exit 1
 fi
 
-if ! (docker exec lockers.database psql -U dbadmin -c "create database lockers_adapter"); then
+if ! (docker exec hare.database psql -U dbadmin -c "create database hare_adapter"); then
   echo "Failed to create adapter database"
   exit 1
 fi
