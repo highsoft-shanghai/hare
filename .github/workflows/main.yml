@@ -60,7 +60,7 @@ jobs:
           DOCKER_ADDRESS: ${{ secrets.DOCKER_ADDRESS }}
           DOCKER_REPO_NAME: ${{secrets.DOCKER_REPO_NAME }}
       - name: Run Docker Container
-        run: ssh -i /home/id_rsa -p 1022 $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker run --name hare.backend -d -p 21000:8080 -e spring.profiles.active=prod -e spring.datasource.url=$DB_URL -e spring.datasource.username=$DB_USERNAME -e spring.datasource.password=$DB_PW --restart always $DOCKER_ADDRESS/$DOCKER_REPO_NAME:$(date "+%Y%m%d")"
+        run: ssh -i /home/id_rsa -p 1022 $TARGET_MACHINE -o "StrictHostKeyChecking no" "docker run --name hare.backend -d -p 21000:8080 -e spring.profiles.active=prod -e spring.datasource.url='$DB_URL' -e spring.datasource.username=$DB_USERNAME -e spring.datasource.password=$DB_PW --restart always $DOCKER_ADDRESS/$DOCKER_REPO_NAME:$(date "+%Y%m%d")"
         env:
           TARGET_MACHINE: ${{ secrets.TARGET_MACHINE }}
           DB_URL: ${{secrets.DB_URL }}
