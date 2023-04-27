@@ -1,4 +1,4 @@
 project.coverage.excludes = [
-    'ltd/highsoft/monolithic/Application.class',
-    'ltd/highsoft/monolithic/**',
+    'ltd/highsoft/hare/Application.class',
+    'ltd/highsoft/hare/**',
 ]

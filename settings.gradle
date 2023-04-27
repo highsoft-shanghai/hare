@@ -6,7 +6,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'monolithic'
+rootProject.name = 'hare'
 
 void includeModulesFrom(String path, String prefix = "") {
     def directory = file(path)
