@@ -32,7 +32,7 @@ public class IamConfiguration {
 
     @Bean
     public LoginFactory loginFactory(IdGenerator idGenerator, CredentialMatcher matcher, AccessTokenStore tokenStore, AccessTokenFactory accessTokenFactory) {
-        return new DefaultLoginFactory(idGenerator, matcher, tokenStore, accessTokenFactory);
+        return new LoginFactory(idGenerator, matcher, tokenStore, accessTokenFactory);
     }
 
     @Bean

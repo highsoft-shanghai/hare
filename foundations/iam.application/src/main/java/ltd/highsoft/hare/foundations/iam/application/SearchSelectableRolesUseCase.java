@@ -11,6 +11,7 @@ import java.util.List;
 import static ltd.highsoft.hare.frameworks.context.core.GlobalUserContext.currentTenantId;
 
 @UseCase(requiredAuthorities = {})
+@Deprecated
 public class SearchSelectableRolesUseCase {
 
     private final Roles roles;

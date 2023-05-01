@@ -73,6 +73,7 @@ public class Role {
         this.remarks = payload.get("remarks", asRemarks());
     }
 
+    // TODO: fix me
     public void checkIsUse(UserAccounts userAccounts) {
         List<UserAccount> userAccountList = userAccounts.searchByRole(id.id().asString());
         if (!userAccountList.isEmpty()) {

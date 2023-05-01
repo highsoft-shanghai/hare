@@ -11,19 +11,18 @@ import java.util.Optional;
 import static ltd.highsoft.hare.frameworks.security.core.GlobalSecurityContext.securityContext;
 
 @UseCase(requiredAuthorities = Authorities.AUTHENTICATED)
-public class GetAccessTokenContentUseCase {
+public class GetCurrentAccessTokenUseCase {
 
     private final AccessTokens accessTokens;
     private final ValueSinkFactory valueSinkFactory;
 
-    public GetAccessTokenContentUseCase(AccessTokens accessTokens, ValueSinkFactory valueSinkFactory) {
+    public GetCurrentAccessTokenUseCase(AccessTokens accessTokens, ValueSinkFactory valueSinkFactory) {
         this.accessTokens = accessTokens;
         this.valueSinkFactory = valueSinkFactory;
     }
 
     public Optional<ObjectSink> execute() {
-        var accessToken = accessTokens.getOptional(securityContext().token());
-        return accessToken.map(token -> valueSinkFactory.newObjectSink(token::content));
+        return accessTokens.getOptional(securityContext().token()).map(token -> valueSinkFactory.newObjectSink(token::content));
     }
 
 }

@@ -10,6 +10,7 @@ import ltd.highsoft.hare.frameworks.domain.core.ValueSinkFactory;
 import static ltd.highsoft.hare.frameworks.context.core.GlobalUserContext.currentTenantId;
 
 @UseCase(requiredAuthorities = "iam.search-roles")
+@Deprecated
 public class SearchRolesUseCase {
 
     private final Roles roles;

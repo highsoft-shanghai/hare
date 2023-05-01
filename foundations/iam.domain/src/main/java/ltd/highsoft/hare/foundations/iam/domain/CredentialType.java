@@ -1,13 +1,16 @@
 package ltd.highsoft.hare.foundations.iam.domain;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode
 public final class CredentialType {
 
     public static final CredentialType USERNAME_AND_PASSWORD = credentialType("username-and-password");
+    @Deprecated
     public static final CredentialType CARD = credentialType("card");
+    @Deprecated
     public static final CredentialType FACE = credentialType("face");
 
     private final String value;

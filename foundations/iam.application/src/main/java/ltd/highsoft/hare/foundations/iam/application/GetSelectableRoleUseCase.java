@@ -10,6 +10,7 @@ import static ltd.highsoft.hare.frameworks.context.core.GlobalUserContext.curren
 import static ltd.highsoft.hare.frameworks.domain.core.ScopedId.id;
 
 @UseCase(requiredAuthorities = {})
+@Deprecated
 public class GetSelectableRoleUseCase {
 
     private final Roles roles;

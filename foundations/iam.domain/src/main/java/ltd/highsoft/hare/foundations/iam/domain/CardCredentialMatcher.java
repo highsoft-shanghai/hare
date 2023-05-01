@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import static ltd.highsoft.hare.frameworks.domain.core.StringFieldType.asString;
 
+@Deprecated
 public class CardCredentialMatcher implements CredentialMatcher {
 
     private final Credentials credentials;

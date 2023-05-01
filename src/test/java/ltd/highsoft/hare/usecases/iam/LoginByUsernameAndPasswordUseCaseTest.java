@@ -48,7 +48,7 @@ public class LoginByUsernameAndPasswordUseCaseTest extends ApiTest {
 
     @BeforeEach
     public void setUp() {
-        this.userAccount = new UserAccount(id("john@highsoft.ltd"), "John@Highsoft", new UserAccountOwner(USER.id(), TENANT.id()), new UserAccountRoles(Set.of("operators", "operators2"), roles), false);
+        this.userAccount = new UserAccount(id("john@highsoft.ltd"), "John@Highsoft", new UserAccountOwner(new UserOwner(USER.id(), users), new TenantOwner(TENANT.id(), tenants)), new UserAccountRoles(Set.of("operators", "operators2"), roles), false);
         credential = new Credential(id("CREDENTIAL_ID"), new CredentialOwner(userAccount.id(), USER.id(), TENANT.id()), USERNAME_AND_PASSWORD, LOGIN_NAME, ENCRYPTED_SECRET, false);
         tenants.add(TENANT);
         users.add(USER);

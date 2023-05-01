@@ -26,8 +26,9 @@ public class UsernameAndPasswordCredentialMatcher implements CredentialMatcher {
         return credential.matchSecret(PlanSecret.from(payload.get("password", asString())), passwordEncoder);
     }
 
+    // TODO
     private MatchResult fail() {
-        return MatchResult.fail("iam.user-does-not-exist");
+        return MatchResult.fail("iam.username-or-password-wrong");
     }
 
     private Optional<Credential> credentialOf(Payload payload) {

@@ -1,10 +1,7 @@
 package ltd.highsoft.hare.foundations.iam.gateways.persistence;
 
 import jakarta.annotation.Resource;
-import ltd.highsoft.hare.foundations.iam.domain.Roles;
-import ltd.highsoft.hare.foundations.iam.domain.UserAccount;
-import ltd.highsoft.hare.foundations.iam.domain.UserAccountOwner;
-import ltd.highsoft.hare.foundations.iam.domain.UserAccountRoles;
+import ltd.highsoft.hare.foundations.iam.domain.*;
 import ltd.highsoft.hare.frameworks.domain.core.Id;
 import ltd.highsoft.hare.frameworks.domain.core.MapsGrouper;
 import org.springframework.jdbc.core.RowMapper;
@@ -21,6 +18,8 @@ public class UserAccountMapper {
 
     private @Resource NamedParameterJdbcTemplate jdbc;
     private @Resource Roles roles;
+    private @Resource Users users;
+    private @Resource Tenants tenants;
 
     public void add(UserAccount userAccount) {
         String sql = "insert into iam_user_accounts(id, name, user_id, tenant_id, predefined) values(:id, :name, :user_id, :tenant_id, :predefined)";
@@ -61,15 +60,12 @@ public class UserAccountMapper {
         grouped.forEach((k, v) -> {
             Set<String> roleIds = v.stream().map(o -> (String) o.get("role_id")).collect(Collectors.toSet());
             Map<String, Object> map = v.get(0);
-            accounts.add(new UserAccount(id((String) map.get("id")), (String) map.get("name"), new UserAccountOwner(id((String) map.get("user_id")),
-                    id((String) map.get("tenant_id"))), new UserAccountRoles(roleIds, roles), (Boolean) map.get("predefined")));
+            accounts.add(new UserAccount(id((String) map.get("id")), (String) map.get("name"), new UserAccountOwner(
+                    new UserOwner(id((String) map.get("user_id")), users),
+                    new TenantOwner(id((String) map.get("tenant_id")), tenants)),
+                    new UserAccountRoles(roleIds, roles), (Boolean) map.get("predefined")));
         });
         return accounts;
-    }
-
-    private RowMapper<UserAccount> asDomain() {
-        return (rs, rowNumber) -> new UserAccount(id(rs.getString("id")), rs.getString("name"), new UserAccountOwner(id(rs.getString("user_id")),
-                id(rs.getString("tenant_id"))), new UserAccountRoles(Set.of(), roles), rs.getBoolean("predefined"));
     }
 
     public List<UserAccount> list(String roleId) {

@@ -46,7 +46,7 @@ public class UsernameAndPasswordCredentialMatcherTest {
     void should_get_failed_when_matching_incorrect_username_or_password() {
         var matchResult = matcher.match(payload(Map.of("username", "incorrect", "password", "correct")));
         assertThat(matchResult.matched()).isFalse();
-        assertThat(matchResult.reason()).isEqualTo("iam.password-not-right");
+        assertThat(matchResult.reason()).isEqualTo("iam.username-or-password-wrong");
         assertThat(matchResult.credential()).isNull();
     }
 
@@ -54,7 +54,7 @@ public class UsernameAndPasswordCredentialMatcherTest {
     void should_get_failed_when_matching_non_existing_credentials() {
         var matchResult = matcher.match(payload(Map.of("username", "non-existing", "password", "correct")));
         assertThat(matchResult.matched()).isFalse();
-        assertThat(matchResult.reason()).isEqualTo("iam.user-does-not-exist");
+        assertThat(matchResult.reason()).isEqualTo("iam.username-or-password-wrong");
         assertThat(matchResult.credential()).isNull();
     }
 

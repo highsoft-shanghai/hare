@@ -5,6 +5,7 @@ import ltd.highsoft.hare.foundations.iam.application.SearchAllAuthoritiesUseCase
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Deprecated
 public class AuthoritiesApi {
     private @Resource SearchAllAuthoritiesUseCase searchAllAuthoritiesUseCase;
 

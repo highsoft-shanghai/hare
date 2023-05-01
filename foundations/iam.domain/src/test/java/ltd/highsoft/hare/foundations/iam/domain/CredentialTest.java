@@ -32,7 +32,7 @@ class CredentialTest {
     @Test
     void should_be_able_to_mismatch_incorrect_secret() {
         given(passwordEncoder.matches("incorrect-plan-secret", "encrypted-secret")).willReturn(false);
-        assertThat(credential.matchSecret(PlanSecret.from("incorrect-plan-secret"), passwordEncoder)).usingRecursiveComparison().isEqualTo(MatchResult.fail("iam.password-not-right"));
+        assertThat(credential.matchSecret(PlanSecret.from("incorrect-plan-secret"), passwordEncoder)).usingRecursiveComparison().isEqualTo(MatchResult.fail("iam.username-or-password-wrong"));
     }
 
 }

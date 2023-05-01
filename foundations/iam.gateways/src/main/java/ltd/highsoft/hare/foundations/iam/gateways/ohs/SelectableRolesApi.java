@@ -11,6 +11,7 @@ import static ltd.highsoft.hare.frameworks.domain.core.Id.id;
 
 @RestController
 @RequestMapping("/selectable-roles")
+@Deprecated
 public class SelectableRolesApi {
 
     private @Resource SearchSelectableRolesUseCase searchSelectableRolesUseCase;

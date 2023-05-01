@@ -22,7 +22,7 @@ public class Credential {
     }
 
     public MatchResult matchSecret(PlanSecret plan, PasswordEncoder passwordEncoder) {
-        return secret.match(plan, passwordEncoder) ? MatchResult.success(this) : MatchResult.fail("iam.password-not-right");
+        return secret.match(plan, passwordEncoder) ? MatchResult.success(this) : MatchResult.fail("iam.username-or-password-wrong");
     }
 
     public Id id() {

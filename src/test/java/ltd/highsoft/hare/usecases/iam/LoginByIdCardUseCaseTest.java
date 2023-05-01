@@ -48,7 +48,7 @@ public class LoginByIdCardUseCaseTest extends ApiTest {
 
     @BeforeEach
     public void setUp() {
-        this.userAccount = new UserAccount(id("john@highsoft.ltd"), "John@Highsoft", new UserAccountOwner(USER.id(), TENANT.id()), new UserAccountRoles(Set.of("operators"), roles), false);
+        this.userAccount = new UserAccount(id("john@highsoft.ltd"), "John@Highsoft", new UserAccountOwner(new UserOwner(USER.id(), users), new TenantOwner(TENANT.id(), tenants)), new UserAccountRoles(Set.of("operators"), roles), false);
         credential = new Credential(id("CREDENTIAL_ID"), new CredentialOwner(userAccount.id(), USER.id(), TENANT.id()), CARD, LOGIN_NAME, encryptedSecret(""), false);
         tenants.add(TENANT);
         users.add(USER);
@@ -81,17 +81,17 @@ public class LoginByIdCardUseCaseTest extends ApiTest {
     @Override
     protected Documentation document() {
         return doc("logins.card.post",
-            requestFields(
-                constrainedFieldWithPath("type", "ID卡请使用“card”").description("登录凭据类型"),
-                constrainedFieldWithPath("cardNumber", "长度≧3且≦2000").description("登录用户名"),
-                constrainedFieldWithPath("group", "不可为空，长度≦200").description("令牌组，用来表示登录的端")
-            ),
-            responseFields(
-                fieldWithPath("id").description("登录记录ID"),
-                fieldWithPath("success").description("登录成功状态"),
-                fieldWithPath("accessToken").description("访问令牌标识"),
-                fieldWithPath("reason").description("如果登录失败，显示失败的原因")
-            )
+                requestFields(
+                        constrainedFieldWithPath("type", "ID卡请使用“card”").description("登录凭据类型"),
+                        constrainedFieldWithPath("cardNumber", "长度≧3且≦2000").description("登录用户名"),
+                        constrainedFieldWithPath("group", "不可为空，长度≦200").description("令牌组，用来表示登录的端")
+                ),
+                responseFields(
+                        fieldWithPath("id").description("登录记录ID"),
+                        fieldWithPath("success").description("登录成功状态"),
+                        fieldWithPath("accessToken").description("访问令牌标识"),
+                        fieldWithPath("reason").description("如果登录失败，显示失败的原因")
+                )
         );
     }
 

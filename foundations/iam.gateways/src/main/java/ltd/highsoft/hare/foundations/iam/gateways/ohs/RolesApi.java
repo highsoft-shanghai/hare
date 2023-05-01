@@ -31,6 +31,7 @@ public class RolesApi {
     }
 
     @GetMapping
+    @Deprecated
     public Object search(@RequestParam(required = false) String q, Pageable pageable) {
         PageRequest of = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
         return searchRolesUseCase.execute(q, GeneralPagination.of(of.getPageNumber(), of.getPageSize()));

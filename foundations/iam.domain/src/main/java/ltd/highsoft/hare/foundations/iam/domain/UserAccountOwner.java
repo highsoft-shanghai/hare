@@ -1,26 +1,30 @@
 package ltd.highsoft.hare.foundations.iam.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import ltd.highsoft.hare.frameworks.domain.core.Id;
 
-@ToString
+@AllArgsConstructor
 @EqualsAndHashCode
-public class UserAccountOwner {
-
-    private final Id userId;
-    private final Id tenantId;
-
-    public UserAccountOwner(Id userId, Id tenantId) {
-        this.userId = userId;
-        this.tenantId = tenantId;
-    }
+public final class UserAccountOwner {
+    private final UserOwner userOwner;
+    private final TenantOwner tenantOwner;
 
     public Id userId() {
-        return userId;
+        return userOwner.id();
     }
 
     public Id tenantId() {
-        return tenantId;
+        return tenantOwner.id();
+    }
+
+    public User user() {
+        return userOwner.get();
+    }
+
+    public Tenant tenant() {
+        return tenantOwner.get();
     }
 
 }
+

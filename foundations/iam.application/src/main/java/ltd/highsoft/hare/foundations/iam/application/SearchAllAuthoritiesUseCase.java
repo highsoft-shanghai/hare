@@ -7,6 +7,7 @@ import ltd.highsoft.hare.frameworks.domain.core.ValueSink;
 import ltd.highsoft.hare.frameworks.domain.core.ValueSinkFactory;
 
 @UseCase(requiredAuthorities = ltd.highsoft.hare.frameworks.security.core.Authorities.AUTHENTICATED)
+@Deprecated
 public class SearchAllAuthoritiesUseCase {
     private final Authorities authorities;
     private final ValueSinkFactory valueSinkFactory;

@@ -24,7 +24,7 @@ public class RoleTest {
 
     @Test
     void should_throw_error_when_role_is_used() {
-        UserAccount userAccount = new UserAccount(id("john@highsoft.ltd"), "John", new UserAccountOwner(id("john"), id("highsoft")), roles, false);
+        UserAccount userAccount = new UserAccount(id("john@highsoft.ltd"), "John", new UserAccountOwner(new UserOwner(id("john"), null), new TenantOwner(id("highsoft"), null)), roles, false);
         given(userAccounts.searchByRole("role-1")).willReturn(List.of(userAccount));
         Role role = new Role(ScopedId.id("role-1", "highsoft"), Name.name("admin"), GrantedAuthorities.of("f1", "f2"), Remarks.remarks(""), false);
         Throwable throwable = catchThrowable(() -> role.checkIsUse(userAccounts));
