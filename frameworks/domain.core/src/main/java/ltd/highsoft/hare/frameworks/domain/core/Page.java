@@ -5,23 +5,21 @@ import java.util.function.Function;
 
 public interface Page<T> {
 
-    List<T> content();
+    List<T> getContent();
 
-    int size();
+    int getSize();
 
-    int number();
+    int getNumber();
 
-    int numberOfElements();
+    int getNumberOfElements();
 
-    int numberOfTotalPages();
+    int getNumberOfTotalPages();
 
-    long numberOfTotalElements();
+    long getNumberOfTotalElements();
 
-    boolean first();
+    boolean getFirst();
 
-    boolean last();
-
-    Sort sort();
+    boolean getLast();
 
     <U> Page<U> map(Function<? super T, ? extends U> converter);
 

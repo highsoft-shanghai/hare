@@ -1,4 +1,5 @@
-create table iam_access_tokens (
+create table iam_access_tokens
+(
     id                  varchar(64) primary key not null,
     user_account_id     varchar(64)             not null,
     user_account_name   varchar(256)            not null,
@@ -11,18 +12,21 @@ create table iam_access_tokens (
     unique (tenant_id, id)
 );
 
-create table iam_tenants (
+create table iam_tenants
+(
     id   varchar(64) primary key not null,
     name varchar(256)            not null
 );
 
-create table iam_users (
+create table iam_users
+(
     id         varchar(64) primary key not null,
     name       varchar(256)            not null,
     predefined bool                    not null
 );
 
-create table iam_user_accounts (
+create table iam_user_accounts
+(
     id         varchar(64) primary key not null,
     name       varchar(256)            not null,
     user_id    varchar(64),
@@ -31,7 +35,8 @@ create table iam_user_accounts (
     unique (tenant_id, id)
 );
 
-create table iam_credentials (
+create table iam_credentials
+(
     id              varchar(64) primary key not null,
     type            varchar(100)            not null,
     login_name      varchar(256)            not null,
@@ -43,7 +48,8 @@ create table iam_credentials (
     unique (tenant_id, id)
 );
 
-create table iam_roles (
+create table iam_roles
+(
     id          varchar(64) primary key not null,
     name        varchar(256)            not null,
     authorities varchar(2560000),
@@ -53,15 +59,18 @@ create table iam_roles (
     unique (tenant_id, id)
 );
 
-create table iam_user_account_roles (
+create table iam_user_account_roles
+(
     user_account_id varchar(64) not null,
     role_id         varchar(64) not null,
     primary key (user_account_id, role_id)
 );
 
-create table iam_authorities (
+create table iam_authorities
+(
     id        varchar(64) primary key not null,
     parent_id varchar(64),
+    is_leaf   bool                    not null,
     name      varchar(256)            not null,
     remarks   varchar(2048)
 );

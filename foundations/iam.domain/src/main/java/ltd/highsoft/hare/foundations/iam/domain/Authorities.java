@@ -4,7 +4,7 @@ import java.util.*;
 
 public interface Authorities {
 
-    void get(Authority feature);
+    void add(Authority feature);
 
     List<Authority> all();
 

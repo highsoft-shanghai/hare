@@ -9,7 +9,7 @@ dependencies {
     implementation libs.migration.flyway
     runtimeOnly libs.persistence.postgresql
     testImplementation project(":frameworks.test.postgres")
-    testImplementation project(":frameworks.test.web")
+    implementation project(":frameworks.test.web")
     implementation project(":frameworks.domain.core")
     implementation project(":frameworks.application.core")
     implementation project(":frameworks.security.core")

@@ -19,7 +19,7 @@ class AccessTokenStoreTest {
     void should_store_access_tokens_into_underlying_collection_when_client_stores_access_tokens() {
         AccessTokenStore store = new AccessTokenStore(accessTokens);
         store.store(ACCESS_TOKEN_OF_TESTER);
-        then(accessTokens).should().get(ACCESS_TOKEN_OF_TESTER);
+        then(accessTokens).should().add(ACCESS_TOKEN_OF_TESTER);
     }
 
     @Test

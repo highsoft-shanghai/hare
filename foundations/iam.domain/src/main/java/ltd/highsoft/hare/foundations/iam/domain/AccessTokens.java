@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface AccessTokens {
 
-    void get(AccessToken accessToken);
+    void add(AccessToken accessToken);
 
     Optional<AccessToken> getOptional(Id id);
 

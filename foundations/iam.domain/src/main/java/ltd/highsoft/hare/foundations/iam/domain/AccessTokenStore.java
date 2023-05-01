@@ -14,7 +14,7 @@ public class AccessTokenStore {
 
     public void store(AccessToken accessToken) {
         accessTokens.removeAll(accessToken.owner().userAccount().id(), accessToken.group());
-        accessTokens.get(accessToken);
+        accessTokens.add(accessToken);
     }
 
     public Optional<AccessToken> load(Id id) {

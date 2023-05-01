@@ -23,10 +23,10 @@ public class SearchAllAuthoritiesUseCaseTest extends ApiTest {
     @BeforeEach
     public void setUp() {
         authorities.clear();
-        authorities.get(new Authority(Id.id("UseCase-1"), "菜单-1", Id.id(""), false, "1"));
-        authorities.get(new Authority(Id.id("UseCase-2-1"), "菜单-2-1", Id.id("UseCase-1"), true, "4"));
-        authorities.get(new Authority(Id.id("UseCase-2-3"), "菜单-2-3", Id.id("UseCase-1"), true, "5"));
-        authorities.get(new Authority(Id.id("UseCase-2-2"), "菜单-2-2", Id.id("UseCase-1"), true, "6"));
+        authorities.add(new Authority(Id.id("UseCase-1"), "菜单-1", Id.id(""), false, "1"));
+        authorities.add(new Authority(Id.id("UseCase-2-1"), "菜单-2-1", Id.id("UseCase-1"), true, "4"));
+        authorities.add(new Authority(Id.id("UseCase-2-3"), "菜单-2-3", Id.id("UseCase-1"), true, "5"));
+        authorities.add(new Authority(Id.id("UseCase-2-2"), "菜单-2-2", Id.id("UseCase-1"), true, "6"));
     }
 
     @Test

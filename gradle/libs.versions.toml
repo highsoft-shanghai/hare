@@ -58,3 +58,4 @@ test-testcontainers-postgresql = { module = "org.testcontainers:postgresql", ver
 test-spring-restdocs-restassured = { module = "org.springframework.restdocs:spring-restdocs-restassured", version.ref = "spring-restdocs" }
 logging-logback = { module = "ch.qos.logback:logback-classic", version.ref = "logging-logback" }
 spring-data-commons = { module = "org.springframework.data:spring-data-commons", version.ref = "spring-data-commons" }
+spring-jdbc = { module = "org.springframework:spring-jdbc", version.ref = "spring" }

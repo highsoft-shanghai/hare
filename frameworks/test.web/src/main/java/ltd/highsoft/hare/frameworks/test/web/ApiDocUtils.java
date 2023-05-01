@@ -32,9 +32,6 @@ public final class ApiDocUtils {
             fieldWithPath("numberOfElements").description("当前页内记录数"),
             fieldWithPath("size").description("分页大小"),
             fieldWithPath("number").description("页码"),
-            fieldWithPath("sort").optional().description("排序信息"),
-            fieldWithPath("sort[].property").type("String").description("排序字段"),
-            fieldWithPath("sort[].direction").type("String").description("排序方向。asc为升序，desc为降序")
         };
         return responseFields(ArrayUtils.addAll(descriptors, paginationFields));
     }

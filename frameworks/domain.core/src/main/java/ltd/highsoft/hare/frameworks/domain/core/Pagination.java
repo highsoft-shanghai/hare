@@ -6,10 +6,8 @@ public interface Pagination {
 
     int pageSize();
 
-    Sort sort();
+    int limit();
 
-    Pagination withSort(Sort sort);
-
-    Pagination withSort(SortDirection direction, String... properties);
+    int offset();
 
 }

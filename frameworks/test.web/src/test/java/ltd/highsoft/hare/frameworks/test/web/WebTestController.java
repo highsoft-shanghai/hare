@@ -72,8 +72,7 @@ public class WebTestController {
     @GetMapping("document-paged-response")
     public Object documentPagedResponse() {
         return Map.of(
-            "first", true, "last", true, "numberOfTotalPages", 1, "numberOfTotalElements", 1, "numberOfElements", 1, "size", 10, "number", 0,
-            "sort", List.of(Map.of("property", "name", "direction", "asc")), "content", List.of(Map.of("name", "John"))
+                "first", true, "last", true, "numberOfTotalPages", 1, "numberOfTotalElements", 1, "numberOfElements", 1, "size", 10, "number", 0, "content", List.of(Map.of("name", "John"))
         );
     }
 
