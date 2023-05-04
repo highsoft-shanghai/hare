@@ -4,6 +4,7 @@ import jakarta.annotation.Resource;
 import ltd.highsoft.hare.foundations.iam.domain.*;
 import ltd.highsoft.hare.frameworks.domain.core.Id;
 import ltd.highsoft.hare.frameworks.domain.core.MapsGrouper;
+import ltd.highsoft.hare.frameworks.gateways.core.BeanProvider;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -17,9 +18,7 @@ import static ltd.highsoft.hare.frameworks.domain.core.Id.id;
 public class UserAccountMapper {
 
     private @Resource NamedParameterJdbcTemplate jdbc;
-    private @Resource Roles roles;
-    private @Resource Users users;
-    private @Resource Tenants tenants;
+    private @Resource BeanProvider beanProvider;
 
     public void add(UserAccount userAccount) {
         String sql = "insert into iam_user_accounts(id, name, user_id, tenant_id, predefined) values(:id, :name, :user_id, :tenant_id, :predefined)";
@@ -61,16 +60,16 @@ public class UserAccountMapper {
             Set<String> roleIds = v.stream().map(o -> (String) o.get("role_id")).collect(Collectors.toSet());
             Map<String, Object> map = v.get(0);
             accounts.add(new UserAccount(id((String) map.get("id")), (String) map.get("name"), new UserAccountOwner(
-                    new UserOwner(id((String) map.get("user_id")), users),
-                    new TenantOwner(id((String) map.get("tenant_id")), tenants)),
-                    new UserAccountRoles(roleIds, roles), (Boolean) map.get("predefined")));
+                    new UserOwner(id((String) map.get("user_id")), beanProvider.getBean(Users.class)),
+                    new TenantOwner(id((String) map.get("tenant_id")), beanProvider.getBean(Tenants.class))),
+                    new UserAccountRoles(roleIds, beanProvider.getBean(Roles.class)), (Boolean) map.get("predefined")));
         });
         return accounts;
     }
 
-    public List<UserAccount> list(String roleId) {
-        String sql = "select u.id, u.name, u.user_id, u.tenant_id, u.predefined, r.role_id from iam_user_accounts u left join iam_user_account_roles r on u.id=r.user_account_id where r.role_id=:role_id";
-        List<Map<String, Object>> maps = jdbc.query(sql, Map.of("role_id", roleId), toMap());
-        return asDomain(maps);
+    public boolean existsByRoleId(String roleId) {
+        String sql = "select count(*) from iam_user_account_roles where role_id=:role_id";
+        Integer sum = jdbc.queryForObject(sql, Map.of("role_id", roleId), Integer.class);
+        return Optional.ofNullable(sum).orElse(0) > 0;
     }
 }

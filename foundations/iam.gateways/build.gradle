@@ -3,6 +3,7 @@ apply from: "$rootDir/gradle/config/scripts/web.gradle"
 dependencies {
     api project(":foundations.iam.application")
     api project(":frameworks.domain.core")
+    api project(":frameworks.gateways.core")
     api libs.spring.data.commons
     implementation libs.persistence.postgresql
     implementation libs.spring.jdbc

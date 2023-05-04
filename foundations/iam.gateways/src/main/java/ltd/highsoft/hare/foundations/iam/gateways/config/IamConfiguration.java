@@ -60,4 +60,9 @@ public class IamConfiguration {
         return new UserAccountGrantedAuthoritiesResolver(userAccounts);
     }
 
+    @Bean
+    public Roles roles(Roles.RoleRepository roleRepository, UserAccounts userAccounts) {
+        return new Roles(roleRepository, userAccounts);
+    }
+
 }

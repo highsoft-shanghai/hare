@@ -3,12 +3,13 @@ package ltd.highsoft.hare.foundations.iam.gateways.persistence;
 import jakarta.annotation.Resource;
 import ltd.highsoft.hare.foundations.iam.domain.Role;
 import ltd.highsoft.hare.foundations.iam.domain.Roles;
-import ltd.highsoft.hare.frameworks.domain.core.*;
+import ltd.highsoft.hare.frameworks.domain.core.Id;
+import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
-public class DbRoles implements Roles {
+public class DbRoleRepository implements Roles.RoleRepository {
 
     private @Resource RoleMapper mapper;
 

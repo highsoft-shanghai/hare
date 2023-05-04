@@ -2,8 +2,6 @@ package ltd.highsoft.hare.foundations.iam.domain;
 
 import ltd.highsoft.hare.frameworks.domain.core.Id;
 
-import java.util.List;
-
 public interface UserAccounts {
 
     void add(UserAccount userAccount);
@@ -12,6 +10,6 @@ public interface UserAccounts {
 
     void remove(Id id);
 
-    List<UserAccount> searchByRole(String roleId);
+    boolean existsByRoleId(String roleId);
 
 }

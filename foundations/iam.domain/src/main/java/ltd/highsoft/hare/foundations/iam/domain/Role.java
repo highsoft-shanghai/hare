@@ -1,12 +1,13 @@
 package ltd.highsoft.hare.foundations.iam.domain;
 
-import ltd.highsoft.hare.frameworks.domain.core.*;
+import ltd.highsoft.hare.frameworks.domain.core.Name;
+import ltd.highsoft.hare.frameworks.domain.core.Payload;
+import ltd.highsoft.hare.frameworks.domain.core.Remarks;
+import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
 import ltd.highsoft.hare.frameworks.security.core.GrantedAuthorities;
 
 import java.util.HashSet;
-import java.util.List;
 
-import static ltd.highsoft.hare.frameworks.domain.core.I18nMessage.message;
 import static ltd.highsoft.hare.frameworks.domain.core.NameFieldType.asName;
 import static ltd.highsoft.hare.frameworks.domain.core.RemarksFieldType.asRemarks;
 import static ltd.highsoft.hare.frameworks.domain.core.StringFieldType.asString;
@@ -59,14 +60,6 @@ public class Role {
         this.name = payload.get("name", asName());
         this.authorities = GrantedAuthorities.of(new HashSet<>(payload.get("authorities", asString().array())));
         this.remarks = payload.get("remarks", asRemarks());
-    }
-
-    // TODO: fix me
-    public void checkIsUse(UserAccounts userAccounts) {
-        List<UserAccount> userAccountList = userAccounts.searchByRole(id.id().asString());
-        if (!userAccountList.isEmpty()) {
-            throw new BadInputException(message("error.role-is-used"));
-        }
     }
 
 }

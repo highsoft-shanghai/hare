@@ -7,8 +7,6 @@ import ltd.highsoft.hare.frameworks.domain.core.Id;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Component
 public class DbUserAccounts implements UserAccounts {
 
@@ -33,8 +31,8 @@ public class DbUserAccounts implements UserAccounts {
     }
 
     @Override
-    public List<UserAccount> searchByRole(String roleId) {
-        return mapper.list(roleId);
+    public boolean existsByRoleId(String roleId) {
+        return mapper.existsByRoleId(roleId);
     }
 
 }
