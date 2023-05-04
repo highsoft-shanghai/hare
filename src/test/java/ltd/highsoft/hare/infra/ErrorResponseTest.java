@@ -25,11 +25,11 @@ public class ErrorResponseTest extends ApiTest {
     protected Documentation document() {
         return doc("error.general-error",
             responseFields(
-                fieldWithPath("timestamp").description("错误发生时间"),
-                fieldWithPath("status").description("HTTP状态码"),
-                fieldWithPath("error").description("HTTP状态描述"),
-                fieldWithPath("message").description("本地化错误描述"),
-                fieldWithPath("path").description("资源路程")
+                fieldWithPath("timestamp").description("Error happened time"),
+                fieldWithPath("status").description("HTTP status code"),
+                fieldWithPath("error").description("HTTP status description"),
+                fieldWithPath("message").description("Localization error description"),
+                fieldWithPath("path").description("Resource path")
             )
         );
     }

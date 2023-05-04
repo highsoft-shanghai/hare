@@ -29,15 +29,15 @@ public class CreateRoleUseCaseTest extends ApiTest {
     @WithGrantedAuthorities("iam.create-role")
     public void should_create_person_correctly() {
         Map<String, Object> payload = new HashMap<>();
-        payload.put("name", "中级管理员");
+        payload.put("name", "Manager");
         payload.put("authorities", List.of("basic.management", "basic.tag-group-management", "management.create-tag-group", "management.archive-tag-group"));
-        payload.put("remarks", "备注");
+        payload.put("remarks", "remarks");
         var response = post("/roles", variables(), payload, document());
         response.statusCode(is(201)).body("id", hasLength(32));
         createRoleId = Id.id(response.extract().body().path("id"));
         Role role = roles.get(createRoleId);
         assertThat(role.grantedAuthorities().asSet()).containsExactlyInAnyOrder("basic.management", "basic.tag-group-management", "management.create-tag-group", "management.archive-tag-group");
-        assertThat(role.name().asString()).isEqualTo("中级管理员");
+        assertThat(role.name().asString()).isEqualTo("Manager");
     }
 
     @AfterEach
@@ -49,11 +49,11 @@ public class CreateRoleUseCaseTest extends ApiTest {
     protected Documentation document() {
         return Documentation.doc("roles.post",
             requestFields(
-                fieldWithPath("name").description("角色名称"),
-                fieldWithPath("authorities").description("权限列表"),
-                fieldWithPath("remarks").description("备注")
+                fieldWithPath("name").description("Role name"),
+                fieldWithPath("authorities").description("Authority list"),
+                fieldWithPath("remarks").description("Remarks")
             ),
-            responseFields(fieldWithPath("id").description("新增角色ID")));
+            responseFields(fieldWithPath("id").description("The id of new role")));
     }
 
 }

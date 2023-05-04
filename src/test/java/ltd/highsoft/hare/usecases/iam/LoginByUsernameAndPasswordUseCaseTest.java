@@ -82,16 +82,16 @@ public class LoginByUsernameAndPasswordUseCaseTest extends ApiTest {
     protected Documentation document() {
         return doc("logins.username-and-password.post",
                 requestFields(
-                        constrainedFieldWithPath("type", "用户名密码请使用“username-and-password”").description("登录凭据类型"),
-                        constrainedFieldWithPath("username", "长度≧3且≦200").description("登录用户名"),
-                        constrainedFieldWithPath("password", "长度≧6且≦100").description("登录密码，建议使用SHA512取摘要后的密码"),
-                        constrainedFieldWithPath("group", "不可为空，长度≦200").description("令牌组，用来表示登录的端")
+                        constrainedFieldWithPath("type", "Username and password use “username-and-password”").description("Login credentials type\n"),
+                        constrainedFieldWithPath("username", "Length ≧3 and ≦200").description("Login username"),
+                        constrainedFieldWithPath("password", "Length ≧6 and ≦100").description("Login password. It is recommended to use SHA512 to extract the digested password"),
+                        constrainedFieldWithPath("group", "Not empty, Length ≦200").description("token group, used to indicate the endpoint of the login")
                 ),
                 responseFields(
-                        fieldWithPath("id").description("登录记录ID"),
-                        fieldWithPath("success").description("登录成功状态"),
-                        fieldWithPath("accessToken").description("访问令牌标识"),
-                        fieldWithPath("reason").description("如果登录失败，显示失败的原因")
+                        fieldWithPath("id").description("Login log id"),
+                        fieldWithPath("success").description("login success status"),
+                        fieldWithPath("accessToken").description("Access token identification"),
+                        fieldWithPath("reason").description("If the login fails, show the reason for the failure")
                 )
         );
     }

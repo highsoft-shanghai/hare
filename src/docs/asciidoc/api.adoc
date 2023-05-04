@@ -5,11 +5,11 @@ highsoft.ltd
 :sectnums:
 :partnums:
 
-== 通用
+== General
 
-=== 错误处理
+=== Error Process
 
-==== 错误响应
+==== Error Response
 
 include::{snippets}/error.general-error/response-fields.adoc[opts=optional]
 
@@ -17,30 +17,30 @@ include::{snippets}/error.general-error/http-response.adoc[opts=optional]
 
 == IAM
 
-=== 角色管理
+=== Role Management
 
-==== 创建角色
+==== Create Role
 
 include::{snippets}/roles.post/api.adoc[]
 
-==== 更新角色
+==== Update Role
 
 include::{snippets}/role.put/api.adoc[]
 
-==== 查询角色
+==== Search Role
 
 include::{snippets}/role.get.id/api.adoc[]
 
-==== 删除角色
+==== Delete Role
 
 include::{snippets}/roles.delete/api.adoc[]
 
-=== 用户账户管理
+=== User Account Management
 
-==== 用户登陆
+==== User Login
 
 include::{snippets}/logins.username-and-password.post/api.adoc[]
 
-==== 当前用户
+==== Current
 
 include::{snippets}/access-tokens.current.get/api.adoc[]

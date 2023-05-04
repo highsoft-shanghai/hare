@@ -40,7 +40,7 @@ public class UpdateRoleUseCaseTest extends ApiTest {
         Map<String, Object> payload = new HashMap<>();
         payload.put("authorities", List.of("basic.management", "basic.tag-group-management", "management.create-tag-group", "management.archive-tag-group"));
         payload.put("name", "role-2");
-        payload.put("remarks", "备注");
+        payload.put("remarks", "remarks");
         var response = put("/roles/role-1", variables(), payload, document());
         response.statusCode(204);
         Role role = roles.get(id("role-1"));
@@ -57,9 +57,9 @@ public class UpdateRoleUseCaseTest extends ApiTest {
     protected Documentation document() {
         return Documentation.doc("role.put",
                 requestFields(
-                        constrainedFieldWithPath("name", "必填").description("角色名称"),
-                        constrainedFieldWithPath("authorities", "非必填").description("角色权限"),
-                        constrainedFieldWithPath("remarks", "非必填").optional().description("角色备注")
+                        constrainedFieldWithPath("name", "must").description("Role name"),
+                        constrainedFieldWithPath("authorities", "optional").description("Authorities of role"),
+                        constrainedFieldWithPath("remarks", "optional").optional().description("remarks")
                 )
         );
     }
