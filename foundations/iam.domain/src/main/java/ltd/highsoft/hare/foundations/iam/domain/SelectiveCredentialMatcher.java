@@ -7,7 +7,8 @@ import ltd.highsoft.hare.frameworks.domain.core.Payload;
 import java.util.HashMap;
 import java.util.Map;
 
-import static ltd.highsoft.hare.foundations.iam.domain.CredentialType.*;
+import static ltd.highsoft.hare.foundations.iam.domain.CredentialType.USERNAME_AND_PASSWORD;
+import static ltd.highsoft.hare.foundations.iam.domain.CredentialType.credentialType;
 import static ltd.highsoft.hare.frameworks.domain.core.StringFieldType.asString;
 
 public class SelectiveCredentialMatcher implements CredentialMatcher {
@@ -16,7 +17,6 @@ public class SelectiveCredentialMatcher implements CredentialMatcher {
 
     public SelectiveCredentialMatcher(Credentials credentials, PasswordEncoder passwordEncoder) {
         matchers.put(USERNAME_AND_PASSWORD, new UsernameAndPasswordCredentialMatcher(credentials, passwordEncoder));
-        matchers.put(CARD, new CardCredentialMatcher(credentials));
     }
 
     @Override

@@ -15,12 +15,6 @@ public record UserAccount(Id id, String name, UserAccountOwner owner, UserAccoun
         userAccounts.add(this);
         credentials.removeForUserAccount(this.id);
         map.forEach((key, value) -> {
-            if ("identity-type.card".equals(key)) {
-                credentials.add(credentialFactory.newCredential(new CredentialOwner(id, Id.id(""), owner.tenantId()), CredentialType.CARD, LoginName.loginName(value.account()), new EncryptedSecret("")));
-            }
-            if ("identity-type.face".equals(key)) {
-                credentials.add(credentialFactory.newCredential(new CredentialOwner(id, Id.id(""), owner.tenantId()), CredentialType.FACE, LoginName.loginName(value.account()), new EncryptedSecret("")));
-            }
             if ("identity-type.username-and-password".equals(key)) {
                 credentials.add(credentialFactory.newCredential(new CredentialOwner(id, Id.id(""), owner.tenantId()), CredentialType.USERNAME_AND_PASSWORD, LoginName.loginName(value.account()), EncryptedSecret.encryptedSecret(value.secret())));
             }
