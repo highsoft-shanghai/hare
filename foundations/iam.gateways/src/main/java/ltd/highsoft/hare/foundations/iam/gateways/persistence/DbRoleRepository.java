@@ -33,8 +33,8 @@ public class DbRoleRepository implements Roles.RoleRepository {
     }
 
     @Override
-    public boolean exists(Name name, Id tenantId) {
-        return mapper.exists(name, tenantId);
+    public boolean exists(Name name, ScopedId id) {
+        return mapper.exists(name, id);
     }
 
     @Override

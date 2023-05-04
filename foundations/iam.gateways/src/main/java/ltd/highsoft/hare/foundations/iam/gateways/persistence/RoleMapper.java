@@ -48,8 +48,11 @@ public class RoleMapper {
                 "remarks", role.remarks().asString(), "tenantId", role.id().tenantId().asString(), "predefined", role.predefined()));
     }
 
-    public boolean exists(Name name, Id tenantId) {
-        return exists("SELECT COUNT(*) FROM iam_roles WHERE name = :name and tenant_id = :tenantId", Map.of("name", name.asString(), "tenantId", tenantId.asString()));
+    public boolean exists(Name name, ScopedId id) {
+        if (exists(id)) {
+            return exists("SELECT COUNT(*) FROM iam_roles WHERE name = :name and tenant_id = :tenantId and id != :id", Map.of("name", name.asString(), "tenantId", id.tenantId().asString(), "id", id.id().asString()));
+        }
+        return exists("SELECT COUNT(*) FROM iam_roles WHERE name = :name and tenant_id = :tenantId", Map.of("name", name.asString(), "tenantId", id.tenantId().asString()));
     }
 
     private boolean exists(ScopedId id) {
