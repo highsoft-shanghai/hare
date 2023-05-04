@@ -1,11 +1,7 @@
 package ltd.highsoft.hare.foundations.iam.gateways.ohs;
 
 import jakarta.annotation.Resource;
-import ltd.highsoft.hare.foundations.iam.application.CreateRoleUseCase;
-import ltd.highsoft.hare.foundations.iam.application.DeleteRoleUseCase;
-import ltd.highsoft.hare.foundations.iam.application.GetRoleForUpdatingUseCase;
-import ltd.highsoft.hare.foundations.iam.application.UpdateRoleUseCase;
-import ltd.highsoft.hare.frameworks.domain.core.ObjectSink;
+import ltd.highsoft.hare.foundations.iam.application.*;
 import ltd.highsoft.hare.frameworks.domain.core.Payload;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +26,7 @@ public class RolesApi {
     }
 
     @GetMapping("{id}")
-    public ObjectSink get(@PathVariable String id) {
+    public RoleContent get(@PathVariable String id) {
         return getRoleUseCase.execute(id(id));
     }
 

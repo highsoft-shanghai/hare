@@ -3,7 +3,6 @@ package ltd.highsoft.hare.frameworks.security.core;
 import com.google.common.collect.Sets;
 import lombok.EqualsAndHashCode;
 import ltd.highsoft.hare.frameworks.domain.core.AuthenticationException;
-import ltd.highsoft.hare.frameworks.domain.core.ValueSink;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -78,10 +77,6 @@ public final class GrantedAuthorities {
 
     private boolean isSpecialRole() {
         return authorities.contains(Authorities.ADMIN) || authorities.contains(Authorities.SYSTEM);
-    }
-
-    public void content(ValueSink valueSink) {
-        this.authorities.forEach(valueSink::add);
     }
 
 }

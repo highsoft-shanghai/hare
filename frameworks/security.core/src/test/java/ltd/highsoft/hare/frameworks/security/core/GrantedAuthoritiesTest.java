@@ -1,7 +1,6 @@
 package ltd.highsoft.hare.frameworks.security.core;
 
 import ltd.highsoft.hare.frameworks.domain.core.AuthenticationException;
-import ltd.highsoft.hare.frameworks.domain.core.DefaultValueSinkFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;
@@ -79,13 +78,6 @@ class GrantedAuthoritiesTest {
     @Test
     void should_be_able_to_merge_from_others() {
         assertThat(GrantedAuthorities.of(Stream.of(GrantedAuthorities.of("f1"), GrantedAuthorities.of("f2")))).isEqualTo(GrantedAuthorities.of("f1", "f2"));
-    }
-
-    @Test
-    void should_be_able_to_render_into_sink() {
-        var sink = new DefaultValueSinkFactory().newValueSink();
-        GrantedAuthorities.of("f1", "f2").content(sink);
-        assertThat(sink.toList()).containsExactly("f1", "f2");
     }
 
 }

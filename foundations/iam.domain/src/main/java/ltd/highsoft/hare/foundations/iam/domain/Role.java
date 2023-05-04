@@ -35,18 +35,6 @@ public class Role {
         this.predefined = false;
     }
 
-    public void content(ObjectSink sink) {
-        sink.put("id", id().id().asString());
-        sink.put("name", name());
-        sink.put("remarks", remarks());
-    }
-
-    public void detailsContent(ObjectSink sink) {
-        content(sink);
-        ValueSink valueSink = sink.putArray("authorities");
-        grantedAuthorities().content(valueSink);
-    }
-
     public ScopedId id() {
         return id;
     }
