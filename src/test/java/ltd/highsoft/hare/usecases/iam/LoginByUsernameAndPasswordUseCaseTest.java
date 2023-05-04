@@ -19,7 +19,6 @@ import java.util.Set;
 
 import static ltd.highsoft.hare.foundations.iam.domain.CredentialType.USERNAME_AND_PASSWORD;
 import static ltd.highsoft.hare.frameworks.domain.core.Id.id;
-import static ltd.highsoft.hare.frameworks.domain.core.Identity.identity;
 import static ltd.highsoft.hare.frameworks.domain.core.Name.name;
 import static ltd.highsoft.hare.frameworks.test.web.ConstrainedFields.constrainedFieldWithPath;
 import static ltd.highsoft.hare.frameworks.test.web.Documentation.doc;
@@ -65,7 +64,7 @@ public class LoginByUsernameAndPasswordUseCaseTest extends ApiTest {
         response.statusCode(is(201));
         response.body("accessToken", is(not(empty())));
         Optional<AccessToken> accessToken = accessTokens.getOptional(id(response.extract().body().jsonPath().getString("accessToken")));
-        assertThat(accessToken.map(AccessToken::owner)).hasValue(new AccessTokenOwner(userAccount.asIdentity(), identity("", ""), TENANT.asIdentity()));
+        assertThat(accessToken.map(AccessToken::owner)).hasValue(new AccessTokenOwner(userAccount.asIdentity(), USER.asIdentity(), TENANT.asIdentity()));
         assertThat(accessToken.map(AccessToken::grantedAuthorities)).hasValue(GrantedAuthorities.of("f1", "f2", "f3", "operators", "operators2"));
     }
 

@@ -1,6 +1,9 @@
 package ltd.highsoft.hare.foundations.iam.domain;
 
 import ltd.highsoft.hare.frameworks.domain.core.Id;
+import ltd.highsoft.hare.frameworks.domain.core.Identity;
+
+import static ltd.highsoft.hare.frameworks.domain.core.Identity.identity;
 
 public class User {
 
@@ -18,9 +21,9 @@ public class User {
         this.predefined = predefined;
     }
 
-//    public Identity asIdentity() {
-//        return identity(id.asString(), name);
-//    }
+    public Identity asIdentity() {
+        return identity(id.asString(), name);
+    }
 
     public Id id() {
         return this.id;

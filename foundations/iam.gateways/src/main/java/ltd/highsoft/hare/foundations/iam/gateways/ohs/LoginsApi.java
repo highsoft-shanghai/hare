@@ -14,7 +14,7 @@ public class LoginsApi {
 
     @PostMapping("/logins")
     @ResponseStatus(HttpStatus.CREATED)
-    LoginResult login(@RequestBody Payload payload) {
+    public LoginResult login(@RequestBody Payload payload) {
         return loginUseCase.execute(payload);
     }
 

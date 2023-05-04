@@ -3,8 +3,6 @@ package ltd.highsoft.hare.foundations.iam.domain;
 import ltd.highsoft.hare.frameworks.domain.core.Id;
 import ltd.highsoft.hare.frameworks.domain.core.Identity;
 
-import static ltd.highsoft.hare.frameworks.domain.core.Identity.identity;
-
 public class DefaultIdentityFetcher implements IdentityFetcher {
 
     private final UserAccounts userAccounts;
@@ -22,11 +20,9 @@ public class DefaultIdentityFetcher implements IdentityFetcher {
         return userAccounts.get(userAccountId).asIdentity();
     }
 
-    // TODO: 2023/5/1
     @Override
     public Identity fetchUser(Id userId) {
-//        return users.get(userId).asIdentity();
-        return identity("", "");
+        return users.get(userId).asIdentity();
     }
 
     @Override
