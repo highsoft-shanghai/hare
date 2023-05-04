@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static ltd.highsoft.hare.frameworks.domain.core.Name.name;
 import static ltd.highsoft.hare.frameworks.domain.core.Remarks.remarks;
@@ -34,7 +35,7 @@ public class GetRoleForUpdatingUseCaseTest extends ApiTest {
     @Test
     @WithGrantedAuthorities({"iam.update-role"})
     public void should_be_able_to_get_role() {
-        var response = get("/roles/role-1", variables(), document());
+        var response = get("/roles/{id}", variables(Map.of("id", "role-1")), document());
         response.statusCode(is(200));
         response.body("id", is("role-1"));
         response.body("name", is("role-1"));
@@ -50,12 +51,12 @@ public class GetRoleForUpdatingUseCaseTest extends ApiTest {
     @Override
     protected Documentation document() {
         return Documentation.doc("role.get.id",
-                responseFields(
-                        fieldWithPath("id").description("角色ID"),
-                        fieldWithPath("name").description("角色名称"),
-                        fieldWithPath("remarks").description("角色备注"),
-                        fieldWithPath("authorities").description("角色权限")
-                )
+            responseFields(
+                fieldWithPath("id").description("角色ID"),
+                fieldWithPath("name").description("角色名称"),
+                fieldWithPath("remarks").description("角色备注"),
+                fieldWithPath("authorities").description("角色权限")
+            )
         );
     }
 

@@ -1,12 +1,12 @@
 package ltd.highsoft.hare.usecases.iam;
 
 import jakarta.annotation.Resource;
-import ltd.highsoft.hare.frameworks.domain.core.Id;
-import ltd.highsoft.hare.frameworks.test.web.Documentation;
-import ltd.highsoft.hare.frameworks.test.web.WithGrantedAuthorities;
 import ltd.highsoft.hare.ApiTest;
 import ltd.highsoft.hare.foundations.iam.domain.Role;
 import ltd.highsoft.hare.foundations.iam.domain.Roles;
+import ltd.highsoft.hare.frameworks.domain.core.Id;
+import ltd.highsoft.hare.frameworks.test.web.Documentation;
+import ltd.highsoft.hare.frameworks.test.web.WithGrantedAuthorities;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,8 +19,7 @@ import static ltd.highsoft.hare.frameworks.test.web.PathVariables.variables;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasLength;
 import static org.hamcrest.Matchers.is;
-import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 
 public class CreateRoleUseCaseTest extends ApiTest {
     private Id createRoleId;
@@ -48,7 +47,13 @@ public class CreateRoleUseCaseTest extends ApiTest {
 
     @Override
     protected Documentation document() {
-        return Documentation.doc("roles.post", responseFields(fieldWithPath("id").description("新增角色ID")));
+        return Documentation.doc("roles.post",
+            requestFields(
+                fieldWithPath("name").description("角色名称"),
+                fieldWithPath("authorities").description("权限列表"),
+                fieldWithPath("remarks").description("备注")
+            ),
+            responseFields(fieldWithPath("id").description("新增角色ID")));
     }
 
 }

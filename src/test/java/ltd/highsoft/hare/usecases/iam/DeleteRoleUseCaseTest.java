@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
 import java.util.Set;
 
 import static ltd.highsoft.hare.frameworks.domain.core.Id.id;
@@ -37,7 +38,7 @@ public class DeleteRoleUseCaseTest extends ApiTest {
     @Test
     @WithGrantedAuthorities("iam.delete-role")
     void should_be_able_to_delete_role() {
-        var response = delete("/roles/role-1", variables(), document());
+        var response = delete("/roles/{id}", variables(Map.of("id", "role-1")), document());
         response.statusCode(is(204));
     }
 
@@ -49,7 +50,7 @@ public class DeleteRoleUseCaseTest extends ApiTest {
         UserAccount userAccount = new UserAccount(id("john@highsoft.ltd"), "John", new UserAccountOwner(userOwner, tenantOwner), new UserAccountRoles(Set.of("role-1"), roles), false);
         userAccounts.add(userAccount);
         var response = delete("/roles/role-1", variables(), document());
-        response.statusCode(is(400)).body("message", either(is("仍有用户使用该角色，不能删除")).or(is("Still have user use this role, cannot remove it")));;
+        response.statusCode(is(400)).body("message", either(is("仍有用户使用该角色，不能删除")).or(is("Still have user use this role, cannot remove it")));
     }
 
     @AfterEach

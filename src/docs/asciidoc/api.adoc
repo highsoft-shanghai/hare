@@ -14,3 +14,33 @@ highsoft.ltd
 include::{snippets}/error.general-error/response-fields.adoc[opts=optional]
 
 include::{snippets}/error.general-error/http-response.adoc[opts=optional]
+
+== IAM
+
+=== 角色管理
+
+==== 创建角色
+
+include::{snippets}/roles.post/api.adoc[]
+
+==== 更新角色
+
+include::{snippets}/role.put/api.adoc[]
+
+==== 查询角色
+
+include::{snippets}/role.get.id/api.adoc[]
+
+==== 删除角色
+
+include::{snippets}/roles.delete/api.adoc[]
+
+=== 用户账户管理
+
+==== 用户登陆
+
+include::{snippets}/logins.username-and-password.post/api.adoc[]
+
+==== 当前用户
+
+include::{snippets}/access-tokens.current.get/api.adoc[]
