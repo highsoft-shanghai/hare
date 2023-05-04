@@ -1,6 +1,7 @@
 # 瀚诚软件企业应用脚手架（Java 17 + Spring Boot 3）
 
-![example workflow](https://github.com/highsoft-shanghai/hare/actions/workflows/main.yml/badge.svg)
+![CI Status](https://github.com/highsoft-shanghai/hare/actions/workflows/main.yml/badge.svg)
+![Coverage](.github/badges/jacoco.svg)
 
 本项目旨在为单体类应用提供基本的项目启动模板，以减少迭代0的技术准备工作。本模板集成了部分通用功能（如认证与授权、身份管理、权限管理、组织架构及其管理等），
 并完成了典型项目的大部分技术事务（如全局异常处理、上下文、应用框架、测试基础框架等），基于此，开发者可以快速完成迭代0的准备工作，并尽可能早地进入业务交付。

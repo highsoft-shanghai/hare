@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 jobs:
   build-backend:
-    name: Push Backend Image
+    name: Generate Backend Image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -70,7 +70,7 @@ jobs:
           DB_PW: ${{secrets.DB_PW }}
 
   build-frontend:
-    name: Push Frontend Image
+    name: Generate Frontend Image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
