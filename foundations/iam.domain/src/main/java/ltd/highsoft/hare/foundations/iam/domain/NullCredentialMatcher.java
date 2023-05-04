@@ -6,7 +6,7 @@ public class NullCredentialMatcher implements CredentialMatcher {
 
     @Override
     public MatchResult match(Payload payload) {
-        return MatchResult.fail("iam.no-matched-login-type.");
+        return MatchResult.fail("iam.no-matched-login-type");
     }
 
 }

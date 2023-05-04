@@ -24,7 +24,7 @@ public class SelectiveCredentialMatcher implements CredentialMatcher {
         try {
             return tryToMatch(payload);
         } catch (MalformedPayloadException e) {
-            return MatchResult.fail("iam.missing-login-type.");
+            return MatchResult.fail("iam.missing-login-type");
         }
     }
 

@@ -28,7 +28,7 @@ public class SelectiveCredentialMatcherTest {
         Payload payload = payload(Map.of("type", "error-login-type"));
         MatchResult matchResult = selectiveCredentialMatcher.match(payload);
         assertThat(matchResult.matched()).isFalse();
-        assertThat(matchResult.reason()).isEqualTo("iam.no-matched-login-type.");
+        assertThat(matchResult.reason()).isEqualTo("iam.no-matched-login-type");
     }
 
     @Test
@@ -37,7 +37,7 @@ public class SelectiveCredentialMatcherTest {
         Payload payload = payload(Map.of());
         MatchResult matchResult = selectiveCredentialMatcher.match(payload);
         assertThat(matchResult.matched()).isFalse();
-        assertThat(matchResult.reason()).isEqualTo("iam.missing-login-type.");
+        assertThat(matchResult.reason()).isEqualTo("iam.missing-login-type");
     }
 
 }
