@@ -32,7 +32,6 @@ jacocoTestReport {
     reports {
         html
         xml
-        csv.enabled true
     }
 }
 
