@@ -22,7 +22,7 @@ public final class AccessToken implements Context {
     }
 
     public AccessToken(Context context, String group) {
-        this(context.securityContext().token(), new AccessTokenOwner(context.userContext()), context.securityContext().grantedAuthorities(), group);
+        this(context.securityContext().token(), AccessTokenOwner.build(context.userContext()), context.securityContext().grantedAuthorities(), group);
     }
 
     public String group() {

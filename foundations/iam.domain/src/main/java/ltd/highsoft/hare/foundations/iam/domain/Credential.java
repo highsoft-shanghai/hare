@@ -6,18 +6,18 @@ import ltd.highsoft.hare.frameworks.domain.core.PasswordEncoder;
 public class Credential {
 
     private final Id id;
-    private final CredentialOwner credentialOwner;
+    private final CredentialOwner owner;
     private final CredentialType type;
     private final LoginName loginName;
     private final EncryptedSecret secret;
     private final boolean predefined;
 
-    public Credential(Id id, CredentialOwner credentialOwner, CredentialType type, LoginName loginName, EncryptedSecret secret, boolean predefined) {
+    public Credential(Id id, CredentialOwner owner, CredentialType type, LoginName loginName, EncryptedSecret secret, boolean predefined) {
         this.id = id;
         this.type = type;
         this.loginName = loginName;
         this.secret = secret;
-        this.credentialOwner = credentialOwner;
+        this.owner = owner;
         this.predefined = predefined;
     }
 
@@ -30,7 +30,7 @@ public class Credential {
     }
 
     public CredentialOwner owner() {
-        return this.credentialOwner;
+        return this.owner;
     }
 
     public CredentialType type() {
