@@ -7,23 +7,23 @@ import ltd.highsoft.hare.frameworks.domain.core.Id;
 @AllArgsConstructor
 @EqualsAndHashCode
 public final class UserAccountOwner {
-    private final UserOwner userOwner;
-    private final TenantOwner tenantOwner;
+    private final UserOwner user;
+    private final TenantOwner tenant;
 
     public Id userId() {
-        return userOwner.id();
+        return user.id();
     }
 
     public Id tenantId() {
-        return tenantOwner.id();
+        return tenant.id();
     }
 
     public User user() {
-        return userOwner.get();
+        return user.get();
     }
 
     public Tenant tenant() {
-        return tenantOwner.get();
+        return tenant.get();
     }
 
 }
