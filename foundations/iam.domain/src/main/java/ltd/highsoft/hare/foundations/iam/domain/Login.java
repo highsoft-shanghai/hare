@@ -22,7 +22,7 @@ public class Login {
 
     public LoginResult submit(Payload payload) {
         MatchResult matchResult = matcher.match(payload);
-        if (!matchResult.matched()) return LoginResult.fail(id.asString(), message("error.bad-credential"));
+        if (!matchResult.matched()) return LoginResult.fail(id.asString(), message("iam.username-or-password-wrong"));
         final AccessToken accessToken = accessTokenFactory.newAccessToken(matchResult.credential().owner(), payload.get("group", asString()));
         accessTokenStore.store(accessToken);
         return LoginResult.success(id.asString(), accessToken.token().asString());

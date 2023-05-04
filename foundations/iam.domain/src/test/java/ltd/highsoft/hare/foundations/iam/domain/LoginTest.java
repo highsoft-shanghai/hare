@@ -25,7 +25,6 @@ public class LoginTest {
     private static final CredentialOwner CREDENTIAL_OWNER = new CredentialOwner(id("john@highsoft.ltd"), id("john"), id("highsoft"));
     private final Payload payload = payload(Map.of("type", "username-and-password", "username", "john", "password", "123456", "group", "web"));
     private @Mock CredentialMatcher credentialMatcher;
-    private @Mock Logins logins;
     private @Mock AccessTokenStore accessTokenStore;
     private @Mock AccessTokenFactory accessTokenFactory;
     private AccessToken issuedAccessToken;
@@ -59,7 +58,7 @@ public class LoginTest {
         assertThat(loginResult.isSuccess()).isFalse();
         assertThat(loginResult.getAccessToken()).isEmpty();
         assertThat(loginResult.getId()).isEqualTo(login.id().asString());
-        assertThat(loginResult.getReason()).isEqualTo(message("error.bad-credential"));
+        assertThat(loginResult.getReason()).isEqualTo(message("iam.username-or-password-wrong"));
     }
 
     @Test

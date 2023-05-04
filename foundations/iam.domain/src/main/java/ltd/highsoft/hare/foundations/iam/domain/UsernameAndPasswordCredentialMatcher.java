@@ -19,16 +19,11 @@ public class UsernameAndPasswordCredentialMatcher implements CredentialMatcher {
 
     @Override
     public MatchResult match(Payload payload) {
-        return credentialOf(payload).map(x -> match(x, payload)).orElseGet(this::fail);
+        return credentialOf(payload).map(x -> match(x, payload)).orElseGet(() -> MatchResult.fail("iam.username-or-password-wrong"));
     }
 
     private MatchResult match(Credential credential, Payload payload) {
         return credential.matchSecret(PlanSecret.from(payload.get("password", asString())), passwordEncoder);
-    }
-
-    // TODO
-    private MatchResult fail() {
-        return MatchResult.fail("iam.username-or-password-wrong");
     }
 
     private Optional<Credential> credentialOf(Payload payload) {
