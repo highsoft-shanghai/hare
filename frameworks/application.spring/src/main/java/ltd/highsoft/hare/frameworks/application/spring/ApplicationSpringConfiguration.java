@@ -1,15 +1,15 @@
 package ltd.highsoft.hare.frameworks.application.spring;
 
-import ltd.highsoft.hare.frameworks.domain.core.DefaultValueSinkFactory;
 import ltd.highsoft.hare.frameworks.domain.core.IdGenerator;
 import ltd.highsoft.hare.frameworks.domain.core.UuidBasedIdGenerator;
-import ltd.highsoft.hare.frameworks.domain.core.ValueSinkFactory;
 import ltd.highsoft.hare.frameworks.security.core.ContextLoader;
 import ltd.highsoft.hare.frameworks.security.core.ContextProvider;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
@@ -48,11 +48,6 @@ public class ApplicationSpringConfiguration {
     @Bean
     public IdGenerator idGenerator() {
         return new UuidBasedIdGenerator();
-    }
-
-    @Bean
-    public ValueSinkFactory valueSinkFactory() {
-        return new DefaultValueSinkFactory();
     }
 
 }
