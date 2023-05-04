@@ -18,6 +18,7 @@ import static ltd.highsoft.hare.frameworks.domain.core.Name.name;
 import static ltd.highsoft.hare.frameworks.domain.core.Remarks.remarks;
 import static ltd.highsoft.hare.frameworks.test.web.Documentation.doc;
 import static ltd.highsoft.hare.frameworks.test.web.PathVariables.variables;
+import static org.hamcrest.Matchers.either;
 import static org.hamcrest.Matchers.is;
 
 public class DeleteRoleUseCaseTest extends ApiTest {
@@ -48,7 +49,7 @@ public class DeleteRoleUseCaseTest extends ApiTest {
         UserAccount userAccount = new UserAccount(id("john@highsoft.ltd"), "John", new UserAccountOwner(userOwner, tenantOwner), new UserAccountRoles(Set.of("role-1"), roles), false);
         userAccounts.add(userAccount);
         var response = delete("/roles/role-1", variables(), document());
-        response.statusCode(is(400));
+        response.statusCode(is(400)).body("message", either(is("仍有用户使用该角色，不能删除")).or(is("Still have user use this role, cannot remove it")));;
     }
 
     @AfterEach
