@@ -16,7 +16,7 @@ class UserAccountFactoryTest {
     private @Mock Roles roles;
 
     @Test
-    void should_be_able_to_create_user_accounts() {
+    void should_create_user_accounts() {
         UserAccountFactory factory = new UserAccountFactory(new FixedIdGenerator(id("fixed-id")), roles);
         UserAccount userAccount = factory.newUserAccount("John@Highsoft", new UserAccountOwner(new UserOwner(id("john"), null), new TenantOwner(id("highsoft"), null)), Set.of("role-a", "role-b"));
         assertThat(userAccount.id()).isEqualTo(id("fixed-id"));

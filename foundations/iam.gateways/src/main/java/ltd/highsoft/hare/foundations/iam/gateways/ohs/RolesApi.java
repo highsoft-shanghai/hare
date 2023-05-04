@@ -21,7 +21,7 @@ public class RolesApi {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Object create(@RequestBody Payload payload) {
+    public Map<String, String> create(@RequestBody Payload payload) {
         return Map.of("id", createRoleUseCase.execute(payload));
     }
 

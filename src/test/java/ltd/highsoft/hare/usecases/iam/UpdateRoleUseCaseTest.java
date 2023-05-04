@@ -36,7 +36,7 @@ public class UpdateRoleUseCaseTest extends ApiTest {
 
     @Test
     @WithGrantedAuthorities({"iam.update-role"})
-    public void should_be_able_to_update_role() {
+    public void should_update_role() {
         Map<String, Object> payload = new HashMap<>();
         payload.put("authorities", List.of("basic.management", "basic.tag-group-management", "management.create-tag-group", "management.archive-tag-group"));
         payload.put("name", "role-2");

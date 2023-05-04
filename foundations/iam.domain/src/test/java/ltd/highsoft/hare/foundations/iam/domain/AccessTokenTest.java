@@ -30,22 +30,22 @@ class AccessTokenTest {
     }
 
     @Test
-    void should_be_able_to_carry_owner_info() {
+    void should_carry_owner_info() {
         assertThat(accessToken.owner()).isEqualTo(owner);
     }
 
     @Test
-    void should_be_able_to_carry_granted_authorities() {
+    void should_carry_granted_authorities() {
         assertThat(accessToken.grantedAuthorities()).isEqualTo(authorities);
     }
 
     @Test
-    void should_be_able_to_provide_user_context() {
+    void should_provide_user_context() {
         assertThat(accessToken.userContext()).isEqualTo(new SimpleUserContext(KITE_AT_HIGHSOFT, KITE, HIGHSOFT));
     }
 
     @Test
-    void should_be_able_to_provide_security_context() {
+    void should_provide_security_context() {
         assertThat(accessToken.securityContext()).isEqualTo(new SimpleSecurityContext(id("token-id"), authorities));
     }
 

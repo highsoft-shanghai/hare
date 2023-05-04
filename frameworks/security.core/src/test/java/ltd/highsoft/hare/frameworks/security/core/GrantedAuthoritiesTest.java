@@ -13,13 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 class GrantedAuthoritiesTest {
 
     @Test
-    void should_be_able_to_hold_authorities() {
+    void should_hold_authorities() {
         assertThat(GrantedAuthorities.of("f1", "f2").asSet()).isEqualTo(Set.of("f1", "f2"));
         assertThat(GrantedAuthorities.of(Set.of("f1", "f2")).asSet()).isEqualTo(Set.of("f1", "f2"));
     }
 
     @Test
-    void should_be_able_to_load_from_comma_separated_values_string() {
+    void should_load_from_comma_separated_values_string() {
         assertThat(GrantedAuthorities.fromCommaSeparatedString("f1,f2").asSet()).isEqualTo(Set.of("f1", "f2"));
         assertThat(GrantedAuthorities.fromCommaSeparatedString("f1, f2").asSet()).isEqualTo(Set.of("f1", "f2"));
     }
@@ -66,17 +66,17 @@ class GrantedAuthoritiesTest {
     }
 
     @Test
-    void should_be_able_to_format_as_simple_string() {
+    void should_format_as_simple_string() {
         assertThat(GrantedAuthorities.of("f1", "f2", "f8", "f0").toString()).isEqualTo("GrantedAuthorities(f0, f1, f2, f8)");
     }
 
     @Test
-    void should_be_able_to_save_as_comma_separated_value_strings() {
+    void should_save_as_comma_separated_value_strings() {
         assertThat(GrantedAuthorities.of("f1", "f2", "f8", "f0").toCommaSeparatedString()).isEqualTo("f1,f2,f8,f0");
     }
 
     @Test
-    void should_be_able_to_merge_from_others() {
+    void should_merge_from_others() {
         assertThat(GrantedAuthorities.of(Stream.of(GrantedAuthorities.of("f1"), GrantedAuthorities.of("f2")))).isEqualTo(GrantedAuthorities.of("f1", "f2"));
     }
 

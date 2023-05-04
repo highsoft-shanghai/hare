@@ -35,7 +35,7 @@ class ContextLoaderTest {
     }
 
     @Test
-    void should_be_able_to_load_context_from_access_tokens() {
+    void should_load_context_from_access_tokens() {
         given(contextProvider.get(id("token-id"))).willReturn(Optional.of(CONTEXT));
         loader.load("token-id");
         assertThat(GlobalUserContext.userContext()).isEqualTo(USER_CONTEXT);

@@ -12,37 +12,37 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 public class PayloadTest {
 
     @Test
-    void should_be_able_to_convert_typed_values() {
+    void should_convert_typed_values() {
         Payload payload = Payload.payload("a text");
         Assertions.assertThat(payload.get(StringFieldType.asString())).isEqualTo("a text");
     }
 
     @Test
-    void should_be_able_to_read_typed_fields() {
+    void should_read_typed_fields() {
         Payload payload = Payload.payload(Map.of("name", "John"));
         Assertions.assertThat(payload.get("name", StringFieldType.asString())).isEqualTo("John");
     }
 
     @Test
-    void should_be_able_to_read_object_fields() {
+    void should_read_object_fields() {
         Payload payload = Payload.payload(Map.of("nested", Map.of("name", "John")));
         Assertions.assertThat(payload.get("nested", ObjectFieldType.asObject()).get("name", StringFieldType.asString())).isEqualTo("John");
     }
 
     @Test
-    void should_be_able_to_read_objects_from_null_fields() {
+    void should_read_objects_from_null_fields() {
         Payload payload = Payload.payload(Map.of());
         Assertions.assertThat(payload.get("nested", ObjectFieldType.asObject().nullToEmpty()).get("name", StringFieldType.asString().allowNull())).isEqualTo(null);
     }
 
     @Test
-    void should_be_able_to_access_value() {
+    void should_access_value() {
         Payload payload = Payload.payload(Map.of("name", "John"));
         assertThat(payload.value()).isNotNull();
     }
 
     @Test
-    void should_be_able_to_represent_empty_state() {
+    void should_represent_empty_state() {
         assertThat(Payload.EMPTY.value()).isEqualTo(Collections.emptyMap());
     }
 

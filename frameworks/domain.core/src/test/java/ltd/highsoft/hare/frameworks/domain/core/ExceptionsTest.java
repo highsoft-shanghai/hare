@@ -44,14 +44,14 @@ public class ExceptionsTest {
     }
 
     @Test
-    void should_be_able_to_execute_method_when_method_is_good() throws IOException {
+    void should_execute_method_when_method_is_good() throws IOException {
         when(mock.evaluate()).thenReturn("");
         Exceptions.execute(mock::execute);
         then(mock).should(only()).execute();
     }
 
     @Test
-    void should_be_able_to_evaluate_method_when_method_is_good() {
+    void should_evaluate_method_when_method_is_good() {
         assertEquals("test", Exceptions.evaluate(() -> "test"));
     }
 

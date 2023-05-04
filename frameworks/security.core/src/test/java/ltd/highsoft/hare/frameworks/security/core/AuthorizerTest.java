@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 class AuthorizerTest {
 
     @Test
-    void should_be_able_to_authorize_requests_against_security_context() {
+    void should_authorize_requests_against_security_context() {
         var authorizer = new Authorizer();
         assertDoesNotThrow(() -> authorizer.authorize("f1", "f2"));
     }

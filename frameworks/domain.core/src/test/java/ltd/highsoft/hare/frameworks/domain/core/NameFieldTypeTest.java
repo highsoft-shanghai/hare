@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 class NameFieldTypeTest {
 
     @Test
-    void should_be_able_to_construct_names_from_strings() {
+    void should_construct_names_from_strings() {
         assertThat(NameFieldType.asName().from("John", "")).isEqualTo(Name.name("John"));
     }
 

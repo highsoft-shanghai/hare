@@ -21,12 +21,12 @@ class EncryptedSecretTest {
     }
 
     @Test
-    void should_be_able_to_match_correct_plan_secrets() {
+    void should_match_correct_plan_secrets() {
         assertThat(EncryptedSecret.encryptedSecret("encrypted-secret").match(PlanSecret.from("correct-plan-secret"), passwordEncryptor)).isTrue();
     }
 
     @Test
-    void should_be_able_to_match_incorrect_plan_secrets() {
+    void should_match_incorrect_plan_secrets() {
         assertThat(EncryptedSecret.encryptedSecret("encrypted-secret").match(PlanSecret.from("incorrect-plan-secret"), passwordEncryptor)).isFalse();
     }
 

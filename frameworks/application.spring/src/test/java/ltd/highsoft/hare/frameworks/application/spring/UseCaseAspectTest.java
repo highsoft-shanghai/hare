@@ -16,13 +16,13 @@ public class UseCaseAspectTest extends IntegrationTest {
     private @Resource TestUseCase testUseCase;
 
     @Test
-    void should_be_able_to_translate_exceptions() {
+    void should_translate_exceptions() {
         var throwable = catchThrowable(() -> triggerExceptionUseCase.execute(new RuntimeException("error-code")));
         assertThat(throwable).isInstanceOf(ApplicationException.class);
     }
 
     @Test
-    void should_be_able_to_translate_aggregate_not_found_exceptions() {
+    void should_translate_aggregate_not_found_exceptions() {
         var throwable = catchThrowable(() -> triggerExceptionUseCase.execute(new AggregateNotFoundException()));
         assertThat(throwable).isInstanceOf(ApplicationException.class);
         assertThat(throwable).hasMessage(AggregateNotFoundException.MESSAGE_CODE);

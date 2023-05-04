@@ -30,7 +30,7 @@ class UserAccountTest {
     }
 
     @Test
-    void should_be_able_to_get_granted_authorities_from_all_played_roles() {
+    void should_get_granted_authorities_from_all_played_roles() {
         given(roles.grantedAuthorities()).willReturn(GrantedAuthorities.of("f1", "f2"));
         UserOwner userOwner = new UserOwner(id("john"), users);
         TenantOwner tenantOwner = new TenantOwner(id("highsoft"), tenants);

@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GlobalIdGeneratorExtensionTest {
 
     @Test
-    void should_be_able_to_reset_id_generator() {
+    void should_reset_id_generator() {
         assertThat(GlobalIdGenerator.nextId()).isEqualTo(id("a-fixed-id"));
         assertThat(GlobalIdGenerator.nextReadableId()).isEqualTo(id("a-fixed-id"));
     }

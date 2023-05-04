@@ -16,7 +16,7 @@ public class I18nMessageTest {
     private @Mock MessageResolver messageResolver;
 
     @Test
-    void should_be_able_to_format_as_plan_text() {
+    void should_format_as_plan_text() {
         var message = I18nMessage.message("message-code");
         given(messageResolver.resolve("message-code")).willReturn("message-from-message-resolver");
         assertThat(message.code()).isEqualTo("message-code");
@@ -24,14 +24,14 @@ public class I18nMessageTest {
     }
 
     @Test
-    void should_be_able_to_format_as_plan_text_with_data() {
+    void should_format_as_plan_text_with_data() {
         var message = I18nMessage.message("message-code", "a", "b");
         given(messageResolver.resolve("message-code", "a", "b")).willReturn("message-with-data-from-message-resolver");
         assertThat(message.format(messageResolver)).isEqualTo("message-with-data-from-message-resolver");
     }
 
     @Test
-    void should_be_able_to_provide_data() {
+    void should_provide_data() {
         Assertions.assertThat(I18nMessage.message("message-code", "a", "b").data()).isEqualTo(List.of("a", "b"));
     }
 

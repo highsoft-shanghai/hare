@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.is;
 public class IdSerializerTest extends IntegrationTest {
 
     @Test
-    void should_be_able_to_serialize_ids() {
+    void should_serialize_ids() {
         when().get("/test/serialize-id").then().statusCode(200).body("id", is("test-id"));
     }
 

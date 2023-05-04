@@ -13,22 +13,22 @@ class AccessTokenOwnerTest {
     private final Identity HIGHSOFT = identity("highsoft", "Highsoft");
 
     @Test
-    void should_be_able_to_hold_user_account() {
+    void should_hold_user_account() {
         assertThat(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT).userAccount()).isEqualTo(ACCOUNT_OF_JOHN);
     }
 
     @Test
-    void should_be_able_to_hold_user() {
+    void should_hold_user() {
         assertThat(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT).user()).isEqualTo(JOHN);
     }
 
     @Test
-    void should_be_able_to_hold_tenant() {
+    void should_hold_tenant() {
         assertThat(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT).tenant()).isEqualTo(HIGHSOFT);
     }
 
     @Test
-    void should_be_able_to_compare_to_others_by_contents() {
+    void should_compare_to_others_by_contents() {
         assertThat(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT)).isEqualTo(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT));
     }
 

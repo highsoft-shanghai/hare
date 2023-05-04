@@ -18,25 +18,25 @@ class GlobalUserContextTest {
     }
 
     @Test
-    void should_be_able_to_hold_current_user_account() {
+    void should_hold_current_user_account() {
         assertThat(GlobalUserContext.currentUserAccount()).isEqualTo(JOHN_AT_HIGHSOFT);
         assertThat(GlobalUserContext.currentUserAccountId()).isEqualTo(JOHN_AT_HIGHSOFT.id());
     }
 
     @Test
-    void should_be_able_to_hold_current_user() {
+    void should_hold_current_user() {
         assertThat(GlobalUserContext.currentUser()).isEqualTo(JOHN);
         assertThat(GlobalUserContext.currentUserId()).isEqualTo(JOHN.id());
     }
 
     @Test
-    void should_be_able_to_hold_current_tenant() {
+    void should_hold_current_tenant() {
         assertThat(GlobalUserContext.currentTenant()).isEqualTo(HIGHSOFT);
         assertThat(GlobalUserContext.currentTenantId()).isEqualTo(HIGHSOFT.id());
     }
 
     @Test
-    void should_be_able_to_clear() {
+    void should_clear() {
         GlobalUserContextResetter.clear();
         assertThat(GlobalUserContext.userContext()).isEqualTo(UserContext.ANONYMOUS);
     }

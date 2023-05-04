@@ -23,7 +23,7 @@ class ApplicationExceptionTest {
     }
 
     @Test
-    void should_be_able_to_format_as_message() {
+    void should_format_as_message() {
         given(messageResolver.resolve("error-code")).willReturn("Error message");
         var exception = new ApplicationException("error-code");
         assertThat(exception.format(messageResolver)).isEqualTo("Error message");

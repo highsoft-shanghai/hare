@@ -9,18 +9,18 @@ import static org.assertj.core.api.Assertions.*;
 class RemarksTest {
 
     @Test
-    void should_be_able_to_hold_valid_values() {
+    void should_hold_valid_values() {
         Assertions.assertThat(Remarks.remarks("Pretty good").asString()).isEqualTo("Pretty good");
     }
 
     @Test
-    void should_be_able_to_hold_empty_values() {
+    void should_hold_empty_values() {
         Assertions.assertThat(Remarks.remarks("").asString()).isEqualTo("");
         Assertions.assertThat(Remarks.remarks(null).asString()).isEqualTo("");
     }
 
     @Test
-    void should_be_able_to_compare_to_others() {
+    void should_compare_to_others() {
         Assertions.assertThat(Remarks.remarks("Pretty good")).isEqualTo(Remarks.remarks("Pretty good"));
         Assertions.assertThat(Remarks.remarks("Pretty good")).isNotEqualTo(Remarks.remarks("Not good"));
     }

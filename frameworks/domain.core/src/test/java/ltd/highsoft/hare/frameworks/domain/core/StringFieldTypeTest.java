@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 class StringFieldTypeTest {
 
     @Test
-    void should_be_able_to_convert_into_strings_from_null_values() {
+    void should_convert_into_strings_from_null_values() {
         assertThat(StringFieldType.asString().nullToEmpty().from(null, "")).isEqualTo("");
     }
 

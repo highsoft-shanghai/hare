@@ -62,7 +62,7 @@ public class LoginTest {
     }
 
     @Test
-    void should_be_able_to_issue_access_tokens_when_login_approved() {
+    void should_issue_access_tokens_when_login_approved() {
         given(credentialMatcher.match(any())).willReturn(MatchResult.success(credential));
         given(accessTokenFactory.newAccessToken(CREDENTIAL_OWNER, "web")).willReturn(issuedAccessToken);
         LoginResult loginResult = login.submit(payload);

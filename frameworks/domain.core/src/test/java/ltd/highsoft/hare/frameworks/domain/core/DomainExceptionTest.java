@@ -18,31 +18,31 @@ public class DomainExceptionTest {
     }
 
     @Test
-    void should_be_able_to_carry_message() {
+    void should_carry_message() {
         assertThat(new DomainException(I18nMessage.message("error-code", "a", "b"))).hasMessage("error-code: [a, b]");
     }
 
     @Test
-    void should_be_able_to_carry_data() {
+    void should_carry_data() {
         assertThat(new DomainException(I18nMessage.message("error-code", "a", "b")).data()).containsExactly("a", "b");
     }
 
     @Test
-    void should_be_able_to_format_as_message() {
+    void should_format_as_message() {
         given(messageResolver.resolve("error.a-test-message-code")).willReturn("Error message from resolver");
         var exception = new DomainException(I18nMessage.message("error.a-test-message-code"));
         assertThat(exception.format(messageResolver)).isEqualTo("Error message from resolver");
     }
 
     @Test
-    void should_be_able_to_format_as_message_with_data() {
+    void should_format_as_message_with_data() {
         given(messageResolver.resolve("error.a-test-message-code", "seg1", "seg2")).willReturn("Error message from resolver");
         var exception = new DomainException(I18nMessage.message("error.a-test-message-code", "seg1", "seg2"));
         assertThat(exception.format(messageResolver)).isEqualTo("Error message from resolver");
     }
 
     @Test
-    void should_be_able_to_carry_cause() {
+    void should_carry_cause() {
         assertThat(new DomainException(new RuntimeException())).hasCauseInstanceOf(RuntimeException.class);
         assertThat(new DomainException(new RuntimeException(), I18nMessage.message("error-code"))).hasCauseInstanceOf(RuntimeException.class);
         assertThat(new DomainException(new RuntimeException(), I18nMessage.message("error-code", "a", "b"))).hasCauseInstanceOf(RuntimeException.class);

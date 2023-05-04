@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class WithExternalServiceOnPortTest {
 
     @Test
-    void should_be_able_to_resolve_http_server_parameters_with_specific_ports(HttpServer server) {
+    void should_resolve_http_server_parameters_with_specific_ports(HttpServer server) {
         assertThat(server.port()).isEqualTo(33333);
     }
 

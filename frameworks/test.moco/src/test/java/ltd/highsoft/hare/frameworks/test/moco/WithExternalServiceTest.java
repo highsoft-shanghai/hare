@@ -22,17 +22,17 @@ public class WithExternalServiceTest {
     }
 
     @Test
-    void should_be_able_to_resolve_http_server_parameters_in_before_all() {
+    void should_resolve_http_server_parameters_in_before_all() {
         assertThat(WithExternalServiceTest.serverFromBeforeAll).isNotNull();
     }
 
     @Test
-    void should_be_able_to_resolve_http_server_parameters_in_before_each() {
+    void should_resolve_http_server_parameters_in_before_each() {
         assertThat(serverFromBeforeEach).isNotNull();
     }
 
     @Test
-    void should_be_able_to_resolve_http_server_parameters(HttpServer server) {
+    void should_resolve_http_server_parameters(HttpServer server) {
         assertThat(server).isNotNull();
     }
 

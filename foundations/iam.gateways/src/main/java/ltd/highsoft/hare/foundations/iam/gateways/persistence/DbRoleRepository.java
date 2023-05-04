@@ -4,6 +4,7 @@ import jakarta.annotation.Resource;
 import ltd.highsoft.hare.foundations.iam.domain.Role;
 import ltd.highsoft.hare.foundations.iam.domain.Roles;
 import ltd.highsoft.hare.frameworks.domain.core.Id;
+import ltd.highsoft.hare.frameworks.domain.core.Name;
 import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +30,11 @@ public class DbRoleRepository implements Roles.RoleRepository {
     @Transactional
     public void add(Role role) {
         mapper.add(role);
+    }
+
+    @Override
+    public boolean exists(Name name, Id tenantId) {
+        return mapper.exists(name, tenantId);
     }
 
     @Override

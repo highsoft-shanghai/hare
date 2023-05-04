@@ -34,7 +34,7 @@ public class GetRoleForUpdatingUseCaseTest extends ApiTest {
 
     @Test
     @WithGrantedAuthorities({"iam.update-role"})
-    public void should_be_able_to_get_role() {
+    public void should_get_role() {
         var response = get("/roles/{id}", variables(Map.of("id", "role-1")), document());
         response.statusCode(is(200));
         response.body("id", is("role-1"));

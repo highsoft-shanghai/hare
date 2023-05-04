@@ -24,13 +24,13 @@ class CredentialTest {
     }
 
     @Test
-    void should_be_able_to_match_correct_secret() {
+    void should_match_correct_secret() {
         given(passwordEncoder.matches("correct-plan-secret", "encrypted-secret")).willReturn(true);
         assertThat(credential.matchSecret(PlanSecret.from("correct-plan-secret"), passwordEncoder)).usingRecursiveComparison().isEqualTo(MatchResult.success(credential));
     }
 
     @Test
-    void should_be_able_to_mismatch_incorrect_secret() {
+    void should_mismatch_incorrect_secret() {
         given(passwordEncoder.matches("incorrect-plan-secret", "encrypted-secret")).willReturn(false);
         assertThat(credential.matchSecret(PlanSecret.from("incorrect-plan-secret"), passwordEncoder)).usingRecursiveComparison().isEqualTo(MatchResult.fail("iam.username-or-password-wrong"));
     }

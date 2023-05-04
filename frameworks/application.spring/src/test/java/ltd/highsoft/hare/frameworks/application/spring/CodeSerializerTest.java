@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.is;
 public class CodeSerializerTest extends IntegrationTest {
 
     @Test
-    void should_be_able_to_serialize_codes() {
+    void should_serialize_codes() {
         when().get("/test/serialize-code").then().statusCode(200).body("code", is("0001"));
     }
 

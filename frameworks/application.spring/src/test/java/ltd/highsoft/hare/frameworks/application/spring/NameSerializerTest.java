@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.is;
 public class NameSerializerTest extends IntegrationTest {
 
     @Test
-    void should_be_able_to_serialize_names() {
+    void should_serialize_names() {
         when().get("/test/serialize-name").then().statusCode(200).body("name", is("John"));
     }
 

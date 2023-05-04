@@ -20,7 +20,7 @@ public class AuthorityOverriddenTest extends IntegrationTest {
     private @Resource ContextProvider contextProvider;
 
     @Test
-    void should_be_able_to_override_authorities_of_current_user() {
+    void should_override_authorities_of_current_user() {
         Optional<Context> context = GlobalTestContext.token().flatMap(contextProvider::get);
         assertThat(context.map(Context::userContext).map(UserContext::userAccount)).hasValue(identity("tester@highsoft", "Tester"));
         assertThat(context.map(Context::userContext).map(UserContext::user)).hasValue(identity("tester", "Tester"));

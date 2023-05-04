@@ -9,17 +9,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RequiredAuthoritiesTest {
 
     @Test
-    void should_be_able_to_hold_authorities() {
+    void should_hold_authorities() {
         assertThat(RequiredAuthorities.of("f1", "f2").asSet()).isEqualTo(Set.of("f1", "f2"));
     }
 
     @Test
-    void should_be_able_to_represent_anonymous_requirements() {
+    void should_represent_anonymous_requirements() {
         assertThat(RequiredAuthorities.of(Authorities.ANONYMOUS).requireAnonymous()).isTrue();
     }
 
     @Test
-    void should_be_able_to_represent_authenticated_only_requirements() {
+    void should_represent_authenticated_only_requirements() {
         assertThat(RequiredAuthorities.of().requireAuthenticatedOnly()).isTrue();
     }
 
@@ -29,7 +29,7 @@ public class RequiredAuthoritiesTest {
     }
 
     @Test
-    void should_be_able_to_represent_explicit_authenticated_only_requirements() {
+    void should_represent_explicit_authenticated_only_requirements() {
         assertThat(RequiredAuthorities.of(Authorities.AUTHENTICATED).requireAuthenticatedOnly()).isTrue();
     }
 
@@ -40,12 +40,12 @@ public class RequiredAuthoritiesTest {
     }
 
     @Test
-    void should_be_able_to_compare_to_others_by_contents() {
+    void should_compare_to_others_by_contents() {
         assertThat(RequiredAuthorities.of("f1", "f2")).isEqualTo(RequiredAuthorities.of("f1", "f2"));
     }
 
     @Test
-    void should_be_able_to_format_as_simple_string() {
+    void should_format_as_simple_string() {
         assertThat(RequiredAuthorities.of("f2", "f1", "f8", "f0").toString()).isEqualTo("RequiredAuthorities(f0, f1, f2, f8)");
     }
 

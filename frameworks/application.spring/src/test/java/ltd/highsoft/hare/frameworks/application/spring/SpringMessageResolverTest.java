@@ -15,7 +15,7 @@ public class SpringMessageResolverTest {
     private static final Object[] ARGS = {2, 5};
 
     @Test
-    public void should_be_able_to_resolve_message() {
+    public void should_resolve_message() {
         var messageSource = mock(MessageSource.class);
         var locale = LocaleContextHolder.getLocale();
         given(messageSource.getMessage(CODE, ARGS, CODE, locale)).willReturn(MESSAGE_FROM_MESSAGE_SOURCE);

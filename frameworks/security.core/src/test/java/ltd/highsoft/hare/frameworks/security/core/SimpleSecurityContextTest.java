@@ -18,7 +18,7 @@ class SimpleSecurityContextTest {
     }
 
     @Test
-    void should_be_able_to_hold_granted_authorities() {
+    void should_hold_granted_authorities() {
         var context = new SimpleSecurityContext(ID, GrantedAuthorities.ANONYMOUS);
         assertThat(context.token()).isEqualTo(ID);
         assertThat(context.grantedAuthorities()).isEqualTo(GrantedAuthorities.ANONYMOUS);

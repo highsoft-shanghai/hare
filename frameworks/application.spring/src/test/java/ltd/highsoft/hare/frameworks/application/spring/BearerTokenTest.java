@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BearerTokenTest {
 
     @Test
-    void should_be_able_to_parse_bearer_token() {
+    void should_parse_bearer_token() {
         assertThat(new BearerToken("Bearer token-id").value()).isEqualTo("token-id");
     }
 

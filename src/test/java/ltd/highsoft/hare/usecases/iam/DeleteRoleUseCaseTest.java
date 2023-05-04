@@ -37,7 +37,7 @@ public class DeleteRoleUseCaseTest extends ApiTest {
 
     @Test
     @WithGrantedAuthorities("iam.delete-role")
-    void should_be_able_to_delete_role() {
+    void should_delete_role() {
         var response = delete("/roles/{id}", variables(Map.of("id", "role-1")), document());
         response.statusCode(is(204));
     }

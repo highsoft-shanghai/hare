@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class TestContainersInitializerExtensionTest {
 
     @Test
-    void should_be_able_to_start_all_test_containers() {
+    void should_start_all_test_containers() {
         assertThat(DummyTestContainer.numberOfStarts).isEqualTo(1);
         assertThat(DummyTestContainer.numberOfEnvironmentSetups).isEqualTo(1);
     }

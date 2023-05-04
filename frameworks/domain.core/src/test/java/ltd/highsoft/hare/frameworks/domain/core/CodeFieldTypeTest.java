@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 class CodeFieldTypeTest {
 
     @Test
-    void should_be_able_to_construct_codes_from_strings() {
+    void should_construct_codes_from_strings() {
         assertThat(CodeFieldType.asCode().from("0001", "")).isEqualTo(Code.code("0001"));
     }
 

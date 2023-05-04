@@ -18,17 +18,17 @@ class SimpleUserContextTest {
     }
 
     @Test
-    void should_be_able_to_hold_user_account() {
+    void should_hold_user_account() {
         assertThat(new SimpleUserContext(USER_ACCOUNT, USER, TENANT).userAccount()).isEqualTo(USER_ACCOUNT);
     }
 
     @Test
-    void should_be_able_to_hold_user() {
+    void should_hold_user() {
         assertThat(new SimpleUserContext(USER_ACCOUNT, USER, TENANT).user()).isEqualTo(USER);
     }
 
     @Test
-    void should_be_able_to_hold_tenant() {
+    void should_hold_tenant() {
         assertThat(new SimpleUserContext(USER_ACCOUNT, USER, TENANT).tenant()).isEqualTo(TENANT);
     }
 

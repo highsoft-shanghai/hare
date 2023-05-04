@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ContextTest {
 
     @Test
-    void should_be_able_to_represent_invalid_context() {
+    void should_represent_invalid_context() {
         assertThat(Context.INVALID.userContext().valid()).isFalse();
         assertThat(Context.INVALID.securityContext().valid()).isFalse();
     }

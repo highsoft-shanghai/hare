@@ -22,7 +22,7 @@ class UserAccountRolesTest {
     private static final Role ROLE_B = new Role(ScopedId.id("role-b", "highsoft"), name("Role B"), GrantedAuthorities.of("f2"), remarks("Role A remarks"), false);
 
     @Test
-    void should_be_able_to_merge_granted_authorities_from_all_related_roles() {
+    void should_merge_granted_authorities_from_all_related_roles() {
         given(roles.get(id("role-a"))).willReturn(ROLE_A);
         given(roles.get(id("role-b"))).willReturn(ROLE_B);
         UserAccountRoles accountRoles = new UserAccountRoles(Set.of("role-a", "role-b"), roles);

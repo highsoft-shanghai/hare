@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.is;
 public class PayloadDeserializerTest extends IntegrationTest {
 
     @Test
-    void should_be_able_to_serialize_ids() {
+    void should_serialize_ids() {
         ValidatableResponse response = when().body(Map.of("id", "0001", "name", "John")).contentType(ContentType.JSON).post("/test/payload").then();
         response.statusCode(200).body("$", is(Map.of("id", "0001", "name", "John")));
     }

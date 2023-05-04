@@ -18,21 +18,21 @@ class ExceptionFormatterTest {
     private @Mock MessageResolver messageResolver;
 
     @Test
-    void should_be_able_to_format_application_exceptions() {
+    void should_format_application_exceptions() {
         given(messageResolver.resolve("test", 1, 2)).willReturn("message from resolver");
         var formatter = new ExceptionFormatter(messageResolver);
         assertThat(formatter.format(new ApplicationException(new DomainException(message("test", 1, 2))))).isEqualTo("message from resolver");
     }
 
     @Test
-    void should_be_able_to_format_non_application_exceptions() {
+    void should_format_non_application_exceptions() {
         given(messageResolver.resolve("test")).willReturn("message from resolver");
         var formatter = new ExceptionFormatter(messageResolver);
         assertThat(formatter.format(new RuntimeException("test"))).isEqualTo("message from resolver");
     }
 
     @Test
-    void should_be_able_to_format_null() {
+    void should_format_null() {
         var formatter = new ExceptionFormatter(messageResolver);
         assertThat(formatter.format(null)).isEqualTo(StringUtils.EMPTY);
     }

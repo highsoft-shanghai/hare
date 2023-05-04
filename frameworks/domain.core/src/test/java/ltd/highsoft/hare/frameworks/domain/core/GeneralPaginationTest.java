@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class GeneralPaginationTest {
 
     @Test
-    void should_be_able_to_carry_page_number() {
+    void should_carry_page_number() {
         var pagination = GeneralPagination.of(3, 10);
         Assertions.assertThat(pagination.pageNumber()).isEqualTo(3);
         Assertions.assertThat(pagination.pageSize()).isEqualTo(10);

@@ -34,7 +34,7 @@ class AccessTokenFactoryTest {
     }
 
     @Test
-    void should_be_able_to_create_access_tokens() {
+    void should_create_access_tokens() {
         AccessToken accessToken = factory.newAccessToken(new CredentialOwner(id("john@highsoft.ltd"), id("john"), id("highsoft")), "web");
         assertThat(accessToken.token().asString()).isEqualTo("a-fix-id");
         assertThat(accessToken.owner()).isEqualTo(new AccessTokenOwner(USER_ACCOUNT, identity("", ""), TENANT));

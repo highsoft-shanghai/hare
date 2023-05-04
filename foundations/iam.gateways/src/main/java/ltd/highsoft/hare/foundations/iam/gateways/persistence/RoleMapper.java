@@ -3,6 +3,7 @@ package ltd.highsoft.hare.foundations.iam.gateways.persistence;
 import jakarta.annotation.Resource;
 import ltd.highsoft.hare.foundations.iam.domain.Role;
 import ltd.highsoft.hare.frameworks.domain.core.Id;
+import ltd.highsoft.hare.frameworks.domain.core.Name;
 import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
 import ltd.highsoft.hare.frameworks.security.core.GrantedAuthorities;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.Optional;
 
 import static ltd.highsoft.hare.frameworks.domain.core.Name.name;
 import static ltd.highsoft.hare.frameworks.domain.core.Remarks.remarks;
@@ -46,9 +48,17 @@ public class RoleMapper {
                 "remarks", role.remarks().asString(), "tenantId", role.id().tenantId().asString(), "predefined", role.predefined()));
     }
 
+    public boolean exists(Name name, Id tenantId) {
+        return exists("SELECT COUNT(*) FROM iam_roles WHERE name = :name and tenant_id = :tenantId", Map.of("name", name.asString(), "tenantId", tenantId.asString()));
+    }
+
     private boolean exists(ScopedId id) {
-        String sql = "SELECT COUNT(*) FROM iam_roles WHERE id = :id and tenant_id = :tenantId";
-        return jdbc.queryForObject(sql, Map.of("id", id.id().asString(), "tenantId", id.tenantId().asString()), Integer.class) > 0;
+        return exists("SELECT COUNT(*) FROM iam_roles WHERE id = :id and tenant_id = :tenantId", Map.of("id", id.id().asString(), "tenantId", id.tenantId().asString()));
+    }
+
+    private boolean exists(String sql, Map<String, String> params) {
+        Integer count = jdbc.queryForObject(sql, params, Integer.class);
+        return Optional.ofNullable(count).orElse(0) > 0;
     }
 
     public void remove(ScopedId id) {

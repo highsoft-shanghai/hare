@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 class RemarksFieldTypeTest {
 
     @Test
-    void should_be_able_to_construct_remarks_from_strings() {
+    void should_construct_remarks_from_strings() {
         assertThat(RemarksFieldType.asRemarks().from("Pretty good", "")).isEqualTo(Remarks.remarks("Pretty good"));
     }
 

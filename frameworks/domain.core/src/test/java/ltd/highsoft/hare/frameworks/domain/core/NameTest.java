@@ -9,12 +9,12 @@ import static org.assertj.core.api.Assertions.*;
 class NameTest {
 
     @Test
-    void should_be_able_to_hold_valid_values() {
+    void should_hold_valid_values() {
         assertThat(name("John Smith").asString()).isEqualTo("John Smith");
     }
 
     @Test
-    void should_be_able_to_compare_to_others() {
+    void should_compare_to_others() {
         assertThat(name("John")).isEqualTo(name("John"));
         assertThat(name("John")).isNotEqualTo(name("Kite"));
     }

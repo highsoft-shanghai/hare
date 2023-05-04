@@ -19,7 +19,7 @@ public class DocumentationTest extends IntegrationTest {
 
     @Test
     @WithGrantedAuthorities({})
-    void should_be_able_to_generate_document_header() {
+    void should_generate_document_header() {
         var response = get("/web-test/api-header/{id}", variables(Map.of("id", "5")), doc("api-header"));
         response.statusCode(is(200));
         assertThat(Files.exists(Path.of("build/generated-snippets/api-header/api-header.adoc"))).isTrue();
@@ -27,14 +27,14 @@ public class DocumentationTest extends IntegrationTest {
     }
 
     @Test
-    void should_be_able_to_generate_document_header_without_path_variables() {
+    void should_generate_document_header_without_path_variables() {
         var response = get("/web-test/api-header", doc("api-header-without-path-parameters"));
         response.statusCode(is(200));
         assertThat(Files.exists(Path.of("build/generated-snippets/api-header-without-path-parameters/api-header.adoc"))).isTrue();
     }
 
     @Test
-    void should_be_able_to_document_path_variables_and_constrained_fields() {
+    void should_document_path_variables_and_constrained_fields() {
         var response = post("/web-test/document-constrained-fields/{id}", variables(Map.of("id", "5")), Map.of("name", "John"), doc("constrained-fields",
             requestFields(
                 constrainedFieldWithPath("name", "Can NOT be empty").description("Name for new user")
@@ -45,7 +45,7 @@ public class DocumentationTest extends IntegrationTest {
     }
 
     @Test
-    void should_be_able_to_document_constrained_parameters() {
+    void should_document_constrained_parameters() {
         var parameters = parameters(Map.of("q", "john", "size", 10, "page", 0));
         var response = get("/web-test/document-constrained-parameters", parameters, doc("constrained-parameters",
             pagedRequestParameters(
@@ -57,7 +57,7 @@ public class DocumentationTest extends IntegrationTest {
     }
 
     @Test
-    void should_be_able_to_document_paged_responses() {
+    void should_document_paged_responses() {
         var response = get("/web-test/document-paged-response", parameters(Map.of()), doc("paged-response",
             ApiDocUtils.pagedResponseFields(
                 fieldWithPath("content[].name").description("User name")

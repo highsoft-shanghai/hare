@@ -19,7 +19,7 @@ public class CreateRoleUseCase {
         this.roleFactory = roleFactory;
     }
 
-    public Object execute(Payload payload) {
+    public String execute(Payload payload) {
         Role role = roleFactory.newRole(payload, currentTenantId());
         roles.add(role);
         return role.id().id().asString();

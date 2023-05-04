@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class BadInputExceptionTest {
 
     @Test
-    void should_be_able_to_represent_input_errors() {
+    void should_represent_input_errors() {
         var throwable = new BadInputException(I18nMessage.message("error-code"));
         Assertions.assertThat(throwable).isInstanceOf(DomainException.class);
         Assertions.assertThat(throwable).hasMessage("error-code");

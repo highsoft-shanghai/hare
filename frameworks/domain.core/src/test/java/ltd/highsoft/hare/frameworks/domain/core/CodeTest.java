@@ -9,12 +9,12 @@ import static org.assertj.core.api.Assertions.*;
 class CodeTest {
 
     @Test
-    void should_be_able_to_hold_valid_values() {
+    void should_hold_valid_values() {
         Assertions.assertThat(Code.code("01").asString()).isEqualTo("01");
     }
 
     @Test
-    void should_be_able_to_compare_to_others() {
+    void should_compare_to_others() {
         Assertions.assertThat(Code.code("01")).isEqualTo(Code.code("01"));
         Assertions.assertThat(Code.code("01")).isNotEqualTo(Code.code("02"));
     }

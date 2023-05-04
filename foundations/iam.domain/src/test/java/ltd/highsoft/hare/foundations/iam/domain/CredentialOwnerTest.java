@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CredentialOwnerTest {
 
     @Test
-    void should_be_able_to_compare_to_others() {
+    void should_compare_to_others() {
         CredentialOwner ownerA = new CredentialOwner(id("john@highsoft.ltd"), id("john"), id("highsoft"));
         CredentialOwner ownerB = new CredentialOwner(id("john@highsoft.ltd"), id("john"), id("highsoft"));
         CredentialOwner ownerC = new CredentialOwner(id("kite@highsoft.ltd"), id("kite"), id("highsoft"));

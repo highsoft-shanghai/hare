@@ -22,7 +22,7 @@ public class AccessTokenContextProviderTest {
     }
 
     @Test
-    void should_be_able_to_load_accesses_token_from_underling_repository() {
+    void should_load_accesses_token_from_underling_repository() {
         ContextProvider provider = new AccessTokenContextProvider(accessTokens);
         assertThat(provider.get(id("token-id"))).isEqualTo(Optional.of(TestAccessTokens.ACCESS_TOKEN_OF_TESTER));
     }

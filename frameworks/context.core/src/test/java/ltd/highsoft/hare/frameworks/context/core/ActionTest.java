@@ -23,7 +23,7 @@ class ActionTest {
     }
 
     @Test
-    void should_be_able_to_hold_operator_and_operation_time() {
+    void should_hold_operator_and_operation_time() {
         given(actors.get(JOHN_AT_HIGHSOFT.id())).willReturn(JOHN_AT_HIGHSOFT);
         ActionFactory factory = new ActionFactory(actors);
         Action action = factory.newAction();
