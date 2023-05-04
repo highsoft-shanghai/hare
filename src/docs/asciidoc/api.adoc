@@ -1,0 +1,16 @@
+= HARE API DOCUMENT
+highsoft.ltd
+:toc2: left
+:toclevels: 3
+:sectnums:
+:partnums:
+
+== 通用
+
+=== 错误处理
+
+==== 错误响应
+
+include::{snippets}/error.general-error/response-fields.adoc[opts=optional]
+
+include::{snippets}/error.general-error/http-response.adoc[opts=optional]

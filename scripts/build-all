@@ -1,3 +1,7 @@
 #! /usr/bin/env sh
 
-chmod +x ./gradlew && ./gradlew --parallel -P chain-tests -P release --stacktrace clean build
+chmod +x ./gradlew && ./gradlew --parallel -P chain-tests clean checkstyleMain checkstyleTest check asciidoctor
+rm -rf ./src/main/resources/asciidoc
+mkdir -p ./src/main/resources/asciidoc/
+cp -f ./build/docs/asciidoc/api.html ./src/main/resources/asciidoc/apidoc.html
+chmod +x ./gradlew && ./gradlew clean -P release --stacktrace build --no-build-cache -x check -x test -x jacocoRootReport -x jacocoTestReport -x jacocoMerge -x jacocoTestCoverageVerification -x jacocoRootCoverageVerification -x checkstyleMain
