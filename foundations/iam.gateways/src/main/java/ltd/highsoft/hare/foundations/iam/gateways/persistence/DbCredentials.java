@@ -8,7 +8,6 @@ import ltd.highsoft.hare.frameworks.domain.core.Id;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -30,16 +29,6 @@ public class DbCredentials implements Credentials {
     @Override
     public void remove(Id id) {
         mapper.remove(id);
-    }
-
-    @Override
-    public void removeForUserAccount(Id userAccountId) {
-        mapper.removeForUserAccount(userAccountId);
-    }
-
-    @Override
-    public List<Credential> getForUserAccount(Id userAccountId) {
-        return mapper.getForUserAccount(userAccountId);
     }
 
 }

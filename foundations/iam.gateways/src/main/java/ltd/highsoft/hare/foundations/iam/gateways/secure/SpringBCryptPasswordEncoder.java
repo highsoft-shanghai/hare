@@ -18,9 +18,4 @@ public class SpringBCryptPasswordEncoder implements PasswordEncoder {
         return bCryptPasswordEncoder.matches(plain, encrypted);
     }
 
-    @Override
-    public String encode(String secret) {
-        return bCryptPasswordEncoder.encode(secret);
-    }
-
 }

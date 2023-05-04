@@ -7,12 +7,8 @@ import ltd.highsoft.hare.frameworks.domain.core.*;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Component
 public class DbRoles implements Roles {
-
-    private static final int LIMIT = 1000;
 
     private @Resource RoleMapper mapper;
 
@@ -38,16 +34,6 @@ public class DbRoles implements Roles {
     @Transactional
     public void remove(ScopedId id) {
         mapper.remove(id);
-    }
-
-    @Override
-    public Page<Role> search(Id tenantId, String q, Pagination pagination) {
-        return mapper.search(tenantId, q, pagination);
-    }
-
-    @Override
-    public List<Role> search(Id tenantId, String q) {
-        return mapper.search(tenantId, q, GeneralPagination.of(0, LIMIT)).getContent();
     }
 
 }

@@ -41,6 +41,8 @@ class GeneralPageTest {
     void should_be_able_to_carry_total_number_of_pages() {
         var page = GeneralPage.from(List.of("a", "b"), GeneralPagination.of(1, 2), 30);
         Assertions.assertThat(page.getNumberOfTotalPages()).isEqualTo(15);
+        var page2 = GeneralPage.from(List.of("a", "b"), GeneralPagination.of(1, 7), 30);
+        Assertions.assertThat(page2.getNumberOfTotalPages()).isEqualTo(5);
     }
 
     @Test

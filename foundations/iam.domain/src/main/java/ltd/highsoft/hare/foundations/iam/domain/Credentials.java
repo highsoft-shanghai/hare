@@ -12,8 +12,4 @@ public interface Credentials {
 
     void remove(Id id);
 
-    void removeForUserAccount(Id userAccountId);
-
-    List<Credential> getForUserAccount(Id userAccountId);
-
 }

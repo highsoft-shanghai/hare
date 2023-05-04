@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -24,7 +23,6 @@ public class CredentialMapper {
 
     private @Resource NamedParameterJdbcTemplate jdbc;
 
-
     public Optional<Credential> credentialFor(CredentialType type, String loginName) {
         String sql = "SELECT id, type, login_name, secret, user_account_id, user_id, tenant_id, predefined FROM iam_credentials WHERE type = :type AND login_name = :loginName";
         return jdbc.query(sql, Map.of("type", type.asString(), "loginName", loginName), (rs, rowNum) -> asDomain(rs)).stream().findFirst();
@@ -37,11 +35,6 @@ public class CredentialMapper {
                 credential.owner().tenantId().asString(), "predefined", credential.predefined()));
     }
 
-    public List<Credential> getForUserAccount(Id userAccountId) {
-        String sql = "SELECT id, type, login_name, secret, user_account_id, user_id, tenant_id, predefined FROM iam_credentials WHERE user_account_id = :userAccountId";
-        return jdbc.query(sql, Map.of("userAccountId", userAccountId.asString()), (rs, rowNum) -> asDomain(rs));
-    }
-
     private static Credential asDomain(ResultSet rs) throws SQLException {
         return new Credential(id(rs.getString("id")), new CredentialOwner(id(rs.getString("user_account_id")), id(rs.getString("user_id")), id(rs.getString("tenant_id"))),
                 credentialType(rs.getString("type")), loginName(rs.getString("login_name")), encryptedSecret(rs.getString("secret")), rs.getBoolean("predefined"));
@@ -52,8 +45,4 @@ public class CredentialMapper {
         jdbc.update(sql, Map.of("id", id.asString()));
     }
 
-    public void removeForUserAccount(Id userAccountId) {
-        String sql = "DELETE FROM iam_credentials WHERE user_account_id = :userAccountId";
-        jdbc.update(sql, Map.of("userAccountId", userAccountId.asString()));
-    }
 }

@@ -4,6 +4,4 @@ public interface PasswordEncoder {
 
     boolean matches(String plain, String encrypted);
 
-    String encode(String secret);
-
 }

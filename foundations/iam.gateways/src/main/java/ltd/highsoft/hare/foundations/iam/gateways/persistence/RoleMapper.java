@@ -2,14 +2,14 @@ package ltd.highsoft.hare.foundations.iam.gateways.persistence;
 
 import jakarta.annotation.Resource;
 import ltd.highsoft.hare.foundations.iam.domain.Role;
-import ltd.highsoft.hare.frameworks.domain.core.*;
+import ltd.highsoft.hare.frameworks.domain.core.Id;
+import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
 import ltd.highsoft.hare.frameworks.security.core.GrantedAuthorities;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Map;
 
 import static ltd.highsoft.hare.frameworks.domain.core.Name.name;
@@ -49,13 +49,6 @@ public class RoleMapper {
     private boolean exists(ScopedId id) {
         String sql = "SELECT COUNT(*) FROM iam_roles WHERE id = :id and tenant_id = :tenantId";
         return jdbc.queryForObject(sql, Map.of("id", id.id().asString(), "tenantId", id.tenantId().asString()), Integer.class) > 0;
-    }
-
-    public Page<Role> search(Id tenantId, String q, Pagination pagination) {
-        String sql = "SELECT id, name, authorities, remarks, tenant_id, predefined FROM iam_roles WHERE (name LIKE :q OR remarks LIKE :q) AND tenant_id = :tenantId ORDER BY name ASC LIMIT :limit OFFSET :offset";
-        List<Role> query = jdbc.query(sql, Map.of("q", "%" + q + "%", "tenantId", tenantId.asString(), "limit", pagination.limit(), "offset", pagination.offset()), (rs, rowNum) -> asDomain(rs));
-        Integer count = jdbc.queryForObject("SELECT COUNT(*) FROM iam_roles WHERE (name LIKE :q OR remarks LIKE :q) AND tenant_id = :tenantId", Map.of("q", "%" + q + "%", "tenantId", tenantId.asString()), Integer.class);
-        return GeneralPage.from(query, pagination, count);
     }
 
     public void remove(ScopedId id) {

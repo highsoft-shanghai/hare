@@ -7,8 +7,6 @@ import ltd.highsoft.hare.frameworks.domain.core.Id;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Component
 public class DbTenants implements Tenants {
 
@@ -24,12 +22,6 @@ public class DbTenants implements Tenants {
     @Transactional
     public void remove(Id id) {
         mapper.remove(id);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Tenant> get() {
-        return mapper.get();
     }
 
     @Override

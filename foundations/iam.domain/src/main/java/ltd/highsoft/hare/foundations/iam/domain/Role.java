@@ -81,9 +81,4 @@ public class Role {
         }
     }
 
-    public void selectableContent(ObjectSink sink) {
-        sink.put("id", id().id());
-        sink.put("name", name);
-    }
-
 }

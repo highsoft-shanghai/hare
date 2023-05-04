@@ -6,7 +6,6 @@ import ltd.highsoft.hare.frameworks.domain.core.Id;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Map;
 
 @Component
@@ -25,11 +24,6 @@ public class TenantMapper {
         jdbc.update(sql, Map.of("id", id.asString()));
     }
 
-
-    public List<Tenant> get() {
-        String sql = "SELECT id, name FROM iam_tenants";
-        return jdbc.query(sql, (rs, rowNum) -> Tenant.restore(rs.getString("id"), rs.getString("name")));
-    }
 
     public Tenant get(Id id) {
         String sql = "SELECT id, name FROM iam_tenants WHERE id = :id";

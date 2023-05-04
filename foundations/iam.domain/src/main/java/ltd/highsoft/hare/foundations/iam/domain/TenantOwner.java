@@ -5,7 +5,7 @@ import ltd.highsoft.hare.frameworks.domain.core.Id;
 public record TenantOwner(Id id, Tenants tenants) {
 
     public Tenant get() {
-        return tenants.get(id);
+        return tenants().get(id);
     }
 
 }
