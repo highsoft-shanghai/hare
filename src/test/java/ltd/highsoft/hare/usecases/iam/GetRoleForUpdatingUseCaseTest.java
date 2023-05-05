@@ -52,10 +52,10 @@ public class GetRoleForUpdatingUseCaseTest extends ApiTest {
     protected Documentation document() {
         return Documentation.doc("role.get.id",
             responseFields(
-                fieldWithPath("id").description("Role id"),
-                fieldWithPath("name").description("Role name"),
-                fieldWithPath("remarks").description("Role remarks"),
-                fieldWithPath("authorities").description("Role authorities")
+                fieldWithPath("id").description("角色ID"),
+                fieldWithPath("name").description("角色名称"),
+                fieldWithPath("remarks").description("备注"),
+                fieldWithPath("authorities").description("角色权限")
             )
         );
     }

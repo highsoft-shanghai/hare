@@ -1,13 +1,13 @@
 package ltd.highsoft.hare.usecases.iam;
 
 import jakarta.annotation.Resource;
+import ltd.highsoft.hare.ApiTest;
+import ltd.highsoft.hare.foundations.iam.domain.Role;
+import ltd.highsoft.hare.foundations.iam.domain.Roles;
 import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
 import ltd.highsoft.hare.frameworks.security.core.GrantedAuthorities;
 import ltd.highsoft.hare.frameworks.test.web.Documentation;
 import ltd.highsoft.hare.frameworks.test.web.WithGrantedAuthorities;
-import ltd.highsoft.hare.ApiTest;
-import ltd.highsoft.hare.foundations.iam.domain.Role;
-import ltd.highsoft.hare.foundations.iam.domain.Roles;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -57,9 +57,9 @@ public class UpdateRoleUseCaseTest extends ApiTest {
     protected Documentation document() {
         return Documentation.doc("role.put",
                 requestFields(
-                        constrainedFieldWithPath("name", "must").description("Role name"),
-                        constrainedFieldWithPath("authorities", "optional").description("Authorities of role"),
-                        constrainedFieldWithPath("remarks", "optional").optional().description("remarks")
+                        constrainedFieldWithPath("name", "必填").description("角色名称"),
+                        constrainedFieldWithPath("authorities", "选填").description("角色权限"),
+                        constrainedFieldWithPath("remarks", "选填").optional().description("备注")
                 )
         );
     }

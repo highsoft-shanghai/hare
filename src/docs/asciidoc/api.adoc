@@ -1,15 +1,15 @@
-= HARE API DOCUMENT
+= HARE API 文档
 highsoft.ltd
 :toc2: left
 :toclevels: 3
 :sectnums:
 :partnums:
 
-== General
+== 通用
 
-=== Error Process
+=== 错误处理
 
-==== Error Response
+==== 错误响应
 
 include::{snippets}/error.general-error/response-fields.adoc[opts=optional]
 
@@ -17,30 +17,30 @@ include::{snippets}/error.general-error/http-response.adoc[opts=optional]
 
 == IAM
 
-=== Role Management
+=== 角色管理
 
-==== Create Role
+==== 创建角色
 
 include::{snippets}/roles.post/api.adoc[]
 
-==== Update Role
+==== 更新角色
 
 include::{snippets}/role.put/api.adoc[]
 
-==== Search Role
+==== 查询角色
 
 include::{snippets}/role.get.id/api.adoc[]
 
-==== Delete Role
+==== 删除角色
 
 include::{snippets}/roles.delete/api.adoc[]
 
-=== User Account Management
+=== 用户账户管理
 
-==== User Login
+==== 用户登录
 
 include::{snippets}/logins.username-and-password.post/api.adoc[]
 
-==== Current
+==== 当前用户
 
 include::{snippets}/access-tokens.current.get/api.adoc[]
