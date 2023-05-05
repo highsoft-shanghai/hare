@@ -49,11 +49,11 @@ public class CreateRoleUseCaseTest extends ApiTest {
     protected Documentation document() {
         return Documentation.doc("roles.post",
             requestFields(
-                fieldWithPath("name").description("Role name"),
-                fieldWithPath("authorities").description("Authority list"),
-                fieldWithPath("remarks").description("Remarks")
+                fieldWithPath("name").description("角色名称"),
+                fieldWithPath("authorities").description("权限列表"),
+                fieldWithPath("remarks").description("备注")
             ),
-            responseFields(fieldWithPath("id").description("The id of new role")));
+            responseFields(fieldWithPath("id").description("新增角色ID")));
     }
 
 }

@@ -1,0 +1,38 @@
+name: Check all
+on:
+  push:
+    branches:
+      - '**'
+      - "!main"
+  pull_request:
+    branches:
+      - '**'
+      - "!main"
+  workflow_dispatch:
+jobs:
+  build-backend:
+    name: Check all for Backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Prepare Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Check all
+        run: ./scripts/check-all-parallel
+
+  frontend:
+    name: Check all for Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: yarn install
+        working-directory: frontends/hare.webui
+      - name: Check all
+        run: yarn test:unit:coverage
+        working-directory: frontends/hare.webui

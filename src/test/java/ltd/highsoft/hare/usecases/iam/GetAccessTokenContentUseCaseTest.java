@@ -1,9 +1,9 @@
 package ltd.highsoft.hare.usecases.iam;
 
+import ltd.highsoft.hare.ApiTest;
 import ltd.highsoft.hare.frameworks.test.web.Documentation;
 import ltd.highsoft.hare.frameworks.test.web.GlobalTestContext;
 import ltd.highsoft.hare.frameworks.test.web.WithGrantedAuthorities;
-import ltd.highsoft.hare.ApiTest;
 import org.junit.jupiter.api.Test;
 
 import static ltd.highsoft.hare.frameworks.test.web.Documentation.doc;
@@ -26,12 +26,12 @@ public class GetAccessTokenContentUseCaseTest extends ApiTest {
     @Override
     protected Documentation document() {
         return doc("access-tokens.current.get",
-            responseFields(
-                fieldWithPath("accessToken").description("Access token identification"),
-                fieldWithPath("authorities").description("Collection of permissions granted"),
-                fieldWithPath("userAccountName").description("Name of the currently logged in user"),
-                fieldWithPath("tenantName").description("Name of the tenant where the currently logged in user is located")
-            )
+                responseFields(
+                        fieldWithPath("accessToken").description("访问令牌标识"),
+                        fieldWithPath("authorities").description("授予的权限集合"),
+                        fieldWithPath("userAccountName").description("当前登录用户的名称"),
+                        fieldWithPath("tenantName").description("当前登录用户所在企业的名称")
+                )
         );
     }
 
