@@ -1,6 +1,5 @@
 package ltd.highsoft.hare.foundations.iam.domain;
 
-import ltd.highsoft.hare.frameworks.domain.core.Code;
 import ltd.highsoft.hare.frameworks.domain.core.Id;
 import ltd.highsoft.hare.frameworks.domain.core.IdGenerator;
 import ltd.highsoft.hare.frameworks.domain.core.Payload;
@@ -16,7 +15,7 @@ public class RoleFactory {
     }
 
     public Role newRole(Payload payload, Id tenantId) {
-        return new Role(id(idGenerator.nextId(), tenantId), Code.code(idGenerator.nextId().asString()), payload);
+        return new Role(id(idGenerator.nextId(), tenantId), payload);
     }
 
 }
