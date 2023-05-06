@@ -1,6 +1,7 @@
 package ltd.highsoft.hare.foundations.iam.domain;
 
 import ltd.highsoft.hare.frameworks.domain.core.BadInputException;
+import ltd.highsoft.hare.frameworks.domain.core.Code;
 import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
 import ltd.highsoft.hare.frameworks.security.core.GrantedAuthorities;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +28,14 @@ class RolesTest {
     @Test
     void should_throw_when_add_duplicate_role() {
         assertThrows(BadInputException.class,
-                () -> new Roles(roleRepository, null).add(new Role(ScopedId.id("role-a", "highsoft"), name("Role A"), GrantedAuthorities.of("f1"), remarks("Role A remarks"), false))
+                () -> new Roles(roleRepository, null)
+                        .add(new Role(
+                                ScopedId.id("role-a", "highsoft"),
+                                name("Role A"),
+                                GrantedAuthorities.of("f1"),
+                                remarks("Role A remarks"),
+                                false,
+                                Code.code("1")))
         );
     }
 }

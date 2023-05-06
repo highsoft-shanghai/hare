@@ -2,6 +2,7 @@ package ltd.highsoft.hare.foundations.iam.gateways.persistence;
 
 import jakarta.annotation.Resource;
 import ltd.highsoft.hare.foundations.iam.domain.Role;
+import ltd.highsoft.hare.frameworks.domain.core.Code;
 import ltd.highsoft.hare.frameworks.domain.core.Id;
 import ltd.highsoft.hare.frameworks.domain.core.Name;
 import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
@@ -23,29 +24,36 @@ public class RoleMapper {
     private @Resource NamedParameterJdbcTemplate jdbc;
 
     public Role get(Id id) {
-        String sql = "SELECT id, name, authorities, remarks, tenant_id, predefined FROM iam_roles WHERE id = :id";
+        String sql = "SELECT id, name, authorities, remarks, tenant_id, predefined, code FROM iam_roles WHERE id = :id";
         return jdbc.queryForObject(sql, Map.of("id", id.asString()), (rs, rowNum) -> asDomain(rs));
     }
 
     private static Role asDomain(ResultSet rs) throws SQLException {
-        return new Role(ScopedId.id(rs.getString("id"), rs.getString("tenant_id")), name(rs.getString("name")), GrantedAuthorities.fromCommaSeparatedString(rs.getString("authorities")), remarks(rs.getString("remarks")), rs.getBoolean("predefined"));
+        return new Role(
+                ScopedId.id(rs.getString("id"), rs.getString("tenant_id")),
+                name(rs.getString("name")),
+                GrantedAuthorities.fromCommaSeparatedString(rs.getString("authorities")),
+                remarks(rs.getString("remarks")),
+                rs.getBoolean("predefined"),
+                Code.code(rs.getString("code"))
+        );
     }
 
     public Role get(ScopedId id) {
-        String sql = "SELECT id, name, authorities, remarks, tenant_id, predefined FROM iam_roles WHERE id = :id AND tenant_id = :tenantId";
+        String sql = "SELECT id, name, authorities, remarks, tenant_id, predefined, code FROM iam_roles WHERE id = :id AND tenant_id = :tenantId";
         return jdbc.queryForObject(sql, Map.of("id", id.id().asString(), "tenantId", id.tenantId().asString()), (rs, rowNum) -> asDomain(rs));
     }
 
     public void add(Role role) {
         if (exists(role.id())) {
-            String sql = "UPDATE iam_roles SET name = :name, authorities = :authorities, remarks = :remarks, predefined = :predefined WHERE id = :id AND tenant_id = :tenantId";
+            String sql = "UPDATE iam_roles SET name = :name, authorities = :authorities, remarks = :remarks, predefined = :predefined, code = :code WHERE id = :id AND tenant_id = :tenantId";
             jdbc.update(sql, Map.of("id", role.id().id().asString(), "name", role.name().asString(), "authorities", role.grantedAuthorities().toCommaSeparatedString(),
-                    "remarks", role.remarks().asString(), "tenantId", role.id().tenantId().asString(), "predefined", role.predefined()));
+                    "remarks", role.remarks().asString(), "tenantId", role.id().tenantId().asString(), "predefined", role.predefined(), "code", role.code().asString()));
             return;
         }
-        String sql = "INSERT INTO iam_roles (id, name, authorities, remarks, tenant_id, predefined) VALUES (:id, :name, :authorities, :remarks, :tenantId, :predefined)";
+        String sql = "INSERT INTO iam_roles (id, name, authorities, remarks, tenant_id, predefined, code) VALUES (:id, :name, :authorities, :remarks, :tenantId, :predefined, :code)";
         jdbc.update(sql, Map.of("id", role.id().id().asString(), "name", role.name().asString(), "authorities", role.grantedAuthorities().toCommaSeparatedString(),
-                "remarks", role.remarks().asString(), "tenantId", role.id().tenantId().asString(), "predefined", role.predefined()));
+                "remarks", role.remarks().asString(), "tenantId", role.id().tenantId().asString(), "predefined", role.predefined(), "code", role.code().asString()));
     }
 
     public boolean exists(Name name, ScopedId id) {
