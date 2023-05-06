@@ -4,6 +4,7 @@ import jakarta.annotation.Resource;
 import ltd.highsoft.hare.ApiTest;
 import ltd.highsoft.hare.foundations.iam.domain.Role;
 import ltd.highsoft.hare.foundations.iam.domain.Roles;
+import ltd.highsoft.hare.frameworks.domain.core.Code;
 import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
 import ltd.highsoft.hare.frameworks.security.core.GrantedAuthorities;
 import ltd.highsoft.hare.frameworks.test.web.Documentation;
@@ -30,7 +31,7 @@ public class UpdateRoleUseCaseTest extends ApiTest {
 
     @BeforeEach
     public void setUp() {
-        Role role1 = new Role(ScopedId.id("role-1", "highsoft"), name("role-1"), GrantedAuthorities.of(), remarks("Remarks for operators1"), false);
+        Role role1 = new Role(ScopedId.id("role-1", "highsoft"), name("role-1"), GrantedAuthorities.of(), remarks("Remarks for operators1"), false, Code.code("1"));
         roles.add(role1);
     }
 

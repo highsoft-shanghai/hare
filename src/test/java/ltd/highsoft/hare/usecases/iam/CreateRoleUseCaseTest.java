@@ -27,7 +27,7 @@ public class CreateRoleUseCaseTest extends ApiTest {
 
     @Test
     @WithGrantedAuthorities("iam.create-role")
-    public void should_create_person_correctly() {
+    public void should_create_role_correctly() {
         Map<String, Object> payload = new HashMap<>();
         payload.put("name", "Manager");
         payload.put("authorities", List.of("basic.management", "basic.tag-group-management", "management.create-tag-group", "management.archive-tag-group"));
@@ -38,6 +38,7 @@ public class CreateRoleUseCaseTest extends ApiTest {
         Role role = roles.get(createRoleId);
         assertThat(role.grantedAuthorities().asSet()).containsExactlyInAnyOrder("basic.management", "basic.tag-group-management", "management.create-tag-group", "management.archive-tag-group");
         assertThat(role.name().asString()).isEqualTo("Manager");
+        assertThat(role.code().asString().length()).isEqualTo(32);
     }
 
     @AfterEach
@@ -48,12 +49,12 @@ public class CreateRoleUseCaseTest extends ApiTest {
     @Override
     protected Documentation document() {
         return Documentation.doc("roles.post",
-            requestFields(
-                fieldWithPath("name").description("角色名称"),
-                fieldWithPath("authorities").description("权限列表"),
-                fieldWithPath("remarks").description("备注")
-            ),
-            responseFields(fieldWithPath("id").description("新增角色ID")));
+                requestFields(
+                        fieldWithPath("name").description("角色名称"),
+                        fieldWithPath("authorities").description("权限列表"),
+                        fieldWithPath("remarks").description("备注")
+                ),
+                responseFields(fieldWithPath("id").description("新增角色ID")));
     }
 
 }
