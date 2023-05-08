@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoSettings;
 
+import static ltd.highsoft.hare.frameworks.domain.core.Code.code;
 import static ltd.highsoft.hare.frameworks.domain.core.Id.id;
+import static ltd.highsoft.hare.frameworks.domain.core.Name.name;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -18,7 +20,7 @@ import static org.mockito.Mockito.when;
 class UserAccountTest {
 
     private final User user = new User("id", "name", false);
-    private final Tenant tenant = Tenant.restore("id", "name");
+    private final Tenant tenant = new Tenant(id("id"), code("code"), name("name"));
     private @Mock UserAccountRoles roles;
     private @Mock Users users;
     private @Mock Tenants tenants;

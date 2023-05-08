@@ -40,6 +40,7 @@ public class UpdateRoleUseCaseTest extends ApiTest {
     public void should_update_role() {
         Map<String, Object> payload = new HashMap<>();
         payload.put("authorities", List.of("basic.management", "basic.tag-group-management", "management.create-tag-group", "management.archive-tag-group"));
+        payload.put("code", "1234");
         payload.put("name", "role-2");
         payload.put("remarks", "remarks");
         var response = put("/roles/role-1", variables(), payload, document());
@@ -47,6 +48,7 @@ public class UpdateRoleUseCaseTest extends ApiTest {
         Role role = roles.get(id("role-1"));
         assertThat(role.grantedAuthorities().asSet()).containsExactlyInAnyOrder("basic.management", "basic.tag-group-management", "management.create-tag-group", "management.archive-tag-group");
         assertThat(role.name().asString()).isEqualTo("role-2");
+        assertThat(role.code().asString()).isEqualTo("1234");
     }
 
     @AfterEach
@@ -58,6 +60,7 @@ public class UpdateRoleUseCaseTest extends ApiTest {
     protected Documentation document() {
         return Documentation.doc("role.put",
                 requestFields(
+                        constrainedFieldWithPath("code", "必填").description("业务编号"),
                         constrainedFieldWithPath("name", "必填").description("角色名称"),
                         constrainedFieldWithPath("authorities", "选填").description("角色权限"),
                         constrainedFieldWithPath("remarks", "选填").optional().description("备注")

@@ -29,7 +29,7 @@ public class GetRoleForUpdatingUseCaseTest extends ApiTest {
 
     @BeforeEach
     public void setUp() {
-        Role role1 = new Role(ScopedId.id("role-1", "highsoft"), name("role-1"), GrantedAuthorities.of("1"), remarks("Remarks for operators1"), false, Code.code("1"));
+        Role role1 = new Role(ScopedId.id("role-1", "highsoft"), name("role-1"), GrantedAuthorities.of("1"), remarks("Remarks for operators1"), false, Code.code("1234"));
         roles.add(role1);
     }
 
@@ -39,6 +39,7 @@ public class GetRoleForUpdatingUseCaseTest extends ApiTest {
         var response = get("/roles/{id}", variables(Map.of("id", "role-1")), document());
         response.statusCode(is(200));
         response.body("id", is("role-1"));
+        response.body("code", is("1234"));
         response.body("name", is("role-1"));
         response.body("authorities", is(List.of("1")));
         response.body("remarks", is("Remarks for operators1"));
@@ -52,12 +53,13 @@ public class GetRoleForUpdatingUseCaseTest extends ApiTest {
     @Override
     protected Documentation document() {
         return Documentation.doc("role.get.id",
-            responseFields(
-                fieldWithPath("id").description("角色ID"),
-                fieldWithPath("name").description("角色名称"),
-                fieldWithPath("remarks").description("备注"),
-                fieldWithPath("authorities").description("角色权限")
-            )
+                responseFields(
+                        fieldWithPath("id").description("角色ID"),
+                        fieldWithPath("code").description("业务编号"),
+                        fieldWithPath("name").description("角色名称"),
+                        fieldWithPath("remarks").description("备注"),
+                        fieldWithPath("authorities").description("角色权限")
+                )
         );
     }
 

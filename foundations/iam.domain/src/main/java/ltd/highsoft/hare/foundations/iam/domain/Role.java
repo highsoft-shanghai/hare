@@ -18,7 +18,7 @@ public class Role {
     private Remarks remarks;
     private final boolean predefined;
 
-    private final Code code;
+    private Code code;
 
     public Role(ScopedId id, Name name, GrantedAuthorities authorities, Remarks remarks, boolean predefined, Code code) {
         this.id = id;
@@ -59,6 +59,7 @@ public class Role {
     }
 
     public void update(Payload payload) {
+        this.code = Code.code(payload.get("code", asCode()).asString());
         this.name = payload.get("name", asName());
         this.authorities = GrantedAuthorities.of(new HashSet<>(payload.get("authorities", asString().array())));
         this.remarks = payload.get("remarks", asRemarks());
