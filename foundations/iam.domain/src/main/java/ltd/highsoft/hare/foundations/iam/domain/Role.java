@@ -5,6 +5,7 @@ import ltd.highsoft.hare.frameworks.security.core.GrantedAuthorities;
 
 import java.util.HashSet;
 
+import static ltd.highsoft.hare.frameworks.domain.core.CodeFieldType.asCode;
 import static ltd.highsoft.hare.frameworks.domain.core.NameFieldType.asName;
 import static ltd.highsoft.hare.frameworks.domain.core.RemarksFieldType.asRemarks;
 import static ltd.highsoft.hare.frameworks.domain.core.StringFieldType.asString;
@@ -28,13 +29,13 @@ public class Role {
         this.code = code;
     }
 
-    public Role(ScopedId id, Code code, Payload payload) {
+    public Role(ScopedId id, Payload payload) {
         this.id = id;
         this.name = payload.get("name", asName());
         this.authorities = GrantedAuthorities.of(new HashSet<>(payload.get("authorities", asString().array())));
         this.remarks = payload.get("remarks", asRemarks());
         this.predefined = false;
-        this.code = code;
+        this.code = Code.code(payload.get("code", asCode()).asString());
     }
 
     public ScopedId id() {
