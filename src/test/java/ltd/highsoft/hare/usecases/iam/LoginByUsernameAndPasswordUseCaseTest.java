@@ -27,7 +27,7 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 public class LoginByUsernameAndPasswordUseCaseTest extends ApiTest {
 
     private static final User USER = User.restore("john", "John", false);
-    private static final Tenant TENANT = Tenant.restore("highsoft", "Highsoft");
+    private static final Tenant TENANT = new Tenant(id("highsoft"), Code.code("code-1"), name("Highsoft"));
     private static final LoginName LOGIN_NAME = LoginName.loginName("john");
     private static final String PLAN_SECRET = "s2324sdfsfdfgdfgfhfhg";
     private static final EncryptedSecret ENCRYPTED_SECRET = EncryptedSecret.encryptedSecret("$2a$10$HNw/E.gW202tMYSt11lNBeL2g13KQxJRt7QWzOdqEKxiUN2lWrQse");
