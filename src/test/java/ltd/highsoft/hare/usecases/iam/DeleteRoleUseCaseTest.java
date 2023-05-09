@@ -3,12 +3,14 @@ package ltd.highsoft.hare.usecases.iam;
 import jakarta.annotation.Resource;
 import ltd.highsoft.hare.ApiTest;
 import ltd.highsoft.hare.foundations.iam.domain.*;
+import ltd.highsoft.hare.frameworks.domain.core.AggregateNotFoundException;
 import ltd.highsoft.hare.frameworks.domain.core.Code;
 import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
 import ltd.highsoft.hare.frameworks.security.core.GrantedAuthorities;
 import ltd.highsoft.hare.frameworks.test.web.Documentation;
 import ltd.highsoft.hare.frameworks.test.web.WithGrantedAuthorities;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +22,7 @@ import static ltd.highsoft.hare.frameworks.domain.core.Name.name;
 import static ltd.highsoft.hare.frameworks.domain.core.Remarks.remarks;
 import static ltd.highsoft.hare.frameworks.test.web.Documentation.doc;
 import static ltd.highsoft.hare.frameworks.test.web.PathVariables.variables;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.either;
 import static org.hamcrest.Matchers.is;
 
@@ -41,6 +44,7 @@ public class DeleteRoleUseCaseTest extends ApiTest {
     void should_delete_role() {
         var response = delete("/roles/{id}", variables(Map.of("id", "role-1")), document());
         response.statusCode(is(204));
+        Assertions.assertThrowsExactly(AggregateNotFoundException.class, () -> roles.get(ScopedId.id("role-1", "highsoft")), "error.role-not-found");
     }
 
     @Test
@@ -52,6 +56,7 @@ public class DeleteRoleUseCaseTest extends ApiTest {
         userAccounts.add(userAccount);
         var response = delete("/roles/role-1", variables(), document());
         response.statusCode(is(400)).body("message", either(is("仍有用户使用该角色，不能删除")).or(is("Still have user use this role, cannot remove it")));
+        assertThat(roles.get(ScopedId.id("role-1", "highsoft"))).isNotNull();
     }
 
     @AfterEach

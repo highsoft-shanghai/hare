@@ -45,6 +45,13 @@ public class GetRoleForUpdatingUseCaseTest extends ApiTest {
         response.body("remarks", is("Remarks for operators1"));
     }
 
+    @Test
+    @WithGrantedAuthorities("iam.update-role")
+    public void should_throw_error_when_role_not_exists() {
+        var response = get("/roles/{id}", variables(Map.of("id", "role-2")), errorDocument());
+        response.statusCode(is(404));
+    }
+
     @AfterEach
     public void tearDown() {
         roles.remove(ScopedId.id("role-1", "highsoft"));
@@ -59,6 +66,18 @@ public class GetRoleForUpdatingUseCaseTest extends ApiTest {
                         fieldWithPath("name").description("角色名称"),
                         fieldWithPath("remarks").description("备注"),
                         fieldWithPath("authorities").description("角色权限")
+                )
+        );
+    }
+
+    protected Documentation errorDocument() {
+        return Documentation.doc("role.get.id",
+                responseFields(
+                        fieldWithPath("timestamp").description("Error happened time"),
+                        fieldWithPath("status").description("HTTP status code"),
+                        fieldWithPath("error").description("HTTP status description"),
+                        fieldWithPath("message").description("Localization error description"),
+                        fieldWithPath("path").description("Resource path")
                 )
         );
     }

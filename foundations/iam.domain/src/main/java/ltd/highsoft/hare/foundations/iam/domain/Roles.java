@@ -34,9 +34,13 @@ public class Roles {
 
     public interface RoleRepository {
         void add(Role role);
+
         boolean exists(Name name, ScopedId id);
+
         Role get(Id id);
+
         Role get(ScopedId id);
+
         void remove(ScopedId id);
     }
 
