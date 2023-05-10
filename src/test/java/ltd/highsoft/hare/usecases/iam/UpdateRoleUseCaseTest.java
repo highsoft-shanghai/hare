@@ -32,7 +32,7 @@ public class UpdateRoleUseCaseTest extends ApiTest {
     @BeforeEach
     public void setUp() {
         Role role1 = new Role(ScopedId.id("role-1", "highsoft"), name("role-1"), GrantedAuthorities.of(), remarks("Remarks for operators1"), false, Code.code("1"));
-        roles.save(role1);
+        roles.add(role1);
     }
 
     @Test

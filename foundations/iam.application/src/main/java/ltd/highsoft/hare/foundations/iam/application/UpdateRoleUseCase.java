@@ -17,6 +17,6 @@ public class UpdateRoleUseCase {
     public void execute(Id id, Payload payload) {
         Role role = roles.get(id);
         role.update(payload);
-        roles.save(role);
+        roles.add(role);
     }
 }
