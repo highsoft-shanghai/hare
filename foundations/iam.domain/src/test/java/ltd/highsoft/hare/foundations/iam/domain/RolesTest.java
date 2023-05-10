@@ -29,7 +29,7 @@ class RolesTest {
     void should_throw_when_add_duplicate_role() {
         assertThrows(BadInputException.class,
                 () -> new Roles(roleRepository, null)
-                        .add(new Role(
+                        .save(new Role(
                                 ScopedId.id("role-a", "highsoft"),
                                 name("Role A"),
                                 GrantedAuthorities.of("f1"),

@@ -51,7 +51,7 @@ public class RoleMapper {
         return doQuery(sql, Map.of("id", id.id().asString(), "tenantId", id.tenantId().asString()));
     }
 
-    public void add(Role role) {
+    public void save(Role role) {
         if (exists(role.id())) {
             String sql = "UPDATE iam_roles SET name = :name, authorities = :authorities, remarks = :remarks, predefined = :predefined, code = :code WHERE id = :id AND tenant_id = :tenantId";
             jdbc.update(sql, Map.of("id", role.id().id().asString(), "name", role.name().asString(), "authorities", role.grantedAuthorities().toCommaSeparatedString(),

@@ -28,8 +28,8 @@ public class DbRoleRepository implements Roles.RoleRepository {
 
     @Override
     @Transactional
-    public void add(Role role) {
-        mapper.add(role);
+    public void save(Role role) {
+        mapper.save(role);
     }
 
     @Override

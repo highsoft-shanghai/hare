@@ -50,8 +50,8 @@ public class LoginByUsernameAndPasswordUseCaseTest extends ApiTest {
         users.add(USER);
         userAccounts.add(userAccount);
         credentials.add(credential);
-        roles.add(OPERATORS);
-        roles.add(OPERATORS_2);
+        roles.save(OPERATORS);
+        roles.save(OPERATORS_2);
     }
 
     @Test
