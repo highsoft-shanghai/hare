@@ -19,5 +19,4 @@ public class UpdateRoleUseCase {
         role.update(payload);
         roles.add(role);
     }
-
 }

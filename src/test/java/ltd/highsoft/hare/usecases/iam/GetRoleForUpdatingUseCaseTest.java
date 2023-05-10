@@ -62,5 +62,4 @@ public class GetRoleForUpdatingUseCaseTest extends ApiTest {
                 )
         );
     }
-
 }
