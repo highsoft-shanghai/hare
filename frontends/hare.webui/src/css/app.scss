@@ -1,1 +1,33 @@
-// app global css in SCSS form
+.start-button {
+  height: 48px;
+  width: 48px;
+}
+
+.application-header-bar {
+  height: 48px;
+  min-height: 48px;
+}
+
+.application-title {
+  font-size: 1.25rem;
+}
+
+.profile-menu-button {
+  height: 48px;
+  width: 48px;
+}
+
+.application-tab-bar {
+  .q-tab {
+    padding: 0 map-get($space-sm, 'x');
+    min-height: 32px;
+    height: 32px;
+  }
+}
+
+.application-tab-bar-actions {
+  .q-btn {
+    font-size: 0.65rem;
+    width: 32px;
+  }
+}
