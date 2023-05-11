@@ -1,7 +1,7 @@
-import {Translator} from 'commons/i18n/Translator';
+import { Translator } from 'commons/i18n/Translator';
 
 export class I18nMessage {
-  private readonly code: string;
+  public readonly code: string;
   private readonly args: unknown[];
 
   public constructor(code: string, ...args: unknown[]) {
