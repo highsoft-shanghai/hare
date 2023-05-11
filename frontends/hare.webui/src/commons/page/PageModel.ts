@@ -1,6 +1,6 @@
 import { PageKey } from "commons/page/PageKey";
 
-export class Page {
+export class PageModel {
   public readonly key: PageKey;
 
   public constructor(key: PageKey) {

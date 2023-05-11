@@ -1,10 +1,10 @@
-import { Page } from "commons/page/Page";
+import { PageModel } from "commons/page/PageModel";
 import { PageKey } from "commons/page/PageKey";
 
 export class PageHost {
-  public readonly pages: Page[] = [];
+  public readonly pages: PageModel[] = [];
 
-  public constructor(home: Page) {
+  public constructor(home: PageModel) {
     this.pages.push(home);
   }
 
