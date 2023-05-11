@@ -3,7 +3,7 @@ import {mount, VueWrapper} from '@vue/test-utils';
 import {setupComponentTest} from 'app/test/utils/component';
 import App from 'src/App.vue';
 import {createApplicationRouter} from 'src/router';
-import HomePage from 'pages/HomePage.vue';
+import HomePage from 'pages/home/HomePage.vue';
 import {Router} from 'vue-router';
 
 setupComponentTest();
