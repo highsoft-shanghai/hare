@@ -1,6 +1,5 @@
 package ltd.highsoft.hare.foundations.iam.gateways.persistence;
 
-import jakarta.annotation.Resource;
 import ltd.highsoft.hare.foundations.iam.domain.Role;
 import ltd.highsoft.hare.frameworks.domain.core.*;
 import ltd.highsoft.hare.frameworks.security.core.GrantedAuthorities;
@@ -20,7 +19,11 @@ import static ltd.highsoft.hare.frameworks.domain.core.Remarks.remarks;
 @Component
 public class RoleMapper {
 
-    private @Resource NamedParameterJdbcTemplate jdbc;
+    private final NamedParameterJdbcTemplate jdbc;
+
+    public RoleMapper(NamedParameterJdbcTemplate jdbc) {
+        this.jdbc = jdbc;
+    }
 
     public Role get(Id id) {
         String sql = "SELECT id, name, authorities, remarks, tenant_id, predefined, code FROM iam_roles WHERE id = :id";
