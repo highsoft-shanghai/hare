@@ -1,6 +1,5 @@
 package ltd.highsoft.hare.foundations.iam.gateways.persistence;
 
-import jakarta.annotation.Resource;
 import ltd.highsoft.hare.foundations.iam.domain.Role;
 import ltd.highsoft.hare.foundations.iam.domain.Roles;
 import ltd.highsoft.hare.frameworks.domain.core.Id;
@@ -12,7 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class DbRoleRepository implements Roles.RoleRepository {
 
-    private @Resource RoleMapper mapper;
+    private final RoleMapper mapper;
+
+    public DbRoleRepository(RoleMapper mapper) {
+        this.mapper = mapper;
+    }
 
     @Override
     @Transactional(readOnly = true)
