@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import { PageKey } from "commons/page/PageKey";
+import { pagekey, PageKey } from "commons/page/PageKey";
 import { setupComponentTest } from "app/test/utils/component";
 
 setupComponentTest();
@@ -13,5 +13,11 @@ describe('PageKey', () => {
   it('should be able to resolve page title directly', () => {
     const key = new PageKey('router.home');
     expect(key.resolvePageTitle()).toBe('主页');
+  });
+
+  it('should be able to create by helper function', () => {
+    const key = pagekey('router.home');
+    expect(key).toBeInstanceOf(PageKey);
+    expect(key.code).toBe('router.home');
   });
 });
