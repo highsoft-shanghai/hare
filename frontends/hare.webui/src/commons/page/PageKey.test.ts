@@ -12,6 +12,6 @@ describe('PageKey', () => {
 
   it('should be able to resolve page title directly', () => {
     const key = new PageKey('router.home');
-    expect(key.title).toBe('主页');
+    expect(key.resolvePageTitle()).toBe('主页');
   });
 });
