@@ -5,3 +5,7 @@ export class PageKey extends I18nMessage {
     return this.toString();
   }
 }
+
+export const pagekey = (code: string) => {
+  return new PageKey(code);
+}
