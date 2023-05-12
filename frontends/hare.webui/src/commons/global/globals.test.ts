@@ -1,12 +1,12 @@
 import { describe, expect, it } from "@jest/globals";
 import { globals } from "commons/global/globals";
 import { initializeGlobals } from "src/initialize";
-import { isProxy } from "vue";
-import app from "src/App.vue";
+import { App, isProxy } from "vue";
+import { mockDeep } from "jest-mock-extended";
 
 describe('globals', () => {
   it('should be able to provide global application instance', () => {
-    initializeGlobals(app);
+    initializeGlobals(mockDeep<App>() as App<never>);
     expect(globals.application).toBeDefined();
   });
 
