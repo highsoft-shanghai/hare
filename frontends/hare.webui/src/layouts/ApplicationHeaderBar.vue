@@ -8,13 +8,13 @@
 </template>
 
 <script setup lang="ts">
-import {ApplicationModel} from 'layouts/ApplicationModel';
+import {Application} from 'layouts/Application';
 import {UnwrapRef} from 'vue';
 import StartButton from 'layouts/StartButton.vue';
 import ProfileMenuButton from 'layouts/ProfileMenuButton.vue';
 import ApplicationTitle from 'layouts/ApplicationTitle.vue';
 
 defineProps<{
-  model: UnwrapRef<ApplicationModel>
+  model: UnwrapRef<Application>
 }>();
 </script>

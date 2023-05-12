@@ -10,9 +10,9 @@
 
 <script setup lang="ts">
 import {UnwrapRef} from 'vue';
-import {ApplicationModel} from 'layouts/ApplicationModel';
+import {Application} from 'layouts/Application';
 
 defineProps<{
-  model: UnwrapRef<ApplicationModel>
+  model: UnwrapRef<Application>
 }>();
 </script>

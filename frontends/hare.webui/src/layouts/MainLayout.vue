@@ -13,6 +13,6 @@
 
 <script setup lang="ts">
 import ApplicationHeaderBar from 'layouts/ApplicationHeaderBar.vue';
-import {application} from 'layouts/ApplicationModel';
+import {application} from 'layouts/Application';
 import ApplicationTabBar from 'layouts/ApplicationTabBar.vue';
 </script>
