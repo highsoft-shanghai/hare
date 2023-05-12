@@ -1,4 +1,5 @@
 import { Application } from "layouts/Application";
+import { reactive } from "vue";
 
 export interface Globals {
   readonly application: Application;
@@ -21,5 +22,5 @@ export class ResettableGlobals implements Globals {
   }
 }
 
-export const resettableGlobals = new ResettableGlobals();
+export const resettableGlobals = reactive(new ResettableGlobals());
 export const globals = resettableGlobals;
