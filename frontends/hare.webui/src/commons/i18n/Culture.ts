@@ -1,3 +1,3 @@
-export interface Culture {
-  readonly localize: (code: string, ...args: unknown[]) => string;
+export abstract class Culture {
+  public abstract localize(code: string, ...args: unknown[]): string;
 }

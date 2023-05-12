@@ -6,6 +6,5 @@ import { VueCulture } from "commons/i18n/VueCulture";
 import { App } from "vue";
 
 export function initializeGlobals(app: App): void {
-  resettableGlobals.resetApplication(new Application(new VueCulture(), new PageModel(pagekey('router.home'))));
-  VueCulture.initialize(app);
+  resettableGlobals.resetApplication(new Application(new VueCulture(app), new PageModel(pagekey('router.home'))));
 }
