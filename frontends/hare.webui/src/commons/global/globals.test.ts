@@ -8,8 +8,8 @@ describe('globals', () => {
     expect(globals.application).toBeDefined();
   });
 
-  it('should be clearable', () => {
+  it('should report error when clients attempt to access undefined application', () => {
     globals.clear();
-    expect(globals.application).toBeUndefined();
+    expect(() => globals.application).toThrowError('Globals not initialized');
   });
 });
