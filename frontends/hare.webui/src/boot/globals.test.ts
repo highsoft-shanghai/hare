@@ -1,15 +1,15 @@
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 import globals from 'boot/globals';
-import { mockDeep } from 'jest-mock-extended';
+import { mock } from 'jest-mock-extended';
 import { BootFileParams } from '@quasar/app-vite';
-import { VueCulture } from 'commons/i18n/VueCulture';
+import { initializeGlobals } from "src/initialize";
 
-describe('i18n', () => {
-  const params = mockDeep<BootFileParams<unknown>>();
+jest.mock('src/initialize');
 
-  it('should setup global translator correctly', () => {
-    globals(params as BootFileParams<never>);
-    expect(VueCulture.instance).toBeDefined();
-    expect(params.app.use).toBeCalledWith(VueCulture.instance);
+describe('boot.globals', () => {
+  it('should initialize globals', () => {
+    const params = mock<BootFileParams<unknown>>();
+    globals(params);
+    expect(initializeGlobals).toBeCalled();
   });
 });
