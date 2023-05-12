@@ -1,5 +1,5 @@
 <template>
-  <q-btn class="start-button" flat dense square icon="menu" aria-label="Menu" @click="model.toggleVisible()">
+  <q-btn class="start-menu-launcher-control" flat dense square icon="menu" aria-label="Menu" @click="model.toggleVisible()">
     <start-menu-control :model="model" />
   </q-btn>
 </template>
