@@ -4,6 +4,8 @@ import { Application } from 'layouts/Application';
 import { AppFullscreen, Dialog, DialogChainObject } from 'quasar';
 import { PageModel } from "commons/page/PageModel";
 import { pagekey } from "commons/page/PageKey";
+import { mock } from "jest-mock-extended";
+import { Culture } from "commons/i18n/Culture";
 
 setupComponentTest();
 
@@ -13,9 +15,11 @@ const mockAppFullscreenToggle = async () => {
 
 describe('Application', () => {
   let application: Application;
+  let culture: Culture;
 
   beforeEach(() => {
-    application = new Application(new PageModel(pagekey('router.home')));
+    culture = mock<Culture>();
+    application = new Application(culture, new PageModel(pagekey('router.home')));
   });
 
   it('should provide correct application title', () => {
@@ -44,5 +48,9 @@ describe('Application', () => {
     Dialog.create = jest.fn(() => ({} as DialogChainObject));
     application.toggleProfileMenu();
     expect(Dialog.create).toBeCalledWith({ 'message': '该功能正在建设中，敬请期待……', 'noBackdropDismiss': true, 'title': '显示/隐藏用户菜单' });
+  });
+
+  it('should be able to hold culture', () => {
+    expect(application.culture).toBe(culture);
   });
 });

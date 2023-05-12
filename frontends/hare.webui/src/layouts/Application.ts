@@ -3,13 +3,16 @@ import { i18n } from 'commons/i18n/i18n';
 import { AppFullscreen, Dialog } from 'quasar';
 import { PageModel } from "commons/page/PageModel";
 import { PageHost } from "commons/page/PageHost";
+import { Culture } from "commons/i18n/Culture";
 
 export class Application {
   public readonly title = i18n('title.application');
   public readonly startMenu = new StartMenu();
   public readonly pageHost: PageHost;
+  public readonly culture: Culture;
 
-  public constructor(home: PageModel) {
+  public constructor(culture: Culture, home: PageModel) {
+    this.culture = culture;
     this.pageHost = new PageHost(home);
   }
 
