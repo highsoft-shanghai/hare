@@ -1,5 +1,5 @@
 <template>
-  <q-btn class="profile-menu-button" flat dense stretch square @click="model.toggleProfileMenu()">
+  <q-btn class="profile-menu-launcher-control" flat dense stretch square @click="model.toggleProfileMenu()">
     <q-icon name="account_circle" size="32px"/>
   </q-btn>
 </template>

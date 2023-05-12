@@ -1,5 +1,5 @@
 <template>
-  <q-toolbar-title class="q-pl-xs application-title">{{ model.title }}</q-toolbar-title>
+  <q-toolbar-title class="q-pl-xs application-title-control">{{ model.title }}</q-toolbar-title>
 </template>
 
 <script setup lang="ts">

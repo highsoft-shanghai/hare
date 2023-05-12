@@ -5,7 +5,7 @@ import { reactive } from 'vue';
 import ApplicationHeaderControl from "layouts/ApplicationHeaderControl.vue";
 import ApplicationTitleControl from "layouts/ApplicationTitleControl.vue";
 import StartMenu from 'layouts/StartMenu.vue';
-import ProfileMenuButton from 'layouts/ProfileMenuButton.vue';
+import ProfileMenuLauncherControl from 'layouts/ProfileMenuLauncherControl.vue';
 import { setupComponentTest } from 'app/test/utils/component';
 
 setupComponentTest();
@@ -15,6 +15,6 @@ describe('ApplicationHeaderControl', () => {
     const wrapper = mount(ApplicationHeaderControl, { props: { model: reactive(new Application()) } });
     expect(wrapper.findComponent(StartMenu)).toBeDefined();
     expect(wrapper.findComponent(ApplicationTitleControl).text()).toBe('瀚诚企业应用框架');
-    expect(wrapper.findComponent(ProfileMenuButton)).toBeDefined();
+    expect(wrapper.findComponent(ProfileMenuLauncherControl)).toBeDefined();
   });
 });

@@ -3,7 +3,7 @@
     <start-button :model="model.startMenu" />
     <application-title-control :model="model" />
     <q-space />
-    <profile-menu-button :model="model" />
+    <profile-menu-launcher-control :model="model" />
   </q-toolbar>
 </template>
 
@@ -11,7 +11,7 @@
 import { Application } from 'layouts/Application';
 import { UnwrapRef } from 'vue';
 import StartButton from 'layouts/StartButton.vue';
-import ProfileMenuButton from 'layouts/ProfileMenuButton.vue';
+import ProfileMenuLauncherControl from 'layouts/ProfileMenuLauncherControl.vue';
 import ApplicationTitleControl from "layouts/ApplicationTitleControl.vue";
 
 defineProps<{
