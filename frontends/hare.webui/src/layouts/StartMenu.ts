@@ -1,4 +1,4 @@
-export class StartMenuModel {
+export class StartMenu {
   private _visible = false;
 
   public toggleVisible(): void {

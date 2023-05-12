@@ -5,11 +5,11 @@
 </template>
 
 <script setup lang="ts">
-import { StartMenuModel } from 'layouts/StartMenuModel';
+import { StartMenu } from 'layouts/StartMenu';
 import StartMenuControl from "layouts/StartMenuControl.vue";
 import { UnwrapRef } from 'vue';
 
 defineProps<{
-  model: UnwrapRef<StartMenuModel>;
+  model: UnwrapRef<StartMenu>;
 }>();
 </script>

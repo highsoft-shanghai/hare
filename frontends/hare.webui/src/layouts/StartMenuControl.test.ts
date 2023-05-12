@@ -2,7 +2,7 @@ import { describe, expect, test } from '@jest/globals';
 import { DOMWrapper, flushPromises, mount } from '@vue/test-utils';
 import { reactive } from 'vue';
 import { setupComponentTest } from 'app/test/utils/component';
-import { StartMenuModel } from 'layouts/StartMenuModel';
+import { StartMenu } from 'layouts/StartMenu';
 import StartMenuControl from 'layouts/StartMenuControl.vue';
 import { QPage } from 'quasar';
 
@@ -10,7 +10,7 @@ setupComponentTest();
 
 describe('StartMenu', () => {
   test('should be visible when model value is true', async () => {
-    const model = reactive(new StartMenuModel());
+    const model = reactive(new StartMenu());
     model.toggleVisible();
     mount(StartMenuControl, { props: { model: model } });
     const wrapper = new DOMWrapper(document.body);

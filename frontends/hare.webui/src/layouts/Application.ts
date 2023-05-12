@@ -1,11 +1,11 @@
 import {reactive} from 'vue';
-import {StartMenuModel} from 'layouts/StartMenuModel';
+import {StartMenu} from 'layouts/StartMenu';
 import {i18n} from 'src/commons/i18n/i18n';
 import {AppFullscreen, Dialog} from 'quasar';
 
 export class Application {
   public readonly title = i18n('title.application');
-  public readonly startMenu = new StartMenuModel();
+  public readonly startMenu = new StartMenu();
 
   public toggleMiniMode(): void {
     Dialog.create({title: '收起标题栏', message: '该功能正在建设中，敬请期待……', noBackdropDismiss: true});
