@@ -1,10 +1,10 @@
-import {describe, expect} from '@jest/globals';
-import {mount, VueWrapper} from '@vue/test-utils';
-import {setupComponentTest} from 'app/test/utils/component';
+import { beforeEach, describe, expect, it } from '@jest/globals';
+import { mount, VueWrapper } from '@vue/test-utils';
+import { setupComponentTest } from 'app/test/utils/component';
 import App from 'src/App.vue';
-import {createApplicationRouter} from 'src/router';
-import HomePage from 'pages/HomePage.vue';
-import {Router} from 'vue-router';
+import { createApplicationRouter } from 'src/router';
+import HomePage from 'pages/home/HomePage.vue';
+import { Router } from 'vue-router';
 
 setupComponentTest();
 
@@ -14,7 +14,7 @@ describe('HomePage', () => {
 
   beforeEach(() => {
     router = createApplicationRouter();
-    wrapper = mount(App, {global: {plugins: [router]}});
+    wrapper = mount(App, { global: { plugins: [router] } });
   });
 
   it('should be able to visited by router', async () => {

@@ -1,5 +1,5 @@
 <template>
-  <q-btn-group class="application-tab-bar-actions" flat square stretch>
+  <q-btn-group class="page-host-actions-control" flat square stretch>
     <q-btn icon="list" dense @click="model.toggleViewList()"/>
     <q-separator vertical inset dark/>
     <q-btn icon="arrow_upward" dense @click="model.toggleMiniMode()"/>
@@ -10,9 +10,9 @@
 
 <script setup lang="ts">
 import {UnwrapRef} from 'vue';
-import {ApplicationModel} from 'layouts/ApplicationModel';
+import {Application} from 'layouts/Application';
 
 defineProps<{
-  model: UnwrapRef<ApplicationModel>
+  model: UnwrapRef<Application>
 }>();
 </script>

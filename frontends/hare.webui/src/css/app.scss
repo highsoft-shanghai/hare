@@ -3,21 +3,21 @@
   width: 48px;
 }
 
-.application-header-bar {
+.application-header-control {
   height: 48px;
   min-height: 48px;
 }
 
-.application-title {
+.application-title-control {
   font-size: 1.25rem;
 }
 
-.profile-menu-button {
+.profile-menu-launcher-control {
   height: 48px;
   width: 48px;
 }
 
-.application-tab-bar {
+.page-host-control {
   .q-tab {
     padding: 0 map-get($space-sm, 'x');
     min-height: 32px;
@@ -25,7 +25,7 @@
   }
 }
 
-.application-tab-bar-actions {
+.page-host-actions-control {
   .q-btn {
     font-size: 0.65rem;
     width: 32px;

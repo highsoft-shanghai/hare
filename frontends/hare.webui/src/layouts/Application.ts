@@ -3,7 +3,7 @@ import {StartMenuModel} from 'layouts/StartMenuModel';
 import {i18n} from 'src/commons/i18n/i18n';
 import {AppFullscreen, Dialog} from 'quasar';
 
-export class ApplicationModel {
+export class Application {
   public readonly title = i18n('title.application');
   public readonly startMenu = new StartMenuModel();
 
@@ -28,4 +28,4 @@ export class ApplicationModel {
   }
 }
 
-export const application = reactive(new ApplicationModel());
+export const application = reactive(new Application());
