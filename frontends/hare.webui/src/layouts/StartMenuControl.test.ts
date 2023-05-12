@@ -1,10 +1,10 @@
-import {describe, expect, test} from '@jest/globals';
-import {DOMWrapper, flushPromises, mount} from '@vue/test-utils';
-import {reactive} from 'vue';
-import {setupComponentTest} from 'app/test/utils/component';
-import {StartMenuModel} from 'layouts/StartMenuModel';
-import StartMenu from 'layouts/StartMenu.vue';
-import {QPage} from 'quasar';
+import { describe, expect, test } from '@jest/globals';
+import { DOMWrapper, flushPromises, mount } from '@vue/test-utils';
+import { reactive } from 'vue';
+import { setupComponentTest } from 'app/test/utils/component';
+import { StartMenuModel } from 'layouts/StartMenuModel';
+import StartMenuControl from 'layouts/StartMenuControl.vue';
+import { QPage } from 'quasar';
 
 setupComponentTest();
 
@@ -12,7 +12,7 @@ describe('StartMenu', () => {
   test('should be visible when model value is true', async () => {
     const model = reactive(new StartMenuModel());
     model.toggleVisible();
-    mount(StartMenu, {props: {model: model}});
+    mount(StartMenuControl, { props: { model: model } });
     const wrapper = new DOMWrapper(document.body);
     await flushPromises();
     expect(wrapper.find('.q-dialog').exists()).toBeTruthy();
