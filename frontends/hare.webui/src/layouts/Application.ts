@@ -1,5 +1,5 @@
 import { StartMenu } from 'layouts/StartMenu';
-import { i18n } from 'src/commons/i18n/I18nMessage';
+import { i18n } from 'commons/i18n/i18n';
 import { AppFullscreen, Dialog } from 'quasar';
 import { PageModel } from "commons/page/PageModel";
 import { PageHost } from "commons/page/PageHost";
