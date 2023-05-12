@@ -1,4 +1,4 @@
-import {describe, expect, it, jest} from '@jest/globals';
+import {describe, expect, it, jest, beforeEach} from '@jest/globals';
 import {HistoryFactory} from 'commons/router/HistoryFactory';
 import {createMemoryHistory, createWebHashHistory, createWebHistory, RouterHistory} from 'vue-router';
 import {mock} from 'jest-mock-extended';
