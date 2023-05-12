@@ -1,9 +1,9 @@
 import { StartMenu } from 'layouts/StartMenu';
 import { i18n } from 'commons/i18n/i18n';
 import { AppFullscreen, Dialog } from 'quasar';
-import { PageModel } from "commons/page/PageModel";
-import { PageHost } from "commons/page/PageHost";
-import { Culture } from "commons/i18n/Culture";
+import { PageModel } from 'commons/page/PageModel';
+import { PageHost } from 'commons/page/PageHost';
+import { Culture } from 'commons/i18n/Culture';
 
 export class Application {
   public readonly title = i18n('title.application');

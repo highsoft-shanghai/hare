@@ -1,5 +1,5 @@
-import { Application } from "layouts/Application";
-import { reactive } from "vue";
+import { Application } from 'layouts/Application';
+import { reactive } from 'vue';
 
 export interface Globals {
   readonly application: Application;

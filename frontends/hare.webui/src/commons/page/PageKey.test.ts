@@ -1,6 +1,6 @@
-import { describe, expect, it } from "@jest/globals";
-import { pagekey, PageKey } from "commons/page/PageKey";
-import { setupComponentTest } from "app/test/utils/component";
+import { describe, expect, it } from '@jest/globals';
+import { pagekey, PageKey } from 'commons/page/PageKey';
+import { setupComponentTest } from 'app/test/utils/component';
 
 setupComponentTest();
 

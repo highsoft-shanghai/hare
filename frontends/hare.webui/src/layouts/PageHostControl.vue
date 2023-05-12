@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { UnwrapRef } from 'vue';
 import { Application } from 'layouts/Application';
-import PageHostActionsControl from "layouts/PageHostActionsControl.vue";
+import PageHostActionsControl from 'layouts/PageHostActionsControl.vue';
 
 defineProps<{
   model: UnwrapRef<Application>

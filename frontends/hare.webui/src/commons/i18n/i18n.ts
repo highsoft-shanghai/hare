@@ -1,4 +1,4 @@
-import { culture } from "commons/i18n/CultureAccessor";
+import { culture } from 'commons/i18n/CultureAccessor';
 
 export class I18nMessage {
   public readonly code: string;

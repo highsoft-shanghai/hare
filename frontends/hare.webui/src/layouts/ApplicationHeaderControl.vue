@@ -11,8 +11,8 @@
 import { Application } from 'layouts/Application';
 import { UnwrapRef } from 'vue';
 import ProfileMenuLauncherControl from 'layouts/ProfileMenuLauncherControl.vue';
-import ApplicationTitleControl from "layouts/ApplicationTitleControl.vue";
-import StartMenuLauncherControl from "layouts/StartMenuLauncherControl.vue";
+import ApplicationTitleControl from 'layouts/ApplicationTitleControl.vue';
+import StartMenuLauncherControl from 'layouts/StartMenuLauncherControl.vue';
 
 defineProps<{
   model: UnwrapRef<Application>

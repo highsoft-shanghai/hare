@@ -1,4 +1,4 @@
-import { globals } from "commons/global/globals";
+import { globals } from 'commons/global/globals';
 
 export class CultureAccessor {
   public localize(code: string, ...args: unknown[]): string {

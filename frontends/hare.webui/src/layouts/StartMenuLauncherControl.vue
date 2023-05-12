@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { StartMenu } from 'layouts/StartMenu';
-import StartMenuControl from "layouts/StartMenuControl.vue";
+import StartMenuControl from 'layouts/StartMenuControl.vue';
 import { UnwrapRef } from 'vue';
 
 defineProps<{
