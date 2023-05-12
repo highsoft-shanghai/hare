@@ -1,8 +1,8 @@
 import { boot } from 'quasar/wrappers';
-import { Translator } from 'src/commons/i18n/Translator';
+import { VueCulture } from 'commons/i18n/VueCulture';
 import { initializeGlobals } from 'src/initialize';
 
 export default boot(({ app }) => {
-  initializeGlobals();
-  app.use(Translator.instance);
+  initializeGlobals(app);
+  app.use(VueCulture.instance);
 });

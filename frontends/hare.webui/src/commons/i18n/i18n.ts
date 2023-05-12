@@ -1,4 +1,4 @@
-import { Translator } from 'commons/i18n/Translator';
+import { VueCulture } from 'commons/i18n/VueCulture';
 
 export class I18nMessage {
   public readonly code: string;
@@ -10,7 +10,7 @@ export class I18nMessage {
   }
 
   public toString(): string {
-    return Translator.translate(this.code, this.args);
+    return VueCulture.translate(this.code, this.args);
   }
 }
 

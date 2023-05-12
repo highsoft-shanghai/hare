@@ -2,10 +2,11 @@ import { describe, expect, it } from "@jest/globals";
 import { globals } from "commons/global/globals";
 import { initializeGlobals } from "src/initialize";
 import { isProxy } from "vue";
+import app from "src/App.vue";
 
 describe('globals', () => {
   it('should be able to provide global application instance', () => {
-    initializeGlobals();
+    initializeGlobals(app);
     expect(globals.application).toBeDefined();
   });
 
