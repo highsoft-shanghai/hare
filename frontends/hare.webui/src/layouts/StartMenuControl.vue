@@ -1,12 +1,18 @@
 <template>
   <q-dialog :model-value="model.startMenu.visible" maximized seamless transition-show="fade" transition-hide="fade" @keyup.esc="model.startMenu.close()">
-    <q-layout view="lHh Lpr lFf">
-      <q-header>
+    <q-layout view="hHh LpR fFf">
+      <q-header bordered>
         <start-menu-header-control :model="model"/>
       </q-header>
-      <q-page-container class="bg-primary">
-        <q-page class="q-px-lg q-pt-md">
-          <div>此功能正在建设中，敬请期待……</div>
+      <q-page-container class="bg-primary q-layout__section--marginal">
+        <q-page class="row items-stretch" :style-fn="pageStyle">
+          <div class="col-12 row items-stretch q-px-lg q-pb-lg q-pt-md" style="height: 100%!important;">
+            <start-menu-group-list-control/>
+            <q-separator vertical dark style="margin-left: -1px"/>
+            <div class="col-grow">
+              test
+            </div>
+          </div>
         </q-page>
       </q-page-container>
     </q-layout>
@@ -17,8 +23,15 @@
 import {UnwrapRef} from 'vue';
 import StartMenuHeaderControl from 'layouts/StartMenuHeaderControl.vue';
 import {Application} from 'layouts/Application';
+import StartMenuGroupListControl from 'layouts/StartMenuGroupListControl.vue';
 
 defineProps<{
   model: UnwrapRef<Application>
 }>();
+
+const pageStyle = (offset: number, height: number) => {
+  return ({
+    height: `${height - offset}px`
+  });
+};
 </script>

@@ -12,6 +12,28 @@
   width: auto;
 }
 
+.start-menu-group-list-control {
+  .q-tabs__content {
+    overflow: scroll;
+  }
+
+  .q-tab__content {
+    width: 100%;
+    padding-right: map-get($space-xs, 'x');
+    align-items: center;
+    justify-content: end;
+    flex-direction: row-reverse;
+
+    .q-tab__label {
+      padding: 0;
+    }
+
+    .q-tab__icon {
+      padding-left: map-get($space-sm, 'x');
+    }
+  }
+}
+
 .application-header-control {
   height: 48px;
   min-height: 48px;
