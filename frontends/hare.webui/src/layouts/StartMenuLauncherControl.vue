@@ -1,15 +1,15 @@
 <template>
-  <q-btn class="start-menu-launcher-control" flat dense square icon="menu" aria-label="Menu" @click="model.toggleVisible()">
-    <start-menu-control :model="model" />
+  <q-btn class="start-menu-launcher-control" flat dense square icon="menu" aria-label="Menu" @click="model.toggleStartMenu()">
+    <start-menu-control :model="model"/>
   </q-btn>
 </template>
 
 <script setup lang="ts">
-import { StartMenu } from 'layouts/StartMenu';
 import StartMenuControl from 'layouts/StartMenuControl.vue';
-import { UnwrapRef } from 'vue';
+import {UnwrapRef} from 'vue';
+import {Application} from 'layouts/Application';
 
 defineProps<{
-  model: UnwrapRef<StartMenu>;
+  model: UnwrapRef<Application>;
 }>();
 </script>
