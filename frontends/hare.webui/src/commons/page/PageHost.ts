@@ -1,5 +1,5 @@
-import { PageModel } from "commons/page/PageModel";
-import { PageKey } from "commons/page/PageKey";
+import { PageModel } from 'commons/page/PageModel';
+import { PageKey } from 'commons/page/PageKey';
 
 export class PageHost {
   public readonly pages: PageModel[] = [];

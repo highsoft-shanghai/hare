@@ -1,4 +1,4 @@
-import {describe, expect} from '@jest/globals';
+import {describe, expect, it, beforeEach} from '@jest/globals';
 import {mount, VueWrapper} from '@vue/test-utils';
 import {setupComponentTest} from 'app/test/utils/component';
 import App from 'src/App.vue';
