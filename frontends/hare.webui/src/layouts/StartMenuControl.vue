@@ -7,7 +7,7 @@
       <q-page-container class="bg-primary q-layout__section--marginal">
         <q-page class="row items-stretch" :style-fn="pageStyle">
           <div class="col-12 row items-stretch q-px-lg q-pb-lg q-pt-md" style="height: 100%!important;">
-            <start-menu-group-list-control/>
+            <start-menu-group-list-control :model="model.startMenu"/>
             <q-separator vertical dark style="margin-left: -1px"/>
             <div class="col-grow">
               test
