@@ -14,7 +14,7 @@ describe('StartMenuGroupListControl', () => {
     expect(wrapper.findAll('.q-tab__label').map(x => x.text())).toStrictEqual(['人员管理', '客户管理', '商品管理', '库存管理', '供应商管理', '学习计划管理']);
   });
 
-  test('should be able to active groups', () => {
+  test('should be able to activate groups', () => {
     const model = reactive(new StartMenu());
     const wrapper = mount(StartMenuGroupListControl, {props: {model: model}});
     wrapper.findAllComponents(QTab)[2].trigger('click');
