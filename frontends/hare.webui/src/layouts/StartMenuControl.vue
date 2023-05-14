@@ -6,12 +6,10 @@
       </q-header>
       <q-page-container class="bg-primary q-layout__section--marginal">
         <q-page class="row items-stretch" :style-fn="pageStyle">
-          <div class="col-12 row items-stretch q-px-lg q-pb-lg q-pt-md" style="height: 100%!important;">
+          <div class="col-12 row no-wrap items-stretch q-px-lg q-pb-lg q-pt-md" style="height: 100%!important;">
             <start-menu-group-list-control :model="model.startMenu"/>
             <q-separator vertical dark style="margin-left: -1px"/>
-            <div class="col-grow">
-              test
-            </div>
+            <start-menu-item-list-control :model="model.startMenu"/>
           </div>
         </q-page>
       </q-page-container>
@@ -24,6 +22,7 @@ import {UnwrapRef} from 'vue';
 import StartMenuHeaderControl from 'layouts/StartMenuHeaderControl.vue';
 import {Application} from 'layouts/Application';
 import StartMenuGroupListControl from 'layouts/StartMenuGroupListControl.vue';
+import StartMenuItemListControl from 'layouts/StartMenuItemListControl.vue';
 
 defineProps<{
   model: UnwrapRef<Application>

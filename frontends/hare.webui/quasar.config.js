@@ -78,7 +78,7 @@ module.exports = configure(function (/* ctx */) {
       extendViteConf(viteConf) {
         Object.assign(viteConf.resolve.alias, {
           commons: path.join(__dirname, './src/commons')
-        })
+        });
       },
 
       // viteVuePluginOptions: {},
@@ -222,5 +222,5 @@ module.exports = configure(function (/* ctx */) {
       // extendBexScriptsConf (esbuildConf) {}
       // extendBexManifestJson (json) {}
     }
-  }
+  };
 });

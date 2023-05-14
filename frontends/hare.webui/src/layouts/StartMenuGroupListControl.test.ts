@@ -18,6 +18,6 @@ describe('StartMenuGroupListControl', () => {
     const model = reactive(new StartMenu());
     const wrapper = mount(StartMenuGroupListControl, {props: {model: model}});
     wrapper.findAllComponents(QTab)[2].trigger('click');
-    expect(model.activeGroup).toBe('products');
+    expect(model.activeGroupKey).toBe('products');
   });
 });

@@ -30,7 +30,29 @@
 
     .q-tab__icon {
       padding-left: map-get($space-sm, 'x');
+      padding-right: map-get($space-sm, 'x');
     }
+  }
+}
+
+.start-menu-item-list-control {
+  > .start-menu-item-subgroup-control ~ .start-menu-item-subgroup-control {
+    padding-top: map-get($space-xl, 'y');
+  }
+
+  .sub-group-header-control {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .start-menu-item-control {
+    padding: 0;
+    width: 64px;
+  }
+
+  .start-menu-item-icon {
+    font-size: 36px;
+    width: 48px;
+    height: 48px;
   }
 }
 
