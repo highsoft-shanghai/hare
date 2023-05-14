@@ -4,7 +4,7 @@ import {StartMenuItem} from 'layouts/StartMenuItem';
 
 export class StartMenu {
   private _visible = false;
-  private _activeGroup: StartMenuItemGroup | undefined;
+  private _activeGroupKey: string | undefined;
   private _groups: StartMenuItemGroup[] = [ // TODO: construct from remote data
     new StartMenuItemGroup('users', '人员管理', 'manage_accounts', [
       new StartMenuItemSubGroup('users-management', '人员信息维护', '', [new StartMenuItem('add-user', '新增人员', 'person_add', 'router.home'), new StartMenuItem('query-users', '检索人员', 'search', 'router.home')]),
@@ -18,7 +18,7 @@ export class StartMenu {
   ];
 
   public constructor() {
-    this._activeGroup = this._groups[0];
+    this._activeGroupKey = this._groups[0]?.key;
   }
 
   public toggleVisible(): void {
@@ -30,7 +30,7 @@ export class StartMenu {
   }
 
   public activateGroup(key: string | undefined): void {
-    this._activeGroup = this._groups.find(x => x.key === key);
+    this._activeGroupKey = key;
   }
 
   public get visible(): boolean {
@@ -42,10 +42,6 @@ export class StartMenu {
   }
 
   public get activeGroupKey(): string | undefined {
-    return this._activeGroup?.key;
-  }
-
-  public get activeGroup(): StartMenuItemGroup | undefined {
-    return this._activeGroup;
+    return this._activeGroupKey;
   }
 }
