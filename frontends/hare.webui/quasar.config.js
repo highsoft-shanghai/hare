@@ -78,7 +78,7 @@ module.exports = configure(function (/* ctx */) {
       extendViteConf(viteConf) {
         Object.assign(viteConf.resolve.alias, {
           commons: path.join(__dirname, './src/commons')
-        })
+        });
       },
 
       // viteVuePluginOptions: {},
@@ -107,6 +107,7 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
       config: {},
+      cssAddon: true,
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
@@ -221,5 +222,5 @@ module.exports = configure(function (/* ctx */) {
       // extendBexScriptsConf (esbuildConf) {}
       // extendBexManifestJson (json) {}
     }
-  }
+  };
 });

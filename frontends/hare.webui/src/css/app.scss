@@ -3,6 +3,60 @@
   width: 48px;
 }
 
+.start-menu-back-action-control {
+  height: 48px;
+  width: 48px;
+}
+
+.start-menu-search-box-control {
+  width: auto;
+}
+
+.start-menu-group-list-control {
+  .q-tabs__content {
+    overflow: scroll;
+  }
+
+  .q-tab__content {
+    padding: map-get($space-sm, 'y') map-get($space-xs, 'x');
+    width: 100%;
+    align-items: center;
+    justify-content: end;
+    flex-direction: row-reverse;
+
+    .q-tab__label {
+      padding: 0;
+    }
+
+    .q-tab__icon {
+      padding-left: map-get($space-sm, 'x');
+      padding-right: map-get($space-sm, 'x');
+    }
+  }
+}
+
+.start-menu-item-list-control {
+  > .start-menu-item-subgroup-control ~ .start-menu-item-subgroup-control {
+    padding-top: map-get($space-xl, 'y');
+  }
+
+  .sub-group-header-control {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .start-menu-item-control {
+    padding: 0;
+    width: 72px;
+  }
+
+  .start-menu-item-icon {
+    border-radius: 8px;
+    font-size: 16px;
+    width: 72px;
+    height: 72px;
+  }
+}
+
 .application-header-control {
   height: 48px;
   min-height: 48px;

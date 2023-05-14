@@ -16,6 +16,10 @@ export class Application {
     this.pageHost = new PageHost(home);
   }
 
+  public toggleStartMenu(): void {
+    this.startMenu.toggleVisible();
+  }
+
   public toggleMiniMode(): void {
     Dialog.create({ title: '收起标题栏', message: '该功能正在建设中，敬请期待……', noBackdropDismiss: true });
   }
