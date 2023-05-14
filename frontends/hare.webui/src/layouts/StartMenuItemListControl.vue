@@ -2,14 +2,16 @@
   <q-tab-panels :model-value="model.activeGroupKey" class="full-width full-height bg-transparent" vertical animated>
     <q-tab-panel v-for="group in model.groups" :key="group.key" :name="group.key" class="full-width full-height q-pt-sm">
       <q-scroll-area dark class="full-width full-height">
-        <div class="row non-selectable content-start items-start start-menu-item-list-control">
+        <div class="row q-pl-xs non-selectable content-start items-start start-menu-item-list-control">
           <div v-for="subgroup in group.subgroups" :key="subgroup.key" class="row col-all start-menu-item-subgroup-control">
-            <div class="col-all q-pb-xs sub-group-header-control">{{ subgroup.label }}</div>
+            <div class="col-all q-pb-sm sub-group-header-control">{{ subgroup.label }}</div>
             <div class="row col-all q-gutter-md">
-              <q-btn v-for="item in subgroup.items" :key="item.key" flat square stack class="start-menu-item-control">
-                <q-icon :name="item.icon" class="start-menu-item-icon"/>
-                <span class="start-menu-item-label">{{ item.label }}</span>
-              </q-btn>
+              <div v-for="item in subgroup.items" :key="item.key" class="column items-center text-center start-menu-item-control">
+                <q-btn flat square stack class="start-menu-item-icon bg-blue-10">
+                  <q-icon :name="item.icon"/>
+                </q-btn>
+                <div class="q-mt-xs start-menu-item-label">{{ item.label }}</div>
+              </div>
             </div>
           </div>
         </div>

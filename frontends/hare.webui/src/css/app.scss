@@ -18,8 +18,8 @@
   }
 
   .q-tab__content {
+    padding: map-get($space-sm, 'y') map-get($space-xs, 'x');
     width: 100%;
-    padding-right: map-get($space-xs, 'x');
     align-items: center;
     justify-content: end;
     flex-direction: row-reverse;
@@ -46,13 +46,14 @@
 
   .start-menu-item-control {
     padding: 0;
-    width: 64px;
+    width: 96px;
   }
 
   .start-menu-item-icon {
-    font-size: 36px;
-    width: 48px;
-    height: 48px;
+    border-radius: 12px;
+    font-size: 24px;
+    width: 96px;
+    height: 96px;
   }
 }
 
