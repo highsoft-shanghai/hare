@@ -10,6 +10,6 @@ export class VueRouterNavigator extends Navigator {
   }
 
   public async goto(page: string): Promise<void> {
-    await this.router.replace({name: page});
+    await this.router.replace(this.router.hasRoute(page) ? {name: page} : '/404');
   }
 }
