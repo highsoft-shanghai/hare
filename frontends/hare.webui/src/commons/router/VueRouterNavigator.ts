@@ -1,10 +1,11 @@
 import {Navigator} from 'commons/router/Navigator';
 import {Router} from 'vue-router';
 
-export class VueRouterNavigator implements Navigator {
+export class VueRouterNavigator extends Navigator {
   private readonly router: Router;
 
   public constructor(router: Router) {
+    super();
     this.router = router;
   }
 

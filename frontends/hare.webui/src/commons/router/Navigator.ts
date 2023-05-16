@@ -1,3 +1,3 @@
-export interface Navigator {
-  readonly goto: (page: string) => Promise<void>;
+export abstract class Navigator {
+  public abstract goto(page: string): Promise<void>;
 }
