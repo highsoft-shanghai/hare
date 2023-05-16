@@ -3,7 +3,7 @@ import {globals, resettableGlobals} from 'commons/global/globals';
 import {initializeGlobals} from 'src/initialize';
 import {App, isProxy} from 'vue';
 import {mock, mockDeep} from 'jest-mock-extended';
-import {Router} from 'vue-router';
+import {Navigator} from 'commons/router/Navigator';
 
 describe('globals', () => {
   it('should be able to provide global application instance', () => {
@@ -12,7 +12,7 @@ describe('globals', () => {
   });
 
   it('should report error when clients attempt to access uninitialized application', () => {
-    globals.clear();
+    resettableGlobals.clear();
     expect(() => globals.application).toThrowError('Global application not initialized');
   });
 
@@ -21,12 +21,12 @@ describe('globals', () => {
   });
 
   it('should be able to provide global router instance', () => {
-    resettableGlobals.resetRouter(mock<Router>());
+    resettableGlobals.resetRouter(mock<Navigator>());
     expect(globals.navigator).toBeDefined();
   });
 
-  it('should report error when clients attempt to access uninitialized router', () => {
-    globals.clear();
-    expect(() => globals.navigator).toThrowError('Global router not initialized');
+  it('should report error when clients attempt to access uninitialized navigator', () => {
+    resettableGlobals.clear();
+    expect(() => globals.navigator).toThrowError('Global navigator not initialized');
   });
 });
