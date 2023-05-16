@@ -31,7 +31,7 @@ describe('StartMenuModel', () => {
   });
 
   it('should be able to route to specified route', async () => {
-    resettableGlobals.resetRouter(mock<Navigator>());
+    resettableGlobals.resetNavigator(mock<Navigator>());
     const model = new StartMenu();
     model.toggleVisible();
     await model.goto('page.home');

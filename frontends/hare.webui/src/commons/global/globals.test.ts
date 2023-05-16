@@ -21,7 +21,7 @@ describe('globals', () => {
   });
 
   it('should be able to provide global router instance', () => {
-    resettableGlobals.resetRouter(mock<Navigator>());
+    resettableGlobals.resetNavigator(mock<Navigator>());
     expect(globals.navigator).toBeDefined();
   });
 

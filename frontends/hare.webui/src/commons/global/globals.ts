@@ -25,7 +25,7 @@ export class ResettableGlobals implements Globals {
     this._application = application;
   }
 
-  public resetRouter(navigator: Navigator) {
+  public resetNavigator(navigator: Navigator) {
     this._navigator = navigator;
   }
 
