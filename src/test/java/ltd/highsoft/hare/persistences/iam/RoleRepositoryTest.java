@@ -38,6 +38,23 @@ public class RoleRepositoryTest extends PostgresTest {
         assertThat(role1.grantedAuthorities()).isEqualTo(role.grantedAuthorities());
         assertThat(role1.remarks()).isEqualTo(role.remarks());
         assertThat(role1.predefined()).isEqualTo(role.predefined());
+        roleRepository.remove(ScopedId.id("role-a", "highsoft"));
+    }
+
+    @Test
+    public void should_get_correct_exists_status() {
+        assertThat(roleRepository.exists(name("Role A"), ScopedId.id("role-1", "highsoft"))).isFalse();
+        Role role = new Role(ScopedId.id("role-1", "highsoft"), name("Role A"), GrantedAuthorities.of("f1"), remarks("Role A remarks"), false, Code.code("1"));
+        roleRepository.save(role);
+        assertThat(roleRepository.exists(name("Role A"), ScopedId.id("role-1", "highsoft"))).isTrue();
+        assertThat(roleRepository.exists(name("Role A"), ScopedId.id("role-11", "highsoft1"))).isFalse();
+        assertThat(roleRepository.exists(name("Role A"), ScopedId.id("role-1", "highsoft1"))).isTrue();
+        assertThat(roleRepository.exists(name("Role A"), ScopedId.id("role-11", "highsoft"))).isTrue();
+        assertThat(roleRepository.exists(name("Role AA"), ScopedId.id("role-1", "highsoft"))).isTrue();
+        assertThat(roleRepository.exists(name("Role AA"), ScopedId.id("role-11", "highsoft1"))).isFalse();
+        assertThat(roleRepository.exists(name("Role AA"), ScopedId.id("role-1", "highsoft1"))).isTrue();
+        assertThat(roleRepository.exists(name("Role AA"), ScopedId.id("role-11", "highsoft"))).isFalse();
+        roleRepository.remove(ScopedId.id("role-1", "highsoft"));
     }
 
     @Test

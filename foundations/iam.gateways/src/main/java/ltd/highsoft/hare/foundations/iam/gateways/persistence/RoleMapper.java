@@ -67,14 +67,12 @@ public class RoleMapper {
     }
 
     public boolean exists(Name name, ScopedId id) {
-        if (exists(id)) {
-            return exists("SELECT COUNT(*) FROM iam_roles WHERE name = :name and tenant_id = :tenantId and id != :id", Map.of("name", name.asString(), "tenantId", id.tenantId().asString(), "id", id.id().asString()));
-        }
+        if (exists(id)) return true;
         return exists("SELECT COUNT(*) FROM iam_roles WHERE name = :name and tenant_id = :tenantId", Map.of("name", name.asString(), "tenantId", id.tenantId().asString()));
     }
 
     private boolean exists(ScopedId id) {
-        return exists("SELECT COUNT(*) FROM iam_roles WHERE id = :id and tenant_id = :tenantId", Map.of("id", id.id().asString(), "tenantId", id.tenantId().asString()));
+        return exists("SELECT COUNT(*) FROM iam_roles WHERE id = :id", Map.of("id", id.id().asString()));
     }
 
     private boolean exists(String sql, Map<String, String> params) {
