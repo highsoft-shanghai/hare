@@ -86,3 +86,9 @@
     width: 32px;
   }
 }
+
+.body--light {
+  .q-header--bordered {
+    border-color: $separator-dark-color;
+  }
+}

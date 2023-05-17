@@ -1,13 +1,14 @@
 import {StartMenuItemGroup} from 'layouts/StartMenuItemGroup';
 import {StartMenuItemSubGroup} from 'layouts/StartMenuItemSubGroup';
 import {StartMenuItem} from 'layouts/StartMenuItem';
+import {globals} from 'commons/global/globals';
 
 export class StartMenu {
   private _visible = false;
   private _activeGroupKey: string | undefined;
   private _groups: StartMenuItemGroup[] = [ // TODO: construct from remote data
     new StartMenuItemGroup('users', '人员管理', 'manage_accounts', [
-      new StartMenuItemSubGroup('users-management', '人员信息维护', '', [new StartMenuItem('add-user', '新增人员', 'person_add', 'router.home'), new StartMenuItem('query-users', '检索人员', 'search', 'router.home')]),
+      new StartMenuItemSubGroup('users-management', '人员信息维护', '', [new StartMenuItem('add-user', '新增人员', 'person_add', 'router.test'), new StartMenuItem('query-users', '检索人员', 'search', 'router.home')]),
       new StartMenuItemSubGroup('users-analysis', '人员信息分析', '', [new StartMenuItem('user-status', '人员状态', 'people_alt', 'router.home')])
     ]),
     new StartMenuItemGroup('customers', '客户管理', 'groups', []),
@@ -19,6 +20,11 @@ export class StartMenu {
 
   public constructor() {
     this._activeGroupKey = this._groups[0]?.key;
+  }
+
+  public async goto(page: string): Promise<void> {
+    this.close();
+    await globals.navigator.goto(page);
   }
 
   public toggleVisible(): void {

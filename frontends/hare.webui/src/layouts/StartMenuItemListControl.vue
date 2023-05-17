@@ -7,7 +7,7 @@
             <div class="col-all q-pb-sm sub-group-header-control">{{ subgroup.label }}</div>
             <div class="row col-all q-gutter-md">
               <div v-for="item in subgroup.items" :key="item.key" class="column items-center text-center start-menu-item-control">
-                <q-btn flat square stack class="start-menu-item-icon">
+                <q-btn flat square stack class="start-menu-item-icon" @click="model.goto(item.to)">
                   <q-icon :name="item.icon"/>
                 </q-btn>
                 <div class="q-mt-xs start-menu-item-label">{{ item.label }}</div>
