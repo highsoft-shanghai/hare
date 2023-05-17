@@ -2,7 +2,7 @@ import {beforeEach, describe, expect, it} from '@jest/globals';
 import {mount, VueWrapper} from '@vue/test-utils';
 import {setupComponentTest} from 'app/test/utils/component';
 import App from 'src/App.vue';
-import {createApplicationRouter} from 'src/router';
+import {installVueRouter} from 'src/router';
 import {Router} from 'vue-router';
 import LoginPage from 'pages/login/LoginPage.vue';
 
@@ -13,7 +13,7 @@ describe('LoginPage', () => {
   let wrapper: VueWrapper;
 
   beforeEach(() => {
-    router = createApplicationRouter();
+    router = installVueRouter();
     wrapper = mount(App, {global: {plugins: [router]}});
   });
 

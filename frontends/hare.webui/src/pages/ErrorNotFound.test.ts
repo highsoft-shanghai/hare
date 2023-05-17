@@ -1,8 +1,8 @@
-import {describe, expect, it, beforeEach} from '@jest/globals';
+import {beforeEach, describe, expect, it} from '@jest/globals';
 import {mount, VueWrapper} from '@vue/test-utils';
 import {setupComponentTest} from 'app/test/utils/component';
 import App from 'src/App.vue';
-import {createApplicationRouter} from 'src/router';
+import {installVueRouter} from 'src/router';
 import {Router} from 'vue-router';
 import ErrorNotFound from 'pages/ErrorNotFound.vue';
 
@@ -13,7 +13,7 @@ describe('ErrorNotFound', () => {
   let wrapper: VueWrapper;
 
   beforeEach(() => {
-    router = createApplicationRouter();
+    router = installVueRouter();
     wrapper = mount(App, {global: {plugins: [router]}});
   });
 
