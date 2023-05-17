@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals';
 import { resettableGlobals } from "commons/global/globals";
 import { anyArray, mockDeep } from "jest-mock-extended";
-import { Application } from "layouts/Application";
+import { Application } from "commons/application/Application";
 import { culture } from "commons/i18n/CultureAccessor";
 
 describe('CultureAccessor', () => {

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { setupComponentTest } from 'app/test/utils/component';
-import { Application } from 'layouts/Application';
+import { Application } from 'commons/application/Application';
 import { AppFullscreen, Dialog, DialogChainObject } from 'quasar';
 import { PageModel } from "commons/page/PageModel";
 import { pagekey } from "commons/page/PageKey";

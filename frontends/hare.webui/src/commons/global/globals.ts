@@ -1,4 +1,4 @@
-import {Application} from 'layouts/Application';
+import {Application} from 'commons/application/Application';
 import {reactive} from 'vue';
 import {Navigator} from 'commons/router/Navigator';
 

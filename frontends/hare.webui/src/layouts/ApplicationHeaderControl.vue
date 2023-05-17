@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import {Application} from 'layouts/Application';
+import {Application} from 'commons/application/Application';
 import {UnwrapRef} from 'vue';
 import ProfileMenuLauncherControl from 'layouts/ProfileMenuLauncherControl.vue';
 import ApplicationTitleControl from 'layouts/ApplicationTitleControl.vue';

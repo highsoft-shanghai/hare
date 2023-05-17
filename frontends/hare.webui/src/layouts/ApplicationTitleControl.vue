@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import {UnwrapRef} from 'vue';
-import {Application} from 'layouts/Application';
+import {Application} from 'commons/application/Application';
 
 defineProps<{
   model: UnwrapRef<Application>
