@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import ApplicationHeaderControl from 'layouts/ApplicationHeaderControl.vue';
-import PageHostControl from 'layouts/PageHostControl.vue';
+import ApplicationHeaderControl from 'layouts/main/ApplicationHeaderControl.vue';
+import PageHostControl from 'layouts/main/PageHostControl.vue';
 import { globals } from 'commons/global/globals';
 
 const application = globals.application;

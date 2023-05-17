@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
 import { mount } from '@vue/test-utils';
 import { setupComponentTest } from 'app/test/utils/component';
-import ApplicationTitleControl from "layouts/ApplicationTitleControl.vue";
+import ApplicationTitleControl from "layouts/main/ApplicationTitleControl.vue";
 import { globals } from "commons/global/globals";
 
 setupComponentTest();

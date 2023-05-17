@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
 import { mount } from '@vue/test-utils';
 import { setupComponentTest } from 'app/test/utils/component';
-import PageHostControl from "layouts/PageHostControl.vue";
+import PageHostControl from "layouts/main/PageHostControl.vue";
 import { globals } from "commons/global/globals";
 
 setupComponentTest();

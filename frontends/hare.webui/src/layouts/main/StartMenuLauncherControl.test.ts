@@ -1,7 +1,7 @@
 import {describe, expect, test} from '@jest/globals';
 import {mount} from '@vue/test-utils';
 import {setupComponentTest} from 'app/test/utils/component';
-import StartMenuLauncherControl from 'layouts/StartMenuLauncherControl.vue';
+import StartMenuLauncherControl from 'layouts/main/StartMenuLauncherControl.vue';
 import {QBtn} from 'quasar';
 import {globals} from 'commons/global/globals';
 

@@ -1,9 +1,9 @@
 import { describe, expect, test } from '@jest/globals';
 import { mount } from '@vue/test-utils';
-import ApplicationHeaderControl from "layouts/ApplicationHeaderControl.vue";
-import ApplicationTitleControl from "layouts/ApplicationTitleControl.vue";
-import StartMenuControl from 'layouts/StartMenuControl.vue';
-import ProfileMenuLauncherControl from 'layouts/ProfileMenuLauncherControl.vue';
+import ApplicationHeaderControl from "layouts/main/ApplicationHeaderControl.vue";
+import ApplicationTitleControl from "layouts/main/ApplicationTitleControl.vue";
+import StartMenuControl from 'layouts/main/StartMenuControl.vue';
+import ProfileMenuLauncherControl from 'layouts/main/ProfileMenuLauncherControl.vue';
 import { setupComponentTest } from 'app/test/utils/component';
 import { globals } from "commons/global/globals";
 

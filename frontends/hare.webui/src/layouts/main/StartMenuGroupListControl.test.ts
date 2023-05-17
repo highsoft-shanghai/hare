@@ -1,8 +1,8 @@
 import {describe, expect, test} from '@jest/globals';
 import {mount} from '@vue/test-utils';
 import {setupComponentTest} from 'app/test/utils/component';
-import StartMenuGroupListControl from 'layouts/StartMenuGroupListControl.vue';
-import {StartMenu} from 'layouts/StartMenu';
+import StartMenuGroupListControl from 'layouts/main/StartMenuGroupListControl.vue';
+import {StartMenu} from 'layouts/main/StartMenu';
 import {reactive} from 'vue';
 import {QTab} from 'quasar';
 

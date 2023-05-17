@@ -10,9 +10,9 @@
 <script setup lang="ts">
 import {Application} from 'commons/application/Application';
 import {UnwrapRef} from 'vue';
-import ProfileMenuLauncherControl from 'layouts/ProfileMenuLauncherControl.vue';
-import ApplicationTitleControl from 'layouts/ApplicationTitleControl.vue';
-import StartMenuLauncherControl from 'layouts/StartMenuLauncherControl.vue';
+import ProfileMenuLauncherControl from 'layouts/main/ProfileMenuLauncherControl.vue';
+import ApplicationTitleControl from 'layouts/main/ApplicationTitleControl.vue';
+import StartMenuLauncherControl from 'layouts/main/StartMenuLauncherControl.vue';
 
 defineProps<{
   model: UnwrapRef<Application>

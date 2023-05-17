@@ -1,4 +1,4 @@
-import { StartMenu } from 'layouts/StartMenu';
+import { StartMenu } from 'layouts/main/StartMenu';
 import { i18n } from 'commons/i18n/i18n';
 import { AppFullscreen, Dialog } from 'quasar';
 import { PageModel } from 'commons/page/PageModel';

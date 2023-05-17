@@ -1,9 +1,9 @@
 import {describe, expect, test} from '@jest/globals';
 import {mount} from '@vue/test-utils';
 import {setupComponentTest} from 'app/test/utils/component';
-import {StartMenu} from 'layouts/StartMenu';
+import {StartMenu} from 'layouts/main/StartMenu';
 import {reactive} from 'vue';
-import StartMenuItemListControl from 'layouts/StartMenuItemListControl.vue';
+import StartMenuItemListControl from 'layouts/main/StartMenuItemListControl.vue';
 
 setupComponentTest();
 

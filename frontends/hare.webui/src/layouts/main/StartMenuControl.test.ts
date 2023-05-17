@@ -2,9 +2,9 @@ import {describe, expect, test} from '@jest/globals';
 import {DOMWrapper, flushPromises, mount} from '@vue/test-utils';
 import {reactive} from 'vue';
 import {setupComponentTest} from 'app/test/utils/component';
-import StartMenuControl from 'layouts/StartMenuControl.vue';
+import StartMenuControl from 'layouts/main/StartMenuControl.vue';
 import {globals} from 'commons/global/globals';
-import StartMenuHeaderControl from 'layouts/StartMenuHeaderControl.vue';
+import StartMenuHeaderControl from 'layouts/main/StartMenuHeaderControl.vue';
 
 setupComponentTest();
 

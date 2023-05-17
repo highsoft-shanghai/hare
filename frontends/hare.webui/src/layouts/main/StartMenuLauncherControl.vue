@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import StartMenuControl from 'layouts/StartMenuControl.vue';
+import StartMenuControl from 'layouts/main/StartMenuControl.vue';
 import {UnwrapRef} from 'vue';
 import {Application} from 'commons/application/Application';
 

@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import {UnwrapRef} from 'vue';
-import {StartMenu} from 'layouts/StartMenu';
+import {StartMenu} from 'layouts/main/StartMenu';
 
 defineProps<{
   model: UnwrapRef<StartMenu>

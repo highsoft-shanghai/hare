@@ -19,10 +19,10 @@
 
 <script setup lang="ts">
 import {UnwrapRef} from 'vue';
-import StartMenuHeaderControl from 'layouts/StartMenuHeaderControl.vue';
+import StartMenuHeaderControl from 'layouts/main/StartMenuHeaderControl.vue';
 import {Application} from 'commons/application/Application';
-import StartMenuGroupListControl from 'layouts/StartMenuGroupListControl.vue';
-import StartMenuItemListControl from 'layouts/StartMenuItemListControl.vue';
+import StartMenuGroupListControl from 'layouts/main/StartMenuGroupListControl.vue';
+import StartMenuItemListControl from 'layouts/main/StartMenuItemListControl.vue';
 
 defineProps<{
   model: UnwrapRef<Application>

@@ -1,5 +1,5 @@
 import {describe, expect, it} from '@jest/globals';
-import {StartMenu} from 'layouts/StartMenu';
+import {StartMenu} from 'layouts/main/StartMenu';
 import {globals, resettableGlobals} from 'commons/global/globals';
 import {mock} from 'jest-mock-extended';
 import {Navigator} from 'commons/router/Navigator';

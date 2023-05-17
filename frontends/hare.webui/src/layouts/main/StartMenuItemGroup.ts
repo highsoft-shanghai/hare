@@ -1,4 +1,4 @@
-import {StartMenuItemSubGroup} from 'layouts/StartMenuItemSubGroup';
+import {StartMenuItemSubGroup} from 'layouts/main/StartMenuItemSubGroup';
 
 export class StartMenuItemGroup {
   public readonly key: string;

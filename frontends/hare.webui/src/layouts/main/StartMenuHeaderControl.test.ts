@@ -2,7 +2,7 @@ import {describe, expect, test} from '@jest/globals';
 import {mount} from '@vue/test-utils';
 import {setupComponentTest} from 'app/test/utils/component';
 import {globals} from 'commons/global/globals';
-import StartMenuHeaderControl from 'layouts/StartMenuHeaderControl.vue';
+import StartMenuHeaderControl from 'layouts/main/StartMenuHeaderControl.vue';
 import {QToolbarTitle} from 'quasar';
 
 setupComponentTest();

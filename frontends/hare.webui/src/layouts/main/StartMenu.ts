@@ -1,6 +1,6 @@
-import {StartMenuItemGroup} from 'layouts/StartMenuItemGroup';
-import {StartMenuItemSubGroup} from 'layouts/StartMenuItemSubGroup';
-import {StartMenuItem} from 'layouts/StartMenuItem';
+import {StartMenuItemGroup} from 'layouts/main/StartMenuItemGroup';
+import {StartMenuItemSubGroup} from 'layouts/main/StartMenuItemSubGroup';
+import {StartMenuItem} from 'layouts/main/StartMenuItem';
 import {globals} from 'commons/global/globals';
 
 export class StartMenu {
