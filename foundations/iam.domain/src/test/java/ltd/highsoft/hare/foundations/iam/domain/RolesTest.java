@@ -19,21 +19,6 @@ class RolesTest {
     private @Mock Roles.RoleRepository roleRepository;
 
     @Test
-    void should_throw_when_add_duplicate_role() {
-        when(roleRepository.nameDuplication(any(), any())).thenReturn(true);
-        assertThrows(BadInputException.class,
-                () -> new Roles(roleRepository, null)
-                        .add(new Role(
-                                ScopedId.id("role-a", "highsoft"),
-                                name("Role A"),
-                                GrantedAuthorities.of("f1"),
-                                remarks("Role A remarks"),
-                                false,
-                                Code.code("1")))
-        );
-    }
-
-    @Test
     public void should_throw_when_add_duplicate_code_role() {
         when(roleRepository.codeDuplication(any(), any())).thenReturn(true);
         assertThrows(BadInputException.class,

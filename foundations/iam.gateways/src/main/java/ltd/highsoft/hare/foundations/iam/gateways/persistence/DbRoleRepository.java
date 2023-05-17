@@ -4,7 +4,6 @@ import ltd.highsoft.hare.foundations.iam.domain.Role;
 import ltd.highsoft.hare.foundations.iam.domain.Roles;
 import ltd.highsoft.hare.frameworks.domain.core.Code;
 import ltd.highsoft.hare.frameworks.domain.core.Id;
-import ltd.highsoft.hare.frameworks.domain.core.Name;
 import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,11 +33,6 @@ public class DbRoleRepository implements Roles.RoleRepository {
     @Transactional
     public void save(Role role) {
         mapper.save(role);
-    }
-
-    @Override
-    public boolean nameDuplication(Name name, ScopedId id) {
-        return mapper.nameDuplication(name, id);
     }
 
     @Override

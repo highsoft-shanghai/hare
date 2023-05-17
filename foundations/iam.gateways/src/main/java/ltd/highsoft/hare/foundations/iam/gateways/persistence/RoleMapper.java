@@ -1,7 +1,10 @@
 package ltd.highsoft.hare.foundations.iam.gateways.persistence;
 
 import ltd.highsoft.hare.foundations.iam.domain.Role;
-import ltd.highsoft.hare.frameworks.domain.core.*;
+import ltd.highsoft.hare.frameworks.domain.core.AggregateNotFoundException;
+import ltd.highsoft.hare.frameworks.domain.core.Code;
+import ltd.highsoft.hare.frameworks.domain.core.Id;
+import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
 import ltd.highsoft.hare.frameworks.security.core.GrantedAuthorities;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -64,13 +67,6 @@ public class RoleMapper {
         String sql = "INSERT INTO iam_roles (id, name, authorities, remarks, tenant_id, predefined, code) VALUES (:id, :name, :authorities, :remarks, :tenantId, :predefined, :code)";
         jdbc.update(sql, Map.of("id", role.id().id().asString(), "name", role.name().asString(), "authorities", role.grantedAuthorities().toCommaSeparatedString(),
                 "remarks", role.remarks().asString(), "tenantId", role.id().tenantId().asString(), "predefined", role.predefined(), "code", role.code().asString()));
-    }
-
-    public boolean nameDuplication(Name name, ScopedId id) {
-        if (exists(id)) {
-            return exists("SELECT COUNT(*) FROM iam_roles WHERE name = :name and tenant_id = :tenantId and id != :id", Map.of("name", name.asString(), "tenantId", id.tenantId().asString(), "id", id.id().asString()));
-        }
-        return exists("SELECT COUNT(*) FROM iam_roles WHERE name = :name and tenant_id = :tenantId", Map.of("name", name.asString(), "tenantId", id.tenantId().asString()));
     }
 
     public boolean codeDuplication(Code code, ScopedId id) {

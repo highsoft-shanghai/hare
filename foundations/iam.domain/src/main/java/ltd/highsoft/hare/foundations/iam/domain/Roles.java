@@ -12,7 +12,7 @@ public class Roles {
     private final UserAccounts userAccounts;
 
     public void add(Role role) {
-        if (roleRepository.nameDuplication(role.name(), role.id()) || roleRepository.codeDuplication(role.code(), role.id()))
+        if (roleRepository.codeDuplication(role.code(), role.id()))
             throw new BadInputException(message("error.duplicate-role"));
         roleRepository.save(role);
     }
@@ -32,7 +32,6 @@ public class Roles {
 
     public interface RoleRepository {
         void save(Role role);
-        boolean nameDuplication(Name name, ScopedId id);
         boolean codeDuplication(Code code, ScopedId id);
         Role get(Id id);
         Role get(ScopedId id);
