@@ -73,6 +73,13 @@ public class RoleMapper {
         return exists("SELECT COUNT(*) FROM iam_roles WHERE name = :name and tenant_id = :tenantId", Map.of("name", name.asString(), "tenantId", id.tenantId().asString()));
     }
 
+    public boolean codeDuplication(Code code, ScopedId id) {
+        if (exists(id)) {
+            return exists("SELECT COUNT(*) FROM iam_roles WHERE code = :code and tenant_id = :tenantId and id != :id", Map.of("code", code.asString(), "tenantId", id.tenantId().asString(), "id", id.id().asString()));
+        }
+        return exists("SELECT COUNT(*) FROM iam_roles WHERE code = :code and tenant_id = :tenantId", Map.of("code", code.asString(), "tenantId", id.tenantId().asString()));
+    }
+
     private boolean exists(ScopedId id) {
         return exists("SELECT COUNT(*) FROM iam_roles WHERE id = :id", Map.of("id", id.id().asString()));
     }
@@ -86,4 +93,6 @@ public class RoleMapper {
         String sql = "DELETE FROM iam_roles WHERE id = :id AND tenant_id = :tenantId";
         jdbc.update(sql, Map.of("id", id.id().asString(), "tenantId", id.tenantId().asString()));
     }
+
+
 }

@@ -2,6 +2,7 @@ package ltd.highsoft.hare.foundations.iam.gateways.persistence;
 
 import ltd.highsoft.hare.foundations.iam.domain.Role;
 import ltd.highsoft.hare.foundations.iam.domain.Roles;
+import ltd.highsoft.hare.frameworks.domain.core.Code;
 import ltd.highsoft.hare.frameworks.domain.core.Id;
 import ltd.highsoft.hare.frameworks.domain.core.Name;
 import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
@@ -38,6 +39,11 @@ public class DbRoleRepository implements Roles.RoleRepository {
     @Override
     public boolean nameDuplication(Name name, ScopedId id) {
         return mapper.nameDuplication(name, id);
+    }
+
+    @Override
+    public boolean codeDuplication(Code code, ScopedId id) {
+        return mapper.codeDuplication(code, id);
     }
 
     @Override

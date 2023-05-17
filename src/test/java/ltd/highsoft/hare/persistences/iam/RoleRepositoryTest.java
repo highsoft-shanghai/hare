@@ -45,12 +45,26 @@ public class RoleRepositoryTest extends PostgresTest {
     public void should_get_correct_name_duplication_status() {
         assertThat(roleRepository.nameDuplication(name("Role A"), ScopedId.id("role-1", "highsoft"))).isFalse();
         roleRepository.save(new Role(ScopedId.id("role-1", "highsoft"), name("Role A"), GrantedAuthorities.of("f1"), remarks("Role A remarks"), false, Code.code("1")));
-        roleRepository.save(new Role(ScopedId.id("role-2", "highsoft"), name("Role A"), GrantedAuthorities.of("f1"), remarks("Role A remarks"), false, Code.code("1")));
+        roleRepository.save(new Role(ScopedId.id("role-2", "highsoft"), name("Role A"), GrantedAuthorities.of("f1"), remarks("Role A remarks"), false, Code.code("2")));
         assertThat(roleRepository.nameDuplication(name("Role A"), ScopedId.id("role-1", "highsoft"))).isTrue();
         assertThat(roleRepository.nameDuplication(name("Role A"), ScopedId.id("role-11", "highsoft"))).isTrue();
-        assertThat(roleRepository.nameDuplication(name("Role A"), ScopedId.id("role-2", "highsoft2"))).isFalse();
-        assertThat(roleRepository.nameDuplication(name("Role B"), ScopedId.id("role-2", "highsoft"))).isFalse();
+        assertThat(roleRepository.nameDuplication(name("Role A"), ScopedId.id("role-1", "highsoft2"))).isFalse();
+        assertThat(roleRepository.nameDuplication(name("Role B"), ScopedId.id("role-1", "highsoft"))).isFalse();
         roleRepository.remove(ScopedId.id("role-1", "highsoft"));
+        roleRepository.remove(ScopedId.id("role-2", "highsoft"));
+    }
+
+    @Test
+    public void should_get_correct_code_duplication_status() {
+        assertThat(roleRepository.codeDuplication(Code.code("1"), ScopedId.id("role-1", "highsoft"))).isFalse();
+        roleRepository.save(new Role(ScopedId.id("role-1", "highsoft"), name("Role A"), GrantedAuthorities.of("f1"), remarks("Role A remarks"), false, Code.code("1")));
+        roleRepository.save(new Role(ScopedId.id("role-2", "highsoft"), name("Role B"), GrantedAuthorities.of("f2"), remarks("Role B remarks"), false, Code.code("1")));
+        assertThat(roleRepository.codeDuplication(Code.code("1"), ScopedId.id("role-1", "highsoft"))).isTrue();
+        assertThat(roleRepository.codeDuplication(Code.code("1"), ScopedId.id("role-11", "highsoft"))).isTrue();
+        assertThat(roleRepository.codeDuplication(Code.code("1"), ScopedId.id("role-1", "highsoft2"))).isFalse();
+        assertThat(roleRepository.codeDuplication(Code.code("2"), ScopedId.id("role-1", "highsoft"))).isFalse();
+        roleRepository.remove(ScopedId.id("role-1", "highsoft"));
+        roleRepository.remove(ScopedId.id("role-2", "highsoft"));
     }
 
     @Test
