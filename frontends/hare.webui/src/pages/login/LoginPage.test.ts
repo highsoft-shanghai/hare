@@ -5,6 +5,7 @@ import App from 'src/App.vue';
 import {installVueRouter} from 'src/router';
 import {Router} from 'vue-router';
 import LoginPage from 'pages/login/LoginPage.vue';
+import BlankLayoutControl from 'layouts/blank/BlankLayoutControl.vue';
 
 setupComponentTest();
 
@@ -21,5 +22,11 @@ describe('LoginPage', () => {
     await router.replace('/login');
     await router.isReady();
     expect(wrapper.findComponent(LoginPage).exists()).toBeTruthy();
+  });
+
+  it('should be under blank layout', async () => {
+    await router.replace('/login');
+    await router.isReady();
+    expect(wrapper.findComponent(BlankLayoutControl).exists()).toBeTruthy();
   });
 });
