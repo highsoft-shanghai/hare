@@ -36,8 +36,8 @@ public class DbRoleRepository implements Roles.RoleRepository {
     }
 
     @Override
-    public boolean exists(Name name, ScopedId id) {
-        return mapper.exists(name, id);
+    public boolean nameDuplication(Name name, ScopedId id) {
+        return mapper.nameDuplication(name, id);
     }
 
     @Override

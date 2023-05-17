@@ -42,18 +42,14 @@ public class RoleRepositoryTest extends PostgresTest {
     }
 
     @Test
-    public void should_get_correct_exists_status() {
-        assertThat(roleRepository.exists(name("Role A"), ScopedId.id("role-1", "highsoft"))).isFalse();
-        Role role = new Role(ScopedId.id("role-1", "highsoft"), name("Role A"), GrantedAuthorities.of("f1"), remarks("Role A remarks"), false, Code.code("1"));
-        roleRepository.save(role);
-        assertThat(roleRepository.exists(name("Role A"), ScopedId.id("role-1", "highsoft"))).isTrue();
-        assertThat(roleRepository.exists(name("Role A"), ScopedId.id("role-11", "highsoft1"))).isFalse();
-        assertThat(roleRepository.exists(name("Role A"), ScopedId.id("role-1", "highsoft1"))).isTrue();
-        assertThat(roleRepository.exists(name("Role A"), ScopedId.id("role-11", "highsoft"))).isTrue();
-        assertThat(roleRepository.exists(name("Role AA"), ScopedId.id("role-1", "highsoft"))).isTrue();
-        assertThat(roleRepository.exists(name("Role AA"), ScopedId.id("role-11", "highsoft1"))).isFalse();
-        assertThat(roleRepository.exists(name("Role AA"), ScopedId.id("role-1", "highsoft1"))).isTrue();
-        assertThat(roleRepository.exists(name("Role AA"), ScopedId.id("role-11", "highsoft"))).isFalse();
+    public void should_get_correct_name_duplication_status() {
+        assertThat(roleRepository.nameDuplication(name("Role A"), ScopedId.id("role-1", "highsoft"))).isFalse();
+        roleRepository.save(new Role(ScopedId.id("role-1", "highsoft"), name("Role A"), GrantedAuthorities.of("f1"), remarks("Role A remarks"), false, Code.code("1")));
+        roleRepository.save(new Role(ScopedId.id("role-2", "highsoft"), name("Role A"), GrantedAuthorities.of("f1"), remarks("Role A remarks"), false, Code.code("1")));
+        assertThat(roleRepository.nameDuplication(name("Role A"), ScopedId.id("role-1", "highsoft"))).isTrue();
+        assertThat(roleRepository.nameDuplication(name("Role A"), ScopedId.id("role-11", "highsoft"))).isTrue();
+        assertThat(roleRepository.nameDuplication(name("Role A"), ScopedId.id("role-2", "highsoft2"))).isFalse();
+        assertThat(roleRepository.nameDuplication(name("Role B"), ScopedId.id("role-2", "highsoft"))).isFalse();
         roleRepository.remove(ScopedId.id("role-1", "highsoft"));
     }
 

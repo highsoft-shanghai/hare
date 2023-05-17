@@ -22,7 +22,7 @@ class RolesTest {
 
     @BeforeEach
     void setUp() {
-        when(roleRepository.exists(any(), any())).thenReturn(true);
+        when(roleRepository.nameDuplication(any(), any())).thenReturn(true);
     }
 
     @Test

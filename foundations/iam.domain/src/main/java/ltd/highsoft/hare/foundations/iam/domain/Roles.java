@@ -15,7 +15,7 @@ public class Roles {
     private final UserAccounts userAccounts;
 
     public void add(Role role) {
-        if (roleRepository.exists(role.name(), role.id())) throw new BadInputException(message("error.duplicate-role"));
+        if (roleRepository.nameDuplication(role.name(), role.id())) throw new BadInputException(message("error.duplicate-role"));
         roleRepository.save(role);
     }
 
@@ -34,7 +34,7 @@ public class Roles {
 
     public interface RoleRepository {
         void save(Role role);
-        boolean exists(Name name, ScopedId id);
+        boolean nameDuplication(Name name, ScopedId id);
         Role get(Id id);
         Role get(ScopedId id);
         void remove(ScopedId id);
