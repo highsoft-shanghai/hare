@@ -32,7 +32,7 @@ public class LoginByUsernameAndPasswordUseCaseTest extends ApiTest {
     private static final String PLAN_SECRET = "s2324sdfsfdfgdfgfhfhg";
     private static final EncryptedSecret ENCRYPTED_SECRET = EncryptedSecret.encryptedSecret("$2a$10$HNw/E.gW202tMYSt11lNBeL2g13KQxJRt7QWzOdqEKxiUN2lWrQse");
     private static final Role OPERATORS = new Role(ScopedId.id("operators", "highsoft"), name("Operators"), GrantedAuthorities.of("f1", "f2"), Remarks.remarks("Remarks for operators"), false, Code.code("1"));
-    private static final Role OPERATORS_2 = new Role(ScopedId.id("operators2", "highsoft"), name("Operators2"), GrantedAuthorities.of("f3"), Remarks.remarks("Remarks for operators"), false, Code.code("1"));
+    private static final Role OPERATORS_2 = new Role(ScopedId.id("operators2", "highsoft"), name("Operators2"), GrantedAuthorities.of("f3"), Remarks.remarks("Remarks for operators"), false, Code.code("2"));
     private @Resource UserAccounts userAccounts;
     private @Resource Tenants tenants;
     private @Resource Credentials credentials;

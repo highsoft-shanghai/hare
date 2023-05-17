@@ -17,7 +17,6 @@ public class Role {
     private GrantedAuthorities authorities;
     private Remarks remarks;
     private final boolean predefined;
-
     private Code code;
 
     public Role(ScopedId id, Name name, GrantedAuthorities authorities, Remarks remarks, boolean predefined, Code code) {
