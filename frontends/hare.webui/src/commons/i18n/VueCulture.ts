@@ -4,7 +4,7 @@ import { App } from 'vue';
 import { Culture } from 'commons/i18n/Culture';
 
 export class VueCulture extends Culture {
-  private readonly instance: I18n<unknown, unknown, unknown, false>;
+  private readonly instance: I18n<unknown, unknown, unknown, unknown, false>;
 
   public constructor(app: App) {
     super();
