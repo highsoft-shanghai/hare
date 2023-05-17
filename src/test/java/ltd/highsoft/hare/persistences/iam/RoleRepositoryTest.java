@@ -92,4 +92,15 @@ public class RoleRepositoryTest extends PostgresTest {
         Assertions.assertThrowsExactly(AggregateNotFoundException.class, () -> roleRepository.get(ScopedId.id("role-1", "highsoft")),
                 "error.role-not-found");
     }
+
+    @Test
+    public void should_remove_role_with_scope_id() {
+        Role role = new Role(ScopedId.id("role-a", "highsoft"), name("Role A"), GrantedAuthorities.of("f1"), remarks("Role A remarks"), false, Code.code("1"));
+        roleRepository.save(role);
+        Role role1 = roleRepository.get(ScopedId.id("role-a", "highsoft"));
+        assertThat(role1.id()).isEqualTo(role.id());
+        roleRepository.remove(ScopedId.id("role-a", "highsoft"));
+        Assertions.assertThrowsExactly(AggregateNotFoundException.class, () -> roleRepository.get(ScopedId.id("role-a", "highsoft")),
+                "error.role-not-found");
+    }
 }
