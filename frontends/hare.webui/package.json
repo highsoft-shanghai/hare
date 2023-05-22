@@ -25,6 +25,10 @@
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.0.0"
   },
+  "resolutions": {
+    "vite": "^4.0.0",
+    "@vitejs/plugin-vue": "^4.0.0"
+  },
   "devDependencies": {
     "@babel/preset-env": "^7.21.4",
     "@intlify/vite-plugin-vue-i18n": "^3.3.1",
@@ -43,7 +47,8 @@
     "jest": "^29.2.2",
     "jest-mock-extended": "^3.0.4",
     "prettier": "^2.5.1",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "vite-plugin-mock-dev-server": "^1.1.13"
   },
   "engines": {
     "node": "^18 || ^16 || ^14.19",
