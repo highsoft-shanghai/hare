@@ -1,7 +1,10 @@
 package ltd.highsoft.hare.foundations.iam.gateways.persistence;
 
 import ltd.highsoft.hare.foundations.iam.domain.Role;
-import ltd.highsoft.hare.frameworks.domain.core.*;
+import ltd.highsoft.hare.frameworks.domain.core.AggregateNotFoundException;
+import ltd.highsoft.hare.frameworks.domain.core.Code;
+import ltd.highsoft.hare.frameworks.domain.core.Id;
+import ltd.highsoft.hare.frameworks.domain.core.ScopedId;
 import ltd.highsoft.hare.frameworks.security.core.GrantedAuthorities;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -66,15 +69,15 @@ public class RoleMapper {
                 "remarks", role.remarks().asString(), "tenantId", role.id().tenantId().asString(), "predefined", role.predefined(), "code", role.code().asString()));
     }
 
-    public boolean exists(Name name, ScopedId id) {
+    public boolean codeDuplication(Code code, ScopedId id) {
         if (exists(id)) {
-            return exists("SELECT COUNT(*) FROM iam_roles WHERE name = :name and tenant_id = :tenantId and id != :id", Map.of("name", name.asString(), "tenantId", id.tenantId().asString(), "id", id.id().asString()));
+            return exists("SELECT COUNT(*) FROM iam_roles WHERE code = :code and tenant_id = :tenantId and id != :id", Map.of("code", code.asString(), "tenantId", id.tenantId().asString(), "id", id.id().asString()));
         }
-        return exists("SELECT COUNT(*) FROM iam_roles WHERE name = :name and tenant_id = :tenantId", Map.of("name", name.asString(), "tenantId", id.tenantId().asString()));
+        return exists("SELECT COUNT(*) FROM iam_roles WHERE code = :code and tenant_id = :tenantId", Map.of("code", code.asString(), "tenantId", id.tenantId().asString()));
     }
 
     private boolean exists(ScopedId id) {
-        return exists("SELECT COUNT(*) FROM iam_roles WHERE id = :id and tenant_id = :tenantId", Map.of("id", id.id().asString(), "tenantId", id.tenantId().asString()));
+        return exists("SELECT COUNT(*) FROM iam_roles WHERE id = :id", Map.of("id", id.id().asString()));
     }
 
     private boolean exists(String sql, Map<String, String> params) {
@@ -86,4 +89,6 @@ public class RoleMapper {
         String sql = "DELETE FROM iam_roles WHERE id = :id AND tenant_id = :tenantId";
         jdbc.update(sql, Map.of("id", id.id().asString(), "tenantId", id.tenantId().asString()));
     }
+
+
 }
