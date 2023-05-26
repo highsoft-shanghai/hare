@@ -15,7 +15,7 @@ const routes: RouteRecordRaw[] = [
     name: 'layout.blank',
     component: () => import('layouts/blank/BlankLayoutControl.vue'),
     children: [
-      {path: '/login', name: 'page.login', component: () => import('pages/login/LoginPage.vue')}
+      {path: '/login', name: 'login', component: () => import('pages/login/LoginPage.vue')}
     ]
   },
 

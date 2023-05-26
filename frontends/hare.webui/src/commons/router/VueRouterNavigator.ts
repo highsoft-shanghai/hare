@@ -8,7 +8,8 @@ export class VueRouterNavigator extends Navigator {
     super();
     this.router = router;
     this.router.beforeEach((to, from, next) => {
-      next();
+      if (to.meta['allowAnonymous']) return next();
+      return next({name: 'login'});
     });
   }
 
