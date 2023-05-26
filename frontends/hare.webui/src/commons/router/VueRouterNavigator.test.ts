@@ -30,4 +30,11 @@ describe('VueRouterNavigator', () => {
     await navigator.goto('home');
     expect(router.currentRoute.value.name).toBe('login');
   });
+
+  it('should allow anonymous users to access routes allow anonymous access', async () => {
+    const router = createVueRouter([{path: '/', name: 'home', ...allowAnonymous, ...component}, {path: '/login', name: 'login', ...component, ...allowAnonymous}]);
+    const navigator: Navigator = new VueRouterNavigator(router);
+    await navigator.goto('home');
+    expect(router.currentRoute.value.name).toBe('home');
+  });
 });
