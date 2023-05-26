@@ -7,6 +7,9 @@ export class VueRouterNavigator extends Navigator {
   public constructor(router: Router) {
     super();
     this.router = router;
+    this.router.beforeEach((to, from, next) => {
+      next();
+    });
   }
 
   public async goto(page: string): Promise<void> {
