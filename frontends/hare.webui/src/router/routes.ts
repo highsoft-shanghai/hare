@@ -1,5 +1,5 @@
 import {RouteRecordRaw} from 'vue-router';
-import {Authorities} from 'commons/security/Authorities';
+import {Authorities} from 'commons/context/Authorities';
 
 const routes: RouteRecordRaw[] = [
   {

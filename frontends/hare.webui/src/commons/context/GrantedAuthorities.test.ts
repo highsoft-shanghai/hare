@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
-import {GrantedAuthorities, grantedAuthorities} from 'commons/security/GrantedAuthorities';
-import {Authorities} from 'commons/security/Authorities';
+import {GrantedAuthorities, grantedAuthorities} from 'commons/context/GrantedAuthorities';
+import {Authorities} from 'commons/context/Authorities';
 
 describe('GrantedAuthorities', () => {
   it('should be authenticated when created in normal', () => {

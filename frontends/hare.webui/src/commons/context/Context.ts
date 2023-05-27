@@ -1,8 +1,8 @@
-import {RequiredAuthorities} from 'commons/security/RequiredAuthorities';
-import {AuthorizationResult, forbidden, redirectToLogin, success} from 'commons/security/AuthorizationResult';
-import {GrantedAuthorities} from 'commons/security/GrantedAuthorities';
+import {RequiredAuthorities} from 'commons/context/RequiredAuthorities';
+import {AuthorizationResult, forbidden, redirectToLogin, success} from 'commons/context/AuthorizationResult';
+import {GrantedAuthorities} from 'commons/context/GrantedAuthorities';
 
-export class Authorizer {
+export class Context {
   private grantedAuthorities: GrantedAuthorities;
 
   public constructor(grantedAuthorities: GrantedAuthorities) {

@@ -1,17 +1,17 @@
 import {Navigator} from 'commons/router/Navigator';
 import {RouteLocationNormalized, Router} from 'vue-router';
-import {Authorizer} from 'commons/security/Authorizer';
-import {requiredAuthoritiesFromRoute} from 'commons/router/SecurityUtils';
-import {RedirectType} from 'commons/security/AuthorizationResult';
+import {Context} from 'commons/context/Context';
+import {requiredAuthoritiesFromRoute} from 'commons/router/ContextUtils';
+import {RedirectType} from 'commons/context/AuthorizationResult';
 
 export class VueRouterNavigator extends Navigator {
   private readonly router: Router;
-  private readonly authorizer: Authorizer;
+  private readonly context: Context;
 
-  public constructor(router: Router, authorizer: Authorizer) {
+  public constructor(router: Router, context: Context) {
     super();
     this.router = router;
-    this.authorizer = authorizer;
+    this.context = context;
     this.router.beforeEach(async to => this.authorize(to));
   }
 
@@ -20,6 +20,6 @@ export class VueRouterNavigator extends Navigator {
   }
 
   private authorize(to: RouteLocationNormalized): RedirectType {
-    return this.authorizer.authorize(requiredAuthoritiesFromRoute(to)).redirect;
+    return this.context.authorize(requiredAuthoritiesFromRoute(to)).redirect;
   }
 }

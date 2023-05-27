@@ -1,19 +1,19 @@
 import {Application} from 'commons/application/Application';
 import {reactive} from 'vue';
 import {Navigator} from 'commons/router/Navigator';
-import {Authorizer} from 'commons/security/Authorizer';
-import {GrantedAuthorities} from 'commons/security/GrantedAuthorities';
+import {Context} from 'commons/context/Context';
+import {GrantedAuthorities} from 'commons/context/GrantedAuthorities';
 
 export interface Globals {
   readonly application: Application;
   readonly navigator: Navigator;
-  readonly authorizer: Authorizer;
+  readonly context: Context;
 }
 
 export class ResettableGlobals implements Globals {
   private _application?: Application;
   private _navigator?: Navigator;
-  private _authorizer = new Authorizer(GrantedAuthorities.ANONYMOUS);
+  private _context = new Context(GrantedAuthorities.ANONYMOUS);
 
   public get application(): Application {
     if (!this._application) throw new Error('Global application not initialized');
@@ -25,8 +25,8 @@ export class ResettableGlobals implements Globals {
     return this._navigator;
   }
 
-  public get authorizer(): Authorizer {
-    return this._authorizer;
+  public get context(): Context {
+    return this._context;
   }
 
   public resetApplication(application: Application): void {
@@ -37,14 +37,14 @@ export class ResettableGlobals implements Globals {
     this._navigator = navigator;
   }
 
-  public resetAuthorizer(grantedAuthorities: GrantedAuthorities): void {
-    this._authorizer.reset(grantedAuthorities);
+  public resetContext(grantedAuthorities: GrantedAuthorities): void {
+    this._context.reset(grantedAuthorities);
   }
 
   public clear(): void {
     this._application = undefined;
     this._navigator = undefined;
-    this._authorizer.clear();
+    this._context.clear();
   }
 }
 

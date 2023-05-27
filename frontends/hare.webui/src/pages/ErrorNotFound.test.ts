@@ -6,7 +6,7 @@ import {installVueRouter} from 'src/router';
 import {Router} from 'vue-router';
 import ErrorNotFound from 'pages/ErrorNotFound.vue';
 import {resettableGlobals} from 'commons/global/globals';
-import {grantedAuthorities} from 'commons/security/GrantedAuthorities';
+import {grantedAuthorities} from 'commons/context/GrantedAuthorities';
 
 setupComponentTest();
 
@@ -17,7 +17,7 @@ describe('ErrorNotFound', () => {
   beforeEach(() => {
     router = installVueRouter();
     wrapper = mount(App, {global: {plugins: [router]}});
-    resettableGlobals.resetAuthorizer(grantedAuthorities());
+    resettableGlobals.resetContext(grantedAuthorities());
   });
 
   it('should be visible if page not found', async () => {

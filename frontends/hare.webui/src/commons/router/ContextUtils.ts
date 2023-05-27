@@ -1,4 +1,4 @@
-import {requiredAuthorities, RequiredAuthorities} from 'commons/security/RequiredAuthorities';
+import {requiredAuthorities, RequiredAuthorities} from 'commons/context/RequiredAuthorities';
 import {RouteLocationNormalized} from 'vue-router';
 
 export function requiredAuthoritiesFromRoute(route: RouteLocationNormalized): RequiredAuthorities {

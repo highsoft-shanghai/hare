@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
-import {requiredAuthorities} from 'commons/security/RequiredAuthorities';
-import {grantedAuthorities} from 'commons/security/GrantedAuthorities';
+import {requiredAuthorities} from 'commons/context/RequiredAuthorities';
+import {grantedAuthorities} from 'commons/context/GrantedAuthorities';
 
 describe('RequiredAuthorities', () => {
   it('should match granted authorities when same authority found in both sides', () => {

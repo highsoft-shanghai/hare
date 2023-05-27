@@ -1,4 +1,4 @@
-import {Authorities} from 'commons/security/Authorities';
+import {Authorities} from 'commons/context/Authorities';
 
 export class GrantedAuthorities {
   public static readonly ANONYMOUS = new GrantedAuthorities(Authorities.ANONYMOUS);

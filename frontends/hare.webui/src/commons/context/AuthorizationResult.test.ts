@@ -1,5 +1,5 @@
 import {describe, expect, it} from '@jest/globals';
-import {forbidden, redirectToLogin, success} from 'commons/security/AuthorizationResult';
+import {forbidden, redirectToLogin, success} from 'commons/context/AuthorizationResult';
 
 describe('AuthorizationResult', () => {
   it('should be able to represent successful authorization', () => {

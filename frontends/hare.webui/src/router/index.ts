@@ -23,7 +23,7 @@ export function createVueRouter(routes: ReadonlyArray<RouteRecordRaw>): Router {
 
 export function installVueRouter(/* { store, ssrContext } */): Router {
   const router = createVueRouter(routes);
-  resettableGlobals.resetNavigator(new VueRouterNavigator(router, resettableGlobals.authorizer));
+  resettableGlobals.resetNavigator(new VueRouterNavigator(router, resettableGlobals.context));
   return router;
 }
 

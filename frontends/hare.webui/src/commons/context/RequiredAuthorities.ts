@@ -1,4 +1,4 @@
-import {GrantedAuthorities} from 'commons/security/GrantedAuthorities';
+import {GrantedAuthorities} from 'commons/context/GrantedAuthorities';
 
 export class RequiredAuthorities {
   public readonly authorities: ReadonlyArray<string>;
