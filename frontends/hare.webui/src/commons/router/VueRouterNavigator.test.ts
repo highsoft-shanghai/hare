@@ -40,8 +40,9 @@ describe('VueRouterNavigator', () => {
   it('should do nothing when current user is authenticated and target failed to authorized', async () => {
     const router = createVueRouter([{path: '/', name: 'test', ...allowAnonymous, ...component}, {path: '/home', name: 'home', ...requireHome, ...component}, {path: '/login', name: 'route.login', ...component, ...allowAnonymous}]);
     const navigator: Navigator = new VueRouterNavigator(router, new Authorizer(grantedAuthorities()));
+    const lastRoute = router.currentRoute.value;
     await navigator.goto('home');
-    expect(router.currentRoute.value.name).toBe('test');
+    expect(router.currentRoute.value).toBe(lastRoute);
   });
 
   it('should allow anonymous users to access routes which allow anonymous access', async () => {

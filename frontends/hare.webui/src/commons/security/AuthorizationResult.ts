@@ -1,4 +1,4 @@
-export type RedirectType = string | undefined | { name: string | symbol | null | undefined };
+export type RedirectType = false | string | undefined | { name: string | symbol | null | undefined };
 
 export class AuthorizationResult {
   public readonly approved: boolean = false;
@@ -15,7 +15,7 @@ export function success(): AuthorizationResult {
 }
 
 export function forbidden(): AuthorizationResult {
-  return new AuthorizationResult(false);
+  return new AuthorizationResult(false, false);
 }
 
 export function redirectToLogin(): AuthorizationResult {
