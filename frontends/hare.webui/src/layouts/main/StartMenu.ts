@@ -8,8 +8,8 @@ export class StartMenu {
   private _activeGroupKey: string | undefined;
   private _groups: StartMenuItemGroup[] = [ // TODO: construct from remote data
     new StartMenuItemGroup('users', '人员管理', 'manage_accounts', [
-      new StartMenuItemSubGroup('users-management', '人员信息维护', '', [new StartMenuItem('add-user', '新增人员', 'person_add', 'router.test'), new StartMenuItem('query-users', '检索人员', 'search', 'router.home')]),
-      new StartMenuItemSubGroup('users-analysis', '人员信息分析', '', [new StartMenuItem('user-status', '人员状态', 'people_alt', 'router.home')])
+      new StartMenuItemSubGroup('users-management', '人员信息维护', '', [new StartMenuItem('add-user', '新增人员', 'person_add', 'router.test'), new StartMenuItem('query-users', '检索人员', 'search', 'route.home')]),
+      new StartMenuItemSubGroup('users-analysis', '人员信息分析', '', [new StartMenuItem('user-status', '人员状态', 'people_alt', 'route.home')])
     ]),
     new StartMenuItemGroup('customers', '客户管理', 'groups', []),
     new StartMenuItemGroup('products', '商品管理', 'widgets', []),

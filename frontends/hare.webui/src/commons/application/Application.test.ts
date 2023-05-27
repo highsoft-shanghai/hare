@@ -19,7 +19,7 @@ describe('Application', () => {
 
   beforeEach(() => {
     culture = mock<Culture>();
-    application = new Application(culture, new PageModel(pagekey('router.home')));
+    application = new Application(culture, new PageModel(pagekey('route.home')));
   });
 
   it('should provide correct application title', () => {
