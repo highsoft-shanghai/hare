@@ -1,15 +1,19 @@
 import {Application} from 'commons/application/Application';
 import {reactive} from 'vue';
 import {Navigator} from 'commons/router/Navigator';
+import {Authorizer} from 'commons/security/Authorizer';
+import {GrantedAuthorities} from 'commons/security/GrantedAuthorities';
 
 export interface Globals {
   readonly application: Application;
   readonly navigator: Navigator;
+  readonly authorizer: Authorizer;
 }
 
 export class ResettableGlobals implements Globals {
   private _application?: Application;
   private _navigator?: Navigator;
+  private _authorizer = new Authorizer(GrantedAuthorities.ANONYMOUS);
 
   public get application(): Application {
     if (!this._application) throw new Error('Global application not initialized');
@@ -21,11 +25,15 @@ export class ResettableGlobals implements Globals {
     return this._navigator;
   }
 
+  public get authorizer(): Authorizer {
+    return this._authorizer;
+  }
+
   public resetApplication(application: Application): void {
     this._application = application;
   }
 
-  public resetNavigator(navigator: Navigator) {
+  public resetNavigator(navigator: Navigator): void {
     this._navigator = navigator;
   }
 
