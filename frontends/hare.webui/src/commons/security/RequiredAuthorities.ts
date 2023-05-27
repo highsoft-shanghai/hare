@@ -1,6 +1,8 @@
 export class RequiredAuthorities {
-  public constructor(authorities: string[]) {
+  public readonly authorities: ReadonlyArray<string>;
 
+  public constructor(authorities: string[]) {
+    this.authorities = authorities;
   }
 }
 

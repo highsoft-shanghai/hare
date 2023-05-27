@@ -1,13 +1,16 @@
 import {RequiredAuthorities} from 'commons/security/RequiredAuthorities';
-import {AuthorizationResult, success} from 'commons/security/AuthorizationResult';
+import {AuthorizationResult, forbidden, success} from 'commons/security/AuthorizationResult';
 import {GrantedAuthorities} from 'commons/security/GrantedAuthorities';
 
 export class Authorizer {
-  public constructor(grantedAuthorities: GrantedAuthorities) {
+  private readonly grantedAuthorities: GrantedAuthorities;
 
+  public constructor(grantedAuthorities: GrantedAuthorities) {
+    this.grantedAuthorities = grantedAuthorities;
   }
 
   public authorize(requiredAuthorities: RequiredAuthorities): AuthorizationResult {
-    return success();
+    if (requiredAuthorities.authorities.some(x => this.grantedAuthorities.authorities.has(x))) return success();
+    return forbidden();
   }
 }

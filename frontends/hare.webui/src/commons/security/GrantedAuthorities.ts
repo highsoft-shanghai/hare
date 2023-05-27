@@ -1,6 +1,8 @@
 export class GrantedAuthorities {
-  public constructor(authorities: string[]) {
+  public readonly authorities: ReadonlySet<string>;
 
+  public constructor(authorities: string[]) {
+    this.authorities = new Set(authorities);
   }
 }
 
