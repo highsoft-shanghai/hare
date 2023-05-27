@@ -37,9 +37,14 @@ export class ResettableGlobals implements Globals {
     this._navigator = navigator;
   }
 
+  public resetAuthorizer(grantedAuthorities: GrantedAuthorities): void {
+    this._authorizer.reset(grantedAuthorities);
+  }
+
   public clear(): void {
     this._application = undefined;
     this._navigator = undefined;
+    this._authorizer.clear();
   }
 }
 

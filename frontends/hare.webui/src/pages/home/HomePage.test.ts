@@ -5,6 +5,8 @@ import App from 'src/App.vue';
 import {installVueRouter} from 'src/router';
 import HomePage from 'pages/home/HomePage.vue';
 import {Router} from 'vue-router';
+import {resettableGlobals} from 'commons/global/globals';
+import {grantedAuthorities} from 'commons/security/GrantedAuthorities';
 
 setupComponentTest();
 
@@ -15,6 +17,7 @@ describe('HomePage', () => {
   beforeEach(() => {
     router = installVueRouter();
     wrapper = mount(App, {global: {plugins: [router]}});
+    resettableGlobals.resetAuthorizer(grantedAuthorities());
   });
 
   it('should be able to visited by router', async () => {

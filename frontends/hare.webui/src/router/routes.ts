@@ -7,7 +7,7 @@ const routes: RouteRecordRaw[] = [
     name: 'layout.main',
     component: () => import('layouts/main/MainLayoutControl.vue'),
     children: [
-      {path: '/', name: 'route.home', meta: {requiredAuthorities: [Authorities.ANONYMOUS]}, component: () => import('pages/home/HomePage.vue')},
+      {path: '/', name: 'route.home', meta: {requiredAuthorities: [Authorities.AUTHENTICATED]}, component: () => import('pages/home/HomePage.vue')},
     ],
   },
 
