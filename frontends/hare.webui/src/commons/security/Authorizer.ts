@@ -1,5 +1,5 @@
 import {RequiredAuthorities} from 'commons/security/RequiredAuthorities';
-import {AuthorizationResult, forbidden, success} from 'commons/security/AuthorizationResult';
+import {AuthorizationResult, forbidden, redirectToLogin, success} from 'commons/security/AuthorizationResult';
 import {GrantedAuthorities} from 'commons/security/GrantedAuthorities';
 
 export class Authorizer {
@@ -11,6 +11,7 @@ export class Authorizer {
 
   public authorize(requiredAuthorities: RequiredAuthorities): AuthorizationResult {
     if (requiredAuthorities.matches(this.grantedAuthorities)) return success();
+    if (this.grantedAuthorities.anonymous) return redirectToLogin();
     return forbidden();
   }
 }

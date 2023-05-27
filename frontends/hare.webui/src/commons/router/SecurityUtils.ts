@@ -2,5 +2,5 @@ import {requiredAuthorities, RequiredAuthorities} from 'commons/security/Require
 import {RouteLocationNormalized} from 'vue-router';
 
 export function requiredAuthoritiesFromRoute(route: RouteLocationNormalized): RequiredAuthorities {
-  return requiredAuthorities(...(route.meta?.['requiredAuthorities'] as string[] || [])); // TODO: use payload instead
+  return requiredAuthorities(...(route.meta?.['requiredAuthorities'] as string[])); // TODO: use payload instead
 }

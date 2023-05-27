@@ -1,5 +1,5 @@
 import {Navigator} from 'commons/router/Navigator';
-import {Router} from 'vue-router';
+import {RouteLocationRaw, Router} from 'vue-router';
 import {Authorizer} from 'commons/security/Authorizer';
 import {requiredAuthoritiesFromRoute} from 'commons/router/SecurityUtils';
 
@@ -11,10 +11,9 @@ export class VueRouterNavigator extends Navigator {
     super();
     this.router = router;
     this.authorizer = authorizer;
-    this.router.beforeEach(async (to, from, next) => {
+    this.router.beforeEach(async (to, from) => {
       const authorization = this.authorizer.authorize(requiredAuthoritiesFromRoute(to));
-      if (authorization.approved) return next();
-      return next({name: 'route.login'});
+      return authorization.redirect as RouteLocationRaw;
     });
   }
 
