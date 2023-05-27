@@ -1,5 +1,5 @@
 import {describe, expect, it} from '@jest/globals';
-import {forbidden, success} from 'commons/security/AuthorizationResult';
+import {forbidden, redirectToLogin, success} from 'commons/security/AuthorizationResult';
 
 describe('AuthorizationResult', () => {
   it('should be able to represent successful authorization', () => {
@@ -12,5 +12,11 @@ describe('AuthorizationResult', () => {
     const authorizationResult = forbidden();
     expect(authorizationResult.approved).toBeFalsy();
     expect(authorizationResult.redirect).toBeFalsy();
+  });
+
+  it('should be able to represent redirect-to-login authorization', () => {
+    const authorizationResult = redirectToLogin();
+    expect(authorizationResult.approved).toBeFalsy();
+    expect(authorizationResult.redirect).toStrictEqual({name: 'route.login'});
   });
 });
