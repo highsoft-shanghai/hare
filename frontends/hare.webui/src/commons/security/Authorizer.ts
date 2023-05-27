@@ -10,7 +10,7 @@ export class Authorizer {
   }
 
   public authorize(requiredAuthorities: RequiredAuthorities): AuthorizationResult {
-    if (requiredAuthorities.authorities.some(x => this.grantedAuthorities.authorities.has(x))) return success();
+    if (requiredAuthorities.matches(this.grantedAuthorities)) return success();
     return forbidden();
   }
 }
