@@ -8,7 +8,7 @@ export class RequiredAuthorities {
   }
 
   public matches(grantedAuthorities: GrantedAuthorities): boolean {
-    return this.authorities.some(authority => grantedAuthorities.authorities.has(authority));
+    return this.authorities.some(authority => grantedAuthorities.contains(authority));
   }
 }
 

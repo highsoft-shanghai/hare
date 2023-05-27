@@ -8,6 +8,11 @@ export class GrantedAuthorities {
     this.authorities = new Set(authorities);
   }
 
+  public contains(authority: string): boolean {
+    if (Authorities.ANONYMOUS === authority) return true;
+    return this.authorities.has(authority);
+  }
+
   public get authenticated(): boolean {
     return this.authorities.has(Authorities.AUTHENTICATED);
   }
