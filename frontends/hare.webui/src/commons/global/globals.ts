@@ -13,7 +13,7 @@ export interface Globals {
 export class ResettableGlobals implements Globals {
   private _application?: Application;
   private _navigator?: Navigator;
-  private _context = new Context(GrantedAuthorities.ANONYMOUS);
+  private _context = new Context();
 
   public get application(): Application {
     if (!this._application) throw new Error('Global application not initialized');

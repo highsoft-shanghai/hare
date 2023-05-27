@@ -4,7 +4,7 @@ import {Navigator} from 'commons/router/Navigator';
 import {createVueRouter} from 'src/router';
 import {setupComponentTest} from 'app/test/utils/component';
 import {Context} from 'commons/context/Context';
-import {grantedAuthorities, GrantedAuthorities} from 'commons/context/GrantedAuthorities';
+import {grantedAuthorities} from 'commons/context/GrantedAuthorities';
 import {Authorities} from 'commons/context/Authorities';
 
 setupComponentTest();
@@ -14,7 +14,7 @@ describe('VueRouterNavigator', () => {
   const requireAuthenticated = {meta: {requiredAuthorities: [Authorities.AUTHENTICATED]}};
   const requireHome = {meta: {requiredAuthorities: ['home']}};
   const component = {component: async () => ({})};
-  const context = new Context(GrantedAuthorities.ANONYMOUS);
+  const context = new Context();
 
   it('should replace current route to new one when goto succeeded', async () => {
     const router = createVueRouter([{path: '/', name: 'home', ...component, ...allowAnonymous}]);
@@ -39,7 +39,8 @@ describe('VueRouterNavigator', () => {
 
   it('should do nothing when current user is authenticated and target failed to authorized', async () => {
     const router = createVueRouter([{path: '/', name: 'test', ...allowAnonymous, ...component}, {path: '/home', name: 'home', ...requireHome, ...component}, {path: '/login', name: 'route.login', ...component, ...allowAnonymous}]);
-    const navigator: Navigator = new VueRouterNavigator(router, new Context(grantedAuthorities()));
+    context.reset(grantedAuthorities());
+    const navigator: Navigator = new VueRouterNavigator(router, context);
     const lastRoute = router.currentRoute.value;
     await navigator.goto('home');
     expect(router.currentRoute.value).toBe(lastRoute);

@@ -5,8 +5,8 @@ import {GrantedAuthorities} from 'commons/context/GrantedAuthorities';
 export class Context {
   private grantedAuthorities: GrantedAuthorities;
 
-  public constructor(grantedAuthorities: GrantedAuthorities) {
-    this.grantedAuthorities = grantedAuthorities;
+  public constructor() {
+    this.grantedAuthorities = GrantedAuthorities.ANONYMOUS;
   }
 
   public authorize(requiredAuthorities: RequiredAuthorities): AuthorizationResult {
