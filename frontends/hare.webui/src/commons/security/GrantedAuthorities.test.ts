@@ -1,8 +1,12 @@
 import {describe, expect, it} from '@jest/globals';
-import {grantedAuthorities} from 'commons/security/GrantedAuthorities';
+import {GrantedAuthorities, grantedAuthorities} from 'commons/security/GrantedAuthorities';
 
 describe('GrantedAuthorities', () => {
-  it('should be authenticated in normal', () => {
+  it('should be authenticated when created in normal', () => {
     expect(grantedAuthorities('user.add').authorities.has('authenticated')).toBeTruthy();
+  });
+
+  it('should be anonymous when created as anonymous', () => {
+    expect(GrantedAuthorities.ANONYMOUS.authorities.has('anonymous')).toBeTruthy();
   });
 });
