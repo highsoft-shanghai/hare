@@ -1,7 +1,8 @@
 import {Navigator} from 'commons/router/Navigator';
-import {RouteLocationRaw, Router} from 'vue-router';
+import {RouteLocationNormalized, Router} from 'vue-router';
 import {Authorizer} from 'commons/security/Authorizer';
 import {requiredAuthoritiesFromRoute} from 'commons/router/SecurityUtils';
+import {RedirectType} from 'commons/security/AuthorizationResult';
 
 export class VueRouterNavigator extends Navigator {
   private readonly router: Router;
@@ -11,13 +12,14 @@ export class VueRouterNavigator extends Navigator {
     super();
     this.router = router;
     this.authorizer = authorizer;
-    this.router.beforeEach(async (to, from) => {
-      const authorization = this.authorizer.authorize(requiredAuthoritiesFromRoute(to));
-      return authorization.redirect as RouteLocationRaw;
-    });
+    this.router.beforeEach(async to => this.authorize(to));
   }
 
   public async goto(page: string): Promise<void> {
     await this.router.replace(this.router.hasRoute(page) ? {name: page} : '/404');
+  }
+
+  private authorize(to: RouteLocationNormalized): RedirectType {
+    return this.authorizer.authorize(requiredAuthoritiesFromRoute(to)).redirect;
   }
 }

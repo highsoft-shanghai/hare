@@ -1,4 +1,4 @@
-export type RedirectType = false | string | undefined | { name: string | symbol | null | undefined };
+export type RedirectType = false | string | undefined | { name: string | symbol | undefined };
 
 export class AuthorizationResult {
   public readonly approved: boolean = false;
