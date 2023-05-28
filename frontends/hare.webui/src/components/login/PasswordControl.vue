@@ -1,7 +1,16 @@
 <template>
-  <q-input label="密码" hint="" type="password" model-value="123!@#Ab">
+  <text-input-control :model="model" type="password">
     <template #prepend>
       <q-icon name="lock_open"/>
     </template>
-  </q-input>
+  </text-input-control>
 </template>
+<script setup lang="ts">
+import TextInputControl from 'components/base/TextInputControl.vue';
+import {UnwrapRef} from 'vue';
+import {TextInputModel} from 'components/base/TextInputModel';
+
+defineProps<{
+  model: UnwrapRef<TextInputModel>
+}>();
+</script>

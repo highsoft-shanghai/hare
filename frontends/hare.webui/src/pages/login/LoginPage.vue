@@ -7,7 +7,7 @@
           <h5 class="text-center q-mb-xl">{{ globals.application.title }}</h5>
           <q-form class="row q-gutter-md" style="width: 100%" autofocus @submit="() => 1">
             <login-name-control :model="model.loginName" class="col-all"/>
-            <password-control class="col-all"/>
+            <password-control :model="model.password" class="col-all"/>
             <div class="col-all">
               <q-btn class="full-width q-mt-md" color="primary" type="submit">登录</q-btn>
             </div>
