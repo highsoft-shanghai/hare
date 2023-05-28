@@ -5,7 +5,7 @@
         <q-img class="full-height" fit="cover" width="560px" :src="login" no-spinner position="20% 50%"/>
         <div class="col-grow q-pa-xl" style="width: 32px">
           <h5 class="text-center q-mb-xl">{{ globals.application.title }}</h5>
-          <q-form class="row q-gutter-md" style="width: 100%" autofocus @submit="() => 1">
+          <q-form class="row q-gutter-md" style="width: 100%" autofocus @submit="() => model.submit()">
             <login-name-control :model="model.loginName" class="col-all"/>
             <password-control :model="model.password" class="col-all"/>
             <login-submit-button :submittable="model.submittable" class="col-all"/>
