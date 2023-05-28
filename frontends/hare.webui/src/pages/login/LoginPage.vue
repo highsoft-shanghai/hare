@@ -8,7 +8,7 @@
           <q-form class="row q-gutter-md" style="width: 100%" autofocus @submit="() => 1">
             <login-name-control :model="model.loginName" class="col-all"/>
             <password-control :model="model.password" class="col-all"/>
-            <submit-button :submittable="model.submittable" class="col-all"/>
+            <login-submit-button :submittable="model.submittable" class="col-all"/>
           </q-form>
         </div>
       </q-card-section>
@@ -23,7 +23,7 @@ import LoginNameControl from 'components/login/LoginNameControl.vue';
 import PasswordControl from 'components/login/PasswordControl.vue';
 import {reactive} from 'vue';
 import {LoginModel} from 'pages/login/LoginModel';
-import SubmitButton from 'pages/login/SubmitButton.vue';
+import LoginSubmitButton from 'pages/login/LoginSubmitButton.vue';
 
 const model = reactive(new LoginModel());
 </script>
