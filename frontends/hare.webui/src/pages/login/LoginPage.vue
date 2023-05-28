@@ -25,5 +25,5 @@ import {reactive} from 'vue';
 import {LoginModel} from 'pages/login/LoginModel';
 import LoginSubmitButton from 'pages/login/LoginSubmitButton.vue';
 
-const model = reactive(new LoginModel());
+const model = reactive(new LoginModel(globals.navigator, globals.context));
 </script>
