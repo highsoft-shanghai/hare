@@ -8,7 +8,7 @@ import LoginPage from 'pages/login/LoginPage.vue';
 import BlankLayoutControl from 'layouts/blank/BlankLayoutControl.vue';
 import LoginNameControl from 'components/login/LoginNameControl.vue';
 import PasswordControl from 'components/login/PasswordControl.vue';
-import SubmitButton from 'pages/login/SubmitButton.vue';
+import LoginSubmitButton from 'pages/login/LoginSubmitButton.vue';
 
 setupComponentTest();
 
@@ -45,6 +45,15 @@ describe('LoginPage', () => {
     await router.replace('/login');
     await router.isReady();
     const loginPage = wrapper.findComponent(LoginPage);
-    expect(loginPage.findComponent(SubmitButton).vm.submittable).toBeFalsy();
+    expect(loginPage.findComponent(LoginSubmitButton).find('button').element.disabled).toBeTruthy();
+  });
+
+  it('should present normal submit button if login form is submittable', async () => {
+    await router.replace('/login');
+    await router.isReady();
+    const loginPage = wrapper.findComponent(LoginPage);
+    await loginPage.findComponent(LoginNameControl).find('input').setValue('john@highsoft.ltd');
+    await loginPage.findComponent(PasswordControl).find('input').setValue('simple-password');
+    expect(loginPage.findComponent(LoginSubmitButton).find('button').element.disabled).toBeFalsy();
   });
 });
