@@ -24,6 +24,7 @@ import PasswordControl from 'components/login/PasswordControl.vue';
 import {reactive} from 'vue';
 import {LoginModel} from 'pages/login/LoginModel';
 import LoginSubmitButton from 'pages/login/LoginSubmitButton.vue';
+import {AxiosLoginApi} from 'pages/login/AxiosLoginApi';
 
-const model = reactive(new LoginModel(globals.navigator, globals.context));
+const model = reactive(new LoginModel(new AxiosLoginApi(), globals.navigator, globals.context));
 </script>
