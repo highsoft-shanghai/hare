@@ -4,12 +4,11 @@ import {Context} from 'commons/context/Context';
 import {requiredAuthoritiesFromRoute} from 'commons/router/ContextUtils';
 import {RedirectType} from 'commons/context/AuthorizationResult';
 
-export class VueRouterNavigator extends Navigator {
+export class VueRouterNavigator implements Navigator {
   private readonly router: Router;
   private readonly context: Context;
 
   public constructor(router: Router, context: Context) {
-    super();
     this.router = router;
     this.context = context;
     this.router.beforeEach(async to => this.authorize(to));

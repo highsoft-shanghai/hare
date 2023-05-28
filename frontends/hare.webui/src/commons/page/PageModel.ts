@@ -1,5 +1,5 @@
 import { PageKey } from 'commons/page/PageKey';
-import { I18nMessage } from 'commons/i18n/i18n';
+import {I18nMessage} from 'commons/i18n/i18nMessage';
 
 export class PageModel {
   public readonly key: PageKey;
