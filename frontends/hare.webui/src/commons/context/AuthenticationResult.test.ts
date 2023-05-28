@@ -10,14 +10,14 @@ describe('AuthenticationResult', () => {
     const result = authenticationResult(payload({success: true, accessToken: 'token-from-server'}));
     expect(result.success).toBeTruthy();
     expect(result.accessToken).toBe('token-from-server');
-    expect(result.message).toBeUndefined();
+    expect(result.reason).toBeUndefined();
   });
 
   it('should be able to represent failed authentication', () => {
-    const result = authenticationResult(payload({success: false, message: 'message-from-server'}));
+    const result = authenticationResult(payload({success: false, reason: 'message-from-server'}));
     expect(result.success).toBeFalsy();
     expect(result.accessToken).toBeUndefined();
-    expect(result.message).toBe('message-from-server');
+    expect(result.reason).toBe('message-from-server');
   });
 
   it('should reject malformed payloads', () => {
@@ -26,14 +26,14 @@ describe('AuthenticationResult', () => {
   });
 
   it('should clean up abnormal payloads with redundant access-token', () => {
-    const result = authenticationResult(payload({success: false, accessToken: 'redundant-token', message: 'message-from-server'}));
+    const result = authenticationResult(payload({success: false, accessToken: 'redundant-token', reason: 'message-from-server'}));
     expect(result.success).toBeFalsy();
     expect(result.accessToken).toBeUndefined();
   });
 
   it('should clean up abnormal payloads with redundant message', () => {
-    const result = authenticationResult(payload({success: true, accessToken: 'token', message: 'redundant message'}));
+    const result = authenticationResult(payload({success: true, accessToken: 'token', reason: 'redundant message'}));
     expect(result.success).toBeTruthy();
-    expect(result.message).toBeUndefined();
+    expect(result.reason).toBeUndefined();
   });
 });

@@ -1,5 +1,5 @@
 <template>
-  <div class="text-negative">{{ model?.message }}</div>
+  <div class="text-negative">{{ model?.reason }}</div>
 </template>
 
 <script setup lang="ts">
