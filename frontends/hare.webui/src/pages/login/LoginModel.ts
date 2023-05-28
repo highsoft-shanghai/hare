@@ -3,7 +3,7 @@ import {i18n} from 'commons/i18n/i18n';
 import {Navigator} from 'commons/router/Navigator';
 import {Context} from 'commons/context/Context';
 import {LoginApi} from 'pages/login/LoginApi';
-import {authenticationResult} from 'commons/context/AuthenticationResult';
+import {AuthenticationResult, authenticationResult} from 'commons/context/AuthenticationResult';
 import {payload, Payload} from 'commons/payload/Payload';
 
 export class LoginModel {
@@ -12,6 +12,7 @@ export class LoginModel {
   private readonly context: Context;
   private readonly _loginName = new TextInputModel(i18n('label.login-name'));
   private readonly _password = new TextInputModel(i18n('label.password'));
+  private _authenticationResult?: AuthenticationResult;
 
   public constructor(api: LoginApi, navigator: Navigator, context: Context) {
     this.api = api;
@@ -20,8 +21,9 @@ export class LoginModel {
   }
 
   public async submit(): Promise<void> {
-    const result = authenticationResult(await this.api.login(this.payload));
-    await this.context.reset(result.accessToken);
+    this._authenticationResult = authenticationResult(await this.api.login(this.payload));
+    if (!this._authenticationResult.accessToken) return;
+    await this.context.reset(this._authenticationResult.accessToken);
     await this.navigator.goto('route.home');
   }
 
@@ -35,6 +37,10 @@ export class LoginModel {
 
   public get submittable(): boolean {
     return !!this.loginName.value && !!this.password.value;
+  }
+
+  public get lastAuthenticationResult(): AuthenticationResult | undefined {
+    return this._authenticationResult;
   }
 
   private get payload(): Payload {

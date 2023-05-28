@@ -6,6 +6,7 @@ import {Context} from 'commons/context/Context';
 import {LoginApi} from 'pages/login/LoginApi';
 import {initializePayloadFactories} from 'commons/payload/FactoriesInitializer';
 import {payload} from 'commons/payload/Payload';
+import {authenticationResult} from 'commons/context/AuthenticationResult';
 
 describe('LoginModel', () => {
   let mockApi: ReturnType<typeof mock<LoginApi>>;
@@ -38,5 +39,15 @@ describe('LoginModel', () => {
     await model.submit();
     expect(mockContext.reset).toBeCalledWith('access-token.mock');
     expect(mockNavigator.goto).toBeCalledWith('route.home');
+  });
+
+  it('should report error when submit failed', async () => {
+    mockApi.login.calledWith(any()).mockReturnValue(payload({success: false, message: 'message from server'}));
+    model.loginName.handleInput('john@highsoft.ltd');
+    model.password.handleInput('simple-password');
+    await model.submit();
+    expect(mockContext.reset).not.toBeCalled();
+    expect(mockNavigator.goto).not.toBeCalled();
+    expect(model.lastAuthenticationResult).toEqual(authenticationResult(payload({success: false, message: 'message from server'})));
   });
 });
