@@ -11,4 +11,11 @@ describe('AuthenticationResult', () => {
     expect(result.success).toBeTruthy();
     expect(result.accessToken).toBe('token-from-server');
   });
+
+  it('should be able to represent failed authentication', () => {
+    const result = authenticationResult(payload({success: false, message: 'message-from-server'}));
+    expect(result.success).toBeFalsy();
+    expect(result.accessToken).toBeUndefined();
+    expect(result.message).toBe('message-from-server');
+  });
 });
