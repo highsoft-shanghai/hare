@@ -8,6 +8,7 @@ import LoginPage from 'pages/login/LoginPage.vue';
 import BlankLayoutControl from 'layouts/blank/BlankLayoutControl.vue';
 import LoginNameControl from 'components/login/LoginNameControl.vue';
 import PasswordControl from 'components/login/PasswordControl.vue';
+import {QBtn} from 'quasar';
 
 setupComponentTest();
 
@@ -35,7 +36,15 @@ describe('LoginPage', () => {
   it('should present users the login form', async () => {
     await router.replace('/login');
     await router.isReady();
-    expect(wrapper.findComponent(LoginNameControl).find('.q-field__label').text()).toBe('用户名');
-    expect(wrapper.findComponent(PasswordControl).find('.q-field__label').text()).toBe('密码');
+    const loginPage = wrapper.findComponent(LoginPage);
+    expect(loginPage.findComponent(LoginNameControl).find('.q-field__label').text()).toBe('用户名');
+    expect(loginPage.findComponent(PasswordControl).find('.q-field__label').text()).toBe('密码');
+  });
+
+  it('should present disabled submit button if login form is not submittable', async () => {
+    await router.replace('/login');
+    await router.isReady();
+    const loginPage = wrapper.findComponent(LoginPage);
+    expect(loginPage.findComponent(QBtn).vm.disable).toBeTruthy();
   });
 });

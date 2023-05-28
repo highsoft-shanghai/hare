@@ -9,7 +9,7 @@
             <login-name-control :model="model.loginName" class="col-all"/>
             <password-control :model="model.password" class="col-all"/>
             <div class="col-all">
-              <q-btn class="full-width q-mt-md" color="primary" type="submit">登录</q-btn>
+              <q-btn class="full-width q-mt-md" :disable="!model.submittable" color="primary" type="submit">登录</q-btn>
             </div>
           </q-form>
         </div>
