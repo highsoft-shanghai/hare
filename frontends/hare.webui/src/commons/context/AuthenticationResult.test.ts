@@ -25,9 +25,15 @@ describe('AuthenticationResult', () => {
     expect(() => authenticationResult(payload({success: false}))).toThrow('Malformed authentication result payload from server');
   });
 
-  it('should cleanup abnormal payloads with redundant access-token', () => {
-    const result = authenticationResult(payload({success: false, accessToken: 'abnormal-token', message: 'message-from-server'}));
+  it('should clean up abnormal payloads with redundant access-token', () => {
+    const result = authenticationResult(payload({success: false, accessToken: 'redundant-token', message: 'message-from-server'}));
     expect(result.success).toBeFalsy();
     expect(result.accessToken).toBeUndefined();
+  });
+
+  it('should clean up abnormal payloads with redundant message', () => {
+    const result = authenticationResult(payload({success: true, accessToken: 'token', message: 'redundant message'}));
+    expect(result.success).toBeTruthy();
+    expect(result.message).toBeUndefined();
   });
 });
