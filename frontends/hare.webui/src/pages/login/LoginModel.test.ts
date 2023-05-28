@@ -1,14 +1,20 @@
 import {beforeEach, describe, expect, it} from '@jest/globals';
 import {LoginModel} from 'pages/login/LoginModel';
-import {mock} from 'jest-mock-extended';
+import {any, mock} from 'jest-mock-extended';
 import {Navigator} from 'commons/router/Navigator';
 import {Context} from 'commons/context/Context';
 import {LoginApi} from 'pages/login/LoginApi';
+import {initializePayloadFactories} from 'commons/payload/FactoriesInitializer';
+import {payload} from 'commons/payload/Payload';
 
 describe('LoginModel', () => {
-  let mockApi: LoginApi, mockNavigator: Navigator, mockContext: Context, model: LoginModel;
+  let mockApi: ReturnType<typeof mock<LoginApi>>;
+  let mockNavigator: ReturnType<typeof mock<Navigator>>;
+  let mockContext: ReturnType<typeof mock<Context>>;
+  let model: LoginModel;
 
   beforeEach(() => {
+    initializePayloadFactories();
     mockApi = mock<LoginApi>();
     mockNavigator = mock<Navigator>();
     mockContext = mock<Context>();
@@ -23,5 +29,14 @@ describe('LoginModel', () => {
     model.loginName.handleInput('john@highsoft.ltd');
     model.password.handleInput('simple-password');
     expect(model.submittable).toBeTruthy();
+  });
+
+  it('should redirect to home page if submit success', async () => {
+    mockApi.login.calledWith(any()).mockReturnValue(payload({success: true, accessToken: 'access-token.mock'}));
+    model.loginName.handleInput('john@highsoft.ltd');
+    model.password.handleInput('simple-password');
+    await model.submit();
+    expect(mockContext.reset).toBeCalledWith('access-token.mock');
+    expect(mockNavigator.goto).toBeCalledWith('route.home');
   });
 });

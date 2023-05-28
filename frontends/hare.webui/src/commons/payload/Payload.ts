@@ -23,6 +23,10 @@ export class Payload {
     return new Payload('', (this._value as Record<string, unknown>)[key]);
   }
 
+  public get value(): unknown {
+    return this._value;
+  }
+
   public get empty(): boolean {
     return !this.key && !this._value;
   }

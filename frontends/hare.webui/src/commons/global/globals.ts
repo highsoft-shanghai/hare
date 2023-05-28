@@ -2,7 +2,6 @@ import {Application} from 'commons/application/Application';
 import {reactive} from 'vue';
 import {Navigator} from 'commons/router/Navigator';
 import {Context} from 'commons/context/Context';
-import {GrantedAuthorities} from 'commons/context/GrantedAuthorities';
 
 export interface Globals {
   readonly application: Application;
@@ -13,7 +12,7 @@ export interface Globals {
 export class ResettableGlobals implements Globals {
   private _application?: Application;
   private _navigator?: Navigator;
-  private _context = new Context();
+  private _context?: Context;
 
   public get application(): Application {
     if (!this._application) throw new Error('Global application not initialized');
@@ -26,6 +25,7 @@ export class ResettableGlobals implements Globals {
   }
 
   public get context(): Context {
+    if (!this._context) throw new Error('Global context not initialized');
     return this._context;
   }
 
@@ -37,14 +37,14 @@ export class ResettableGlobals implements Globals {
     this._navigator = navigator;
   }
 
-  public resetContext(grantedAuthorities: GrantedAuthorities): void {
-    this._context.reset(grantedAuthorities);
+  public resetContext(context: Context): void {
+    this._context = context;
   }
 
   public clear(): void {
     this._application = undefined;
     this._navigator = undefined;
-    this._context.clear();
+    this._context = undefined;
   }
 }
 

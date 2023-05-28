@@ -1,10 +1,10 @@
 import {TextInputModel} from 'components/base/TextInputModel';
 import {i18n} from 'commons/i18n/i18n';
-import {globals, resettableGlobals} from 'commons/global/globals';
-import {grantedAuthorities} from 'commons/context/GrantedAuthorities';
 import {Navigator} from 'commons/router/Navigator';
 import {Context} from 'commons/context/Context';
 import {LoginApi} from 'pages/login/LoginApi';
+import {authenticationResult} from 'commons/context/AuthenticationResult';
+import {payload, Payload} from 'commons/payload/Payload';
 
 export class LoginModel {
   private readonly api: LoginApi;
@@ -20,9 +20,9 @@ export class LoginModel {
   }
 
   public async submit(): Promise<void> {
-    // TODO: implement it
-    resettableGlobals.resetContext(grantedAuthorities());
-    await globals.navigator.goto('route.home');
+    const result = authenticationResult(await this.api.login(this.payload));
+    await this.context.reset(result.accessToken);
+    await this.navigator.goto('route.home');
   }
 
   public get loginName(): TextInputModel {
@@ -35,5 +35,9 @@ export class LoginModel {
 
   public get submittable(): boolean {
     return !!this.loginName.value && !!this.password.value;
+  }
+
+  private get payload(): Payload {
+    return payload({loginName: this.loginName.value, secret: this.password.value});
   }
 }

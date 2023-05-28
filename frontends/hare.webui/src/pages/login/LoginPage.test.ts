@@ -9,14 +9,18 @@ import BlankLayoutControl from 'layouts/blank/BlankLayoutControl.vue';
 import LoginNameControl from 'components/login/LoginNameControl.vue';
 import PasswordControl from 'components/login/PasswordControl.vue';
 import LoginSubmitButton from 'pages/login/LoginSubmitButton.vue';
+import MockAdapter from 'axios-mock-adapter';
+import {api} from 'commons/api/api';
 
 setupComponentTest();
 
 describe('LoginPage', () => {
   let router: Router;
   let wrapper: VueWrapper;
+  let mockApi: MockAdapter;
 
   beforeEach(async () => {
+    mockApi = new MockAdapter(api);
     router = installVueRouter();
     wrapper = mount(App, {global: {plugins: [router]}});
     await router.replace('/login');
@@ -50,6 +54,8 @@ describe('LoginPage', () => {
   });
 
   it('should redirect to home page when login success', async () => {
+    mockApi.onPost('/api/logins').reply(201, {id: 'login.mock.id', success: true, accessToken: 'access-token.mock'});
+    mockApi.onGet('/api/access-tokens/access-token.mock').reply(200, {grantedAuthorities: []});
     const loginPage = wrapper.findComponent(LoginPage);
     await loginPage.findComponent(LoginNameControl).find('input').setValue('john@highsoft.ltd');
     await loginPage.findComponent(PasswordControl).find('input').setValue('simple-password');

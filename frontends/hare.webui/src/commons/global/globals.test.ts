@@ -29,4 +29,9 @@ describe('globals', () => {
     resettableGlobals.clear();
     expect(() => globals.navigator).toThrowError('Global navigator not initialized');
   });
+
+  it('should report error when clients attempt to access uninitialized context', () => {
+    resettableGlobals.clear();
+    expect(() => globals.context).toThrowError('Global context not initialized');
+  });
 });

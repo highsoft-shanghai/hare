@@ -2,12 +2,10 @@ import {defineMock} from 'vite-plugin-mock-dev-server';
 
 // noinspection JSUnusedGlobalSymbols
 export default defineMock({
-  url: '/api/logins',
-  delay: 1000,
+  url: '/api/access-tokens/access-token.mock.id',
+  delay: 500,
   body: {
-    id: 'login.mock.id',
-    accessToken: 'access-token.mock.id',
-    success: true,
-    message: ''
+    id: 'access-token.mock.id',
+    grantedAuthorities: []
   }
 });

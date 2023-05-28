@@ -1,3 +1,5 @@
+import {Payload} from 'commons/payload/Payload';
+
 export interface LoginApi {
-  readonly login: (payload: Readonly<Record<string, unknown>>) => Promise<Readonly<Record<string, unknown>>>
+  readonly login: (payload: Payload) => Promise<Payload>;
 }

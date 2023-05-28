@@ -1,11 +1,16 @@
 import {RequiredAuthorities} from 'commons/context/RequiredAuthorities';
 import {AuthorizationResult, forbidden, redirectToLogin, success} from 'commons/context/AuthorizationResult';
-import {GrantedAuthorities} from 'commons/context/GrantedAuthorities';
+import {grantedAuthorities, GrantedAuthorities} from 'commons/context/GrantedAuthorities';
+import {ContextApi} from 'commons/context/ContextApi';
+import {string} from 'commons/payload/StringType';
+import {array} from 'commons/payload/ArrayType';
 
 export class Context {
+  private api: ContextApi;
   private grantedAuthorities: GrantedAuthorities;
 
-  public constructor() {
+  public constructor(api: ContextApi) {
+    this.api = api;
     this.grantedAuthorities = GrantedAuthorities.ANONYMOUS;
   }
 
@@ -15,8 +20,9 @@ export class Context {
     return forbidden();
   }
 
-  public reset(grantedAuthorities: GrantedAuthorities): void {
-    this.grantedAuthorities = grantedAuthorities;
+  public async reset(accessToken: string): Promise<void> {
+    const authorities = (await this.api.get(accessToken)).get('grantedAuthorities').as(array()).map(x => x.as(string()));
+    this.grantedAuthorities = grantedAuthorities(...authorities);
   }
 
   public clear(): void {

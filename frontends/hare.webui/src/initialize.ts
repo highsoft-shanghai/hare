@@ -8,6 +8,5 @@ import {initializePayloadFactories} from 'commons/payload/FactoriesInitializer';
 
 export function initializeGlobals(app: App): void {
   initializePayloadFactories();
-  resettableGlobals.context.clear();
   resettableGlobals.resetApplication(new Application(new VueCulture(app), new PageModel(pagekey('route.home'))));
 }
