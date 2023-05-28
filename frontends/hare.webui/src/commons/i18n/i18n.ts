@@ -1,19 +1,11 @@
-import { culture } from 'commons/i18n/CultureAccessor';
+import {I18nMessage} from 'commons/i18n/I18nMessage';
+import {Message} from 'commons/i18n/Message';
+import {SimpleMessage} from 'commons/i18n/SimpleMessage';
 
-export class I18nMessage {
-  public readonly code: string;
-  private readonly args: unknown[];
-
-  public constructor(code: string, ...args: unknown[]) {
-    this.code = code;
-    this.args = args;
-  }
-
-  public toString(): string {
-    return culture.localize(this.code, this.args);
-  }
+export function i18n(code: string, ...args: unknown[]): Message {
+  return new I18nMessage(code, args);
 }
 
-export function i18n(code: string, ...args: unknown[]): I18nMessage {
-  return new I18nMessage(code, args);
+export function message(value: string): Message {
+  return new SimpleMessage(value);
 }

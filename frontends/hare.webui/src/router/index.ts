@@ -2,8 +2,10 @@ import {route} from 'quasar/wrappers';
 import {createRouter, Router, RouteRecordRaw} from 'vue-router';
 import routes from './routes';
 import {HistoryFactory} from 'commons/router/HistoryFactory';
-import {resettableGlobals} from 'commons/global/globals';
+import {globals, resettableGlobals} from 'commons/global/globals';
 import {VueRouterNavigator} from 'commons/router/VueRouterNavigator';
+import {Context} from 'commons/context/Context';
+import {AxiosContextApi} from 'commons/context/AxiosContextApi';
 
 /*
  * If not building with SSR mode, you can
@@ -23,7 +25,8 @@ export function createVueRouter(routes: ReadonlyArray<RouteRecordRaw>): Router {
 
 export function installVueRouter(/* { store, ssrContext } */): Router {
   const router = createVueRouter(routes);
-  resettableGlobals.resetNavigator(new VueRouterNavigator(router));
+  resettableGlobals.resetContext(new Context(new AxiosContextApi()));
+  resettableGlobals.resetNavigator(new VueRouterNavigator(router, globals.context));
   return router;
 }
 

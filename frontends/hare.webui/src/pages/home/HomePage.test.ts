@@ -5,16 +5,23 @@ import App from 'src/App.vue';
 import {installVueRouter} from 'src/router';
 import HomePage from 'pages/home/HomePage.vue';
 import {Router} from 'vue-router';
+import {globals} from 'commons/global/globals';
+import MockAdapter from 'axios-mock-adapter';
+import {api} from 'commons/api/api';
 
 setupComponentTest();
 
 describe('HomePage', () => {
   let router: Router;
   let wrapper: VueWrapper;
+  let mockApi: MockAdapter;
 
   beforeEach(() => {
+    mockApi = new MockAdapter(api);
     router = installVueRouter();
     wrapper = mount(App, {global: {plugins: [router]}});
+    mockApi.onGet('/api/access-tokens/access-token.test').reply(200, {grantedAuthorities: []});
+    globals.context.reset('access-token.test');
   });
 
   it('should be able to visited by router', async () => {
