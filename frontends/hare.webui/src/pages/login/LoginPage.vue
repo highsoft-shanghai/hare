@@ -6,7 +6,7 @@
         <div class="col-grow q-pa-xl" style="width: 32px">
           <h5 class="text-center q-mb-xl">{{ globals.application.title }}</h5>
           <q-form class="row q-gutter-md" style="width: 100%" autofocus @submit="() => 1">
-            <login-name-control class="col-all"/>
+            <login-name-control :model="model.loginName" class="col-all"/>
             <password-control class="col-all"/>
             <div class="col-all">
               <q-btn class="full-width q-mt-md" color="primary" type="submit">登录</q-btn>
@@ -23,4 +23,8 @@ import {globals} from 'commons/global/globals';
 import login from 'assets/login.png';
 import LoginNameControl from 'components/login/LoginNameControl.vue';
 import PasswordControl from 'components/login/PasswordControl.vue';
+import {reactive} from 'vue';
+import {LoginModel} from 'pages/login/LoginModel';
+
+const model = reactive(new LoginModel());
 </script>
