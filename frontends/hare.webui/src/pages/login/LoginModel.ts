@@ -13,6 +13,7 @@ export class LoginModel {
   private readonly _loginName = new TextInputModel(i18n('label.login-name'));
   private readonly _password = new TextInputModel(i18n('label.password'));
   private _authenticationResult?: AuthenticationResult;
+  private _loading = false;
 
   public constructor(api: LoginApi, navigator: Navigator, context: Context) {
     this.api = api;
@@ -21,10 +22,16 @@ export class LoginModel {
   }
 
   public async submit(): Promise<void> {
-    this._authenticationResult = authenticationResult(await this.api.login(this.payload));
-    if (!this._authenticationResult.accessToken) return;
-    await this.context.reset(this._authenticationResult.accessToken);
-    await this.navigator.goto('route.home');
+    try {
+      this._loading = true;
+      this._authenticationResult = undefined;
+      this._authenticationResult = authenticationResult(await this.api.login(this.payload));
+      if (!this._authenticationResult.accessToken) return;
+      await this.context.reset(this._authenticationResult.accessToken);
+      await this.navigator.goto('route.home');
+    } finally {
+      this._loading = false;
+    }
   }
 
   public get loginName(): TextInputModel {
@@ -37,6 +44,10 @@ export class LoginModel {
 
   public get submittable(): boolean {
     return !!this.loginName.value && !!this.password.value;
+  }
+
+  public get loading(): boolean {
+    return this._loading;
   }
 
   public get lastAuthenticationResult(): AuthenticationResult | undefined {

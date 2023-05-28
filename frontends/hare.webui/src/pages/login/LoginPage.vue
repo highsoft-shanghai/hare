@@ -8,7 +8,8 @@
           <q-form class="row q-gutter-md" style="width: 100%" autofocus @submit="() => model.submit()">
             <login-name-control :model="model.loginName" class="col-all"/>
             <password-control :model="model.password" class="col-all"/>
-            <login-submit-button :submittable="model.submittable" class="col-all"/>
+            <login-submit-button :submittable="model.submittable" :loading="model.loading" class="col-all"/>
+            <login-result-control class="q-mt-sm" :model="model.lastAuthenticationResult"/>
           </q-form>
         </div>
       </q-card-section>
@@ -25,6 +26,7 @@ import {reactive} from 'vue';
 import {LoginModel} from 'pages/login/LoginModel';
 import LoginSubmitButton from 'pages/login/LoginSubmitButton.vue';
 import {AxiosLoginApi} from 'pages/login/AxiosLoginApi';
+import LoginResultControl from 'pages/login/LoginResultControl.vue';
 
 const model = reactive(new LoginModel(new AxiosLoginApi(), globals.navigator, globals.context));
 </script>

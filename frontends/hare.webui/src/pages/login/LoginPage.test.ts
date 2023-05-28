@@ -11,6 +11,7 @@ import PasswordControl from 'components/login/PasswordControl.vue';
 import LoginSubmitButton from 'pages/login/LoginSubmitButton.vue';
 import MockAdapter from 'axios-mock-adapter';
 import {api} from 'commons/api/api';
+import LoginResultControl from 'pages/login/LoginResultControl.vue';
 
 setupComponentTest();
 
@@ -63,5 +64,15 @@ describe('LoginPage', () => {
     await flushPromises();
     await router.isReady();
     expect(router.currentRoute.value.name).toBe('route.home');
+  });
+
+  it('should notice users when login failed', async () => {
+    mockApi.onPost('/api/logins').reply(201, {id: 'login.mock.id', success: false, message: 'Failed to login in from test'});
+    const loginPage = wrapper.findComponent(LoginPage);
+    await loginPage.findComponent(LoginNameControl).find('input').setValue('john@highsoft.ltd');
+    await loginPage.findComponent(PasswordControl).find('input').setValue('invalid-password');
+    await loginPage.findComponent(LoginSubmitButton).find('button').trigger('submit');
+    await flushPromises();
+    expect(loginPage.findComponent(LoginResultControl).text()).toBe('Failed to login in from test');
   });
 });
