@@ -6,6 +6,6 @@ export class LoginModel {
   public readonly password = new TextInputModel(i18n('label.password'));
 
   public get submittable(): boolean {
-    return false;
+    return !!this.loginName.value && !!this.password.value;
   }
 }
