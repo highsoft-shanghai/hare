@@ -27,4 +27,10 @@ describe('LoginNameControl', () => {
     await flushPromises();
     expect(wrapper.find('input').element.value).toBe('abc');
   });
+
+  it('should update model when user input texts', async () => {
+    const wrapper = mount(LoginNameControl, {props: {model: model.value}});
+    await wrapper.find('input').setValue('input text');
+    expect(model.value.value).toBe('input text');
+  });
 });
