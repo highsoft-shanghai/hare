@@ -5,7 +5,7 @@ export class TextInputModel implements ControlModel {
   private _label?: Message;
   private _value: string | undefined = undefined;
 
-  public constructor(label: Message | undefined, value?: string) {
+  public constructor(label?: Message, value?: string) {
     this._label = label;
     this._value = value;
   }

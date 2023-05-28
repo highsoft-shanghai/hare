@@ -21,6 +21,12 @@ describe('TextInputControl', () => {
     expect(wrapper.find('.q-field__label').text()).toBe('Label Content');
   });
 
+  it('should be able to configured without label', async () => {
+    const wrapper = mount(TextInputControl, {props: {model: reactive(new TextInputModel())}});
+    expect(wrapper.find('input').exists()).toBeTruthy();
+    expect(wrapper.find('.q-field__label').exists()).toBeFalsy();
+  });
+
   it('should be able to present values from model', async () => {
     const wrapper = mount(TextInputControl, {props: {model: model}});
     model.handleInput('abc');
