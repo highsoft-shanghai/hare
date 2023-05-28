@@ -1,5 +1,5 @@
 <template>
-  <q-input :label="model.label.toString()" hint="" :hide-hint="false" :model-value="model.value" @update:model-value="e => model.handleInput(e)">
+  <q-input :label="model.label" hint="" :hide-hint="false" :model-value="model.value" @update:model-value="e => model.handleInput(e)">
     <template #prepend>
       <q-icon name="perm_identity"/>
     </template>
@@ -7,9 +7,9 @@
 </template>
 <script setup lang="ts">
 import {UnwrapRef} from 'vue';
-import {LoginNameModel} from 'components/login/LoginNameModel';
+import {TextInputModel} from 'components/base/TextInputModel';
 
 defineProps<{
-  model: UnwrapRef<LoginNameModel>
+  model: UnwrapRef<TextInputModel>
 }>();
 </script>

@@ -1,17 +1,18 @@
 import {beforeEach, describe, expect, it} from '@jest/globals';
 import {flushPromises, mount} from '@vue/test-utils';
 import {setupComponentTest} from 'app/test/utils/component';
-import {LoginNameModel} from 'components/login/LoginNameModel';
+import {TextInputModel} from 'components/base/TextInputModel';
 import LoginNameControl from 'components/login/LoginNameControl.vue';
 import {ref} from 'vue';
+import {i18n} from 'commons/i18n/i18n';
 
 setupComponentTest();
 
 describe('LoginNameControl', () => {
-  const model = ref(new LoginNameModel());
+  const model = ref(new TextInputModel(i18n('label.login-name')));
 
   beforeEach(() => {
-    model.value = new LoginNameModel();
+    model.value = new TextInputModel(i18n('label.login-name'));
   });
 
   it('should present users the an input box, a label and an icon', () => {
