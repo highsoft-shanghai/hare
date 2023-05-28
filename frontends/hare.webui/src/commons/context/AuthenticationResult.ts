@@ -11,6 +11,13 @@ export class AuthenticationResult {
     this.success = payload.get('success').as(boolean());
     this.accessToken = payload.get('accessToken').as(string().allowOptional());
     this.message = payload.get('message').as(string().allowOptional());
+    this.verify();
+  }
+
+  private verify() {
+    if (this.success && !this.accessToken || !this.success && !this.message) {
+      throw new Error('Malformed authentication result payload from server');
+    }
   }
 }
 

@@ -10,6 +10,7 @@ describe('AuthenticationResult', () => {
     const result = authenticationResult(payload({success: true, accessToken: 'token-from-server'}));
     expect(result.success).toBeTruthy();
     expect(result.accessToken).toBe('token-from-server');
+    expect(result.message).toBeUndefined();
   });
 
   it('should be able to represent failed authentication', () => {
@@ -17,5 +18,10 @@ describe('AuthenticationResult', () => {
     expect(result.success).toBeFalsy();
     expect(result.accessToken).toBeUndefined();
     expect(result.message).toBe('message-from-server');
+  });
+
+  it('should reject malformed payloads', () => {
+    expect(() => authenticationResult(payload({success: true}))).toThrow('Malformed authentication result payload from server');
+    expect(() => authenticationResult(payload({success: false}))).toThrow('Malformed authentication result payload from server');
   });
 });
