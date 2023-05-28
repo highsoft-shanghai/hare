@@ -27,4 +27,9 @@ describe('TextInputControl', () => {
     await wrapper.find('input').setValue('input text');
     expect(model.value.value).toBe('input text');
   });
+
+  it('should be able to support prepend slot', async () => {
+    const wrapper = mount(TextInputControl, {props: {model: model.value}, slots: {prepend: 'Prepend Content'}});
+    expect(wrapper.find('.q-field__prepend').text()).toBe('Prepend Content');
+  });
 });
