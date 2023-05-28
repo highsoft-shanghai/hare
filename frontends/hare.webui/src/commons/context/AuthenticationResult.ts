@@ -9,7 +9,7 @@ export class AuthenticationResult {
 
   public constructor(payload: Payload) {
     this.success = payload.get('success').as(boolean());
-    this.accessToken = payload.get('accessToken').as(string().allowOptional());
+    this.accessToken = this.success ? payload.get('accessToken').as(string().allowOptional()) : undefined;
     this.message = payload.get('message').as(string().allowOptional());
     this.verify();
   }
