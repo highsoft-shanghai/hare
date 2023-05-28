@@ -44,4 +44,9 @@ describe('TextInputControl', () => {
     const wrapper = mount(TextInputControl, {props: {model: model}, slots: {prepend: 'Prepend Content'}});
     expect(wrapper.find('.q-field__prepend').text()).toBe('Prepend Content');
   });
+
+  it('should be able to configure with native types', async () => {
+    const wrapper = mount(TextInputControl, {props: {model: model, type: 'password'}});
+    expect(wrapper.find('input').element.type).toBe('password');
+  });
 });
