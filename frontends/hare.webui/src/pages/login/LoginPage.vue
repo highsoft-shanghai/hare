@@ -8,9 +8,7 @@
           <q-form class="row q-gutter-md" style="width: 100%" autofocus @submit="() => 1">
             <login-name-control :model="model.loginName" class="col-all"/>
             <password-control :model="model.password" class="col-all"/>
-            <div class="col-all">
-              <q-btn class="full-width q-mt-md" :disable="!model.submittable" color="primary" type="submit">登录</q-btn>
-            </div>
+            <submit-button :submittable="model.submittable" class="col-all"/>
           </q-form>
         </div>
       </q-card-section>
@@ -25,6 +23,7 @@ import LoginNameControl from 'components/login/LoginNameControl.vue';
 import PasswordControl from 'components/login/PasswordControl.vue';
 import {reactive} from 'vue';
 import {LoginModel} from 'pages/login/LoginModel';
+import SubmitButton from 'pages/login/SubmitButton.vue';
 
 const model = reactive(new LoginModel());
 </script>

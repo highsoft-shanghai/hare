@@ -8,7 +8,7 @@ import LoginPage from 'pages/login/LoginPage.vue';
 import BlankLayoutControl from 'layouts/blank/BlankLayoutControl.vue';
 import LoginNameControl from 'components/login/LoginNameControl.vue';
 import PasswordControl from 'components/login/PasswordControl.vue';
-import {QBtn} from 'quasar';
+import SubmitButton from 'pages/login/SubmitButton.vue';
 
 setupComponentTest();
 
@@ -45,6 +45,6 @@ describe('LoginPage', () => {
     await router.replace('/login');
     await router.isReady();
     const loginPage = wrapper.findComponent(LoginPage);
-    expect(loginPage.findComponent(QBtn).vm.disable).toBeTruthy();
+    expect(loginPage.findComponent(SubmitButton).vm.submittable).toBeFalsy();
   });
 });
