@@ -6,6 +6,8 @@ import {installVueRouter} from 'src/router';
 import {Router} from 'vue-router';
 import LoginPage from 'pages/login/LoginPage.vue';
 import BlankLayoutControl from 'layouts/blank/BlankLayoutControl.vue';
+import LoginNameControl from 'components/login/LoginNameControl.vue';
+import PasswordControl from 'components/login/PasswordControl.vue';
 
 setupComponentTest();
 
@@ -28,5 +30,12 @@ describe('LoginPage', () => {
     await router.replace('/login');
     await router.isReady();
     expect(wrapper.findComponent(BlankLayoutControl).exists()).toBeTruthy();
+  });
+
+  it('should present users the login form', async () => {
+    await router.replace('/login');
+    await router.isReady();
+    expect(wrapper.findComponent(LoginNameControl).find('.q-field__label').text()).toBe('用户名');
+    expect(wrapper.findComponent(PasswordControl).find('.q-field__label').text()).toBe('密码');
   });
 });
