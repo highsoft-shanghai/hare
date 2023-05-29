@@ -22,7 +22,7 @@ describe('LoginPage', () => {
 
   beforeEach(async () => {
     mockApi = new MockAdapter(api);
-    router = installVueRouter();
+    router = await installVueRouter();
     wrapper = mount(App, {global: {plugins: [router]}});
     await router.replace('/login');
     await router.isReady();

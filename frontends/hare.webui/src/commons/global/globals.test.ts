@@ -34,4 +34,9 @@ describe('globals', () => {
     resettableGlobals.clear();
     expect(() => globals.context).toThrowError('Global context not initialized');
   });
+
+  it('should report error when clients attempt to access uninitialized loading-indicator', () => {
+    resettableGlobals.clear();
+    expect(() => globals.loadingIndicator).toThrowError('Global loading-indicator not initialized');
+  });
 });

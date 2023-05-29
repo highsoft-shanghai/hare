@@ -18,16 +18,16 @@ describe('Context', () => {
 
   it('should allow authorized access', async () => {
     await context.reset('access-token.test');
-    expect(context.authorize(requiredAuthorities('user.add'))).toStrictEqual(success());
+    expect(await context.authorize(requiredAuthorities('user.add'))).toStrictEqual(success());
   });
 
   it('should disallow unauthorized access', async () => {
     await context.reset('access-token.test');
-    expect(context.authorize(requiredAuthorities('user.update'))).toStrictEqual(forbidden());
+    expect(await context.authorize(requiredAuthorities('user.update'))).toStrictEqual(forbidden());
   });
 
-  it('should redirect to login when current user is not authenticated but authentication required', () => {
+  it('should redirect to login when current user is not authenticated but authentication required', async () => {
     context.clear();
-    expect(context.authorize(requiredAuthorities(Authorities.AUTHENTICATED))).toStrictEqual(redirectToLogin());
+    expect(await context.authorize(requiredAuthorities(Authorities.AUTHENTICATED))).toStrictEqual(redirectToLogin());
   });
 });
