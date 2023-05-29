@@ -1,6 +1,6 @@
-import { boot } from 'quasar/wrappers';
-import { initializeGlobals } from 'src/initialize';
+import {boot} from 'quasar/wrappers';
+import {initializeGlobals} from 'src/initialize';
 
-export default boot(({ app }) => {
+export default boot(({app}) => {
   initializeGlobals(app);
 });
