@@ -1,10 +1,10 @@
 import {LoadingIndicator} from './LoadingIndicator';
-import {Loading} from 'quasar';
+import {Loading, QSpinnerGears} from 'quasar';
 import {resettableGlobals} from 'commons/global/globals';
 
 export class QuasarLoadingIndicator implements LoadingIndicator {
   public show(): void {
-    Loading.show();
+    Loading.show({spinner: QSpinnerGears, spinnerSize: 128, backgroundColor: 'blue-10'});
   }
 
   public hide(): void {
