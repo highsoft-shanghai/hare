@@ -36,6 +36,7 @@ export class ResettableGlobals implements Globals {
   }
 
   public get storage(): Storage {
+    if (!this._storage) throw new Error('Global storage not initialized');
     return this._storage;
   }
 

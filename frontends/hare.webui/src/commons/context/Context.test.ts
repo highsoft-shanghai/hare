@@ -6,9 +6,7 @@ import {Authorities} from 'commons/context/Authorities';
 import {mock} from 'jest-mock-extended';
 import {ContextApi} from 'commons/context/ContextApi';
 import {payload} from 'commons/payload/Payload';
-import {SessionStorage} from 'quasar';
 import {globals} from 'commons/global/globals';
-import {fail} from 'assert';
 import {installGlobalStorage} from 'commons/global/QuasarStorage';
 
 describe('Context', () => {

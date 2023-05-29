@@ -39,4 +39,9 @@ describe('globals', () => {
     resettableGlobals.clear();
     expect(() => globals.loadingIndicator).toThrowError('Global loading-indicator not initialized');
   });
+
+  it('should report error when clients attempt to access uninitialized storage', () => {
+    resettableGlobals.clear();
+    expect(() => globals.storage).toThrowError('Global storage not initialized');
+  });
 });
