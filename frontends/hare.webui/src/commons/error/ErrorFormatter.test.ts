@@ -12,7 +12,8 @@ describe('ErrorFormatter', () => {
 
   it('should be able to format errors', () => {
     expect(formatter.format('string')).toBe('string');
-    expect(formatter.format(undefined)).toBe('未知道错误');
+    expect(formatter.format(undefined)).toBe('未知错误');
+    expect(formatter.format(new Error('error'))).toBe('error');
   });
 
   it('should be able to format network errors', () => {

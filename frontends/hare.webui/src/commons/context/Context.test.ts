@@ -12,7 +12,7 @@ describe('Context', () => {
 
   beforeEach(() => {
     mockContextApi = mock<ContextApi>();
-    mockContextApi.get.calledWith('access-token.test').mockReturnValue(payload({grantedAuthorities: ['user.add']}));
+    mockContextApi.get.calledWith().mockReturnValue(payload({grantedAuthorities: ['user.add']}));
     context = new Context(mockContextApi);
   });
 

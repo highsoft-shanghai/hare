@@ -23,7 +23,7 @@ export class Context {
 
   public async reset(accessToken: string): Promise<void> {
     this._accessToken = accessToken;
-    const authorities = (await this.api.get(this._accessToken)).get('grantedAuthorities').as(array()).map(x => x.as(string()));
+    const authorities = (await this.api.get()).get('grantedAuthorities').as(array()).map(x => x.as(string()));
     this.grantedAuthorities = grantedAuthorities(...authorities);
   }
 
