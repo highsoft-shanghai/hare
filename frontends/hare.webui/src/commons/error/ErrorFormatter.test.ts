@@ -3,13 +3,24 @@ import {ErrorFormatter} from 'commons/error/ErrorFormatter';
 import {initializeGlobals} from 'src/initialize';
 import {App} from 'vue';
 import {mock} from 'jest-mock-extended';
+import {AxiosError, AxiosHeaders} from 'axios';
 
 describe('ErrorFormatter', () => {
   initializeGlobals(mock<App>());
   const formatter = new ErrorFormatter();
+  const others = {statusText: 'Status Text', headers: {}, config: {headers: new AxiosHeaders()}};
 
   it('should be able to format errors', () => {
     expect(formatter.format('string')).toBe('string');
     expect(formatter.format(undefined)).toBe('未知道错误');
+  });
+
+  it('should be able to format network errors', () => {
+    expect(formatter.format(new AxiosError('network error', 'ERROR', undefined, undefined, undefined))).toBe('网络错误，请稍后再试～');
+    expect(formatter.format(new AxiosError('network error', 'ERROR', undefined, undefined, {data: {}, status: 500, ...others}))).toBe('服务器故障，请联系管理员～');
+    expect(formatter.format(new AxiosError('network error', 'ERROR', undefined, undefined, {data: {message: 'message from server'}, status: 400, ...others}))).toBe('message from server');
+    expect(formatter.format(new AxiosError('network error', 'ERROR', undefined, undefined, {data: {message: 'message from server'}, status: 404, ...others}))).toBe('message from server');
+    expect(formatter.format(new AxiosError('network error', 'ERROR', undefined, undefined, {data: {message: ''}, status: 400, ...others}))).toBe('数据格式错误');
+    expect(formatter.format(new AxiosError('network error', 'ERROR', undefined, undefined, {data: {message: ''}, status: 404, ...others}))).toBe('资源不存在');
   });
 });
