@@ -1,14 +1,13 @@
 import messages from 'src/i18n';
 import {createI18n, I18n, I18nOptions} from 'vue-i18n';
-import {App} from 'vue';
 import {Culture} from 'commons/i18n/Culture';
+import {resettableGlobals} from 'commons/global/globals';
 
 export class VueCulture implements Culture {
-  private readonly instance: I18n<unknown, unknown, unknown, unknown, false>;
+  public readonly instance: I18n<unknown, unknown, unknown, unknown, false>;
 
-  public constructor(app: App) {
+  public constructor() {
     this.instance = createI18n(this.getOptions());
-    app.use(this.instance);
   }
 
   public localize(code: string, ...args: unknown[]): string {
@@ -20,7 +19,12 @@ export class VueCulture implements Culture {
       legacy: false,
       globalInjection: true,
       locale: 'zh-CN',
+      warnHtmlMessage: false,
       messages,
     };
   }
+}
+
+export function installGlobalCulture(): void {
+  resettableGlobals.resetCulture(new VueCulture());
 }

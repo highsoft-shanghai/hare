@@ -4,8 +4,11 @@ import {Navigator} from 'commons/router/Navigator';
 import {Context} from 'commons/context/Context';
 import { LoadingIndicator } from './LoadingIndicator';
 import {Storage} from 'commons/global/Storage';
+import {Culture} from 'commons/i18n/Culture';
+import {VueCulture} from 'commons/i18n/VueCulture';
 
 export interface Globals {
+  readonly culture: Culture;
   readonly application: Application;
   readonly navigator: Navigator;
   readonly context: Context;
@@ -14,11 +17,17 @@ export interface Globals {
 }
 
 export class ResettableGlobals implements Globals {
+  private _culture?: VueCulture;
   private _application?: Application;
   private _navigator?: Navigator;
   private _context?: Context;
   private _storage?: Storage;
   private _loadingIndicator?: LoadingIndicator;
+
+  public get culture(): VueCulture {
+    if (!this._culture) throw new Error('Global culture not initialized');
+    return this._culture;
+  }
 
   public get application(): Application {
     if (!this._application) throw new Error('Global application not initialized');
@@ -45,6 +54,10 @@ export class ResettableGlobals implements Globals {
     return this._loadingIndicator;
   }
 
+  public resetCulture(culture: VueCulture): void {
+    this._culture = culture;
+  }
+
   public resetApplication(application: Application): void {
     this._application = application;
   }
@@ -66,6 +79,7 @@ export class ResettableGlobals implements Globals {
   }
 
   public clear(): void {
+    this._culture = undefined;
     this._application = undefined;
     this._navigator = undefined;
     this._context = undefined;

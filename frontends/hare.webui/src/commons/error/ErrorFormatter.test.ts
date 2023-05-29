@@ -4,8 +4,10 @@ import {initializeGlobals} from 'src/initialize';
 import {App} from 'vue';
 import {mock} from 'jest-mock-extended';
 import {AxiosError, AxiosHeaders} from 'axios';
+import {installGlobalCulture} from 'commons/i18n/VueCulture';
 
 describe('ErrorFormatter', () => {
+  installGlobalCulture();
   initializeGlobals(mock<App>());
   const formatter = new ErrorFormatter();
   const others = {statusText: 'Status Text', headers: {}, config: {headers: new AxiosHeaders()}};

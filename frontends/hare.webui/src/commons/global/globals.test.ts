@@ -4,8 +4,11 @@ import {initializeGlobals} from 'src/initialize';
 import {App, isProxy} from 'vue';
 import {mock, mockDeep} from 'jest-mock-extended';
 import {Navigator} from 'commons/router/Navigator';
+import {installGlobalCulture} from 'commons/i18n/VueCulture';
 
 describe('globals', () => {
+  installGlobalCulture();
+
   it('should be able to provide global application instance', () => {
     initializeGlobals(mockDeep<App>() as App<never>);
     expect(globals.application).toBeDefined();
@@ -23,6 +26,11 @@ describe('globals', () => {
   it('should be able to provide global router instance', () => {
     resettableGlobals.resetNavigator(mock<Navigator>());
     expect(globals.navigator).toBeDefined();
+  });
+
+  it('should report error when clients attempt to access uninitialized culture', () => {
+    resettableGlobals.clear();
+    expect(() => globals.culture).toThrowError('Global culture not initialized');
   });
 
   it('should report error when clients attempt to access uninitialized navigator', () => {

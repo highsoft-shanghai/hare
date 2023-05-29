@@ -8,6 +8,7 @@ import {Context} from 'commons/context/Context';
 import {AxiosContextApi} from 'commons/context/AxiosContextApi';
 import {installGlobalLoadingIndicator} from 'commons/global/QuasarLoadingIndicator';
 import {installGlobalStorage} from 'commons/global/QuasarStorage';
+import {installGlobalCulture} from 'commons/i18n/VueCulture';
 
 /*
  * If not building with SSR mode, you can
@@ -20,6 +21,7 @@ import {installGlobalStorage} from 'commons/global/QuasarStorage';
 
 installGlobalLoadingIndicator();
 installGlobalStorage();
+installGlobalCulture();
 
 globals.loadingIndicator.show();
 
