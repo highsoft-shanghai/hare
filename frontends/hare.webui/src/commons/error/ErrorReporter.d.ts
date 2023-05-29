@@ -1,3 +1,4 @@
 export interface ErrorReporter {
-  readonly report: (error: unknown) => void;
+  readonly reportError: (error: unknown) => void;
+  readonly reportWarning: (message: string) => void;
 }

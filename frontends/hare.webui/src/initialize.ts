@@ -5,10 +5,11 @@ import {PageModel} from 'commons/page/PageModel';
 import {VueCulture} from 'commons/i18n/VueCulture';
 import {App} from 'vue';
 import {initializePayloadFactories} from 'commons/payload/FactoriesInitializer';
-import {errorHandler} from 'commons/error/error-handler';
+import {errorHandler, warningHandler} from 'commons/error/error-handler';
 
 export function initializeGlobals(app: App): void {
   app.config.errorHandler = errorHandler;
+  app.config.warnHandler = warningHandler;
   initializePayloadFactories();
   resettableGlobals.resetApplication(new Application(new VueCulture(app), new PageModel(pagekey('route.home'))));
 }
