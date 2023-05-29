@@ -10,6 +10,7 @@ export function setupComponentTest(): void {
   window.scrollTo = jest.fn();
 
   beforeEach(() => {
+    (Notify as unknown as Record<string, unknown>)['create'] = jest.fn();
     initializeGlobals(mockDeep<App>() as App<never>);
   });
 
