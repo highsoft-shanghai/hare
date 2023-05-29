@@ -40,4 +40,9 @@ describe('Context', () => {
     expect(context.accessToken).toBe('token.test');
     expect(mockContextApi.get).toBeCalled();
   });
+
+  it('should store access-token into storage after reset succeed', async () => {
+    await context.reset('token.test.new');
+    expect(globals.storage.get('accessToken')).toBe('token.test.new');
+  });
 });

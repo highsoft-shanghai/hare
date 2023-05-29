@@ -10,6 +10,10 @@ export class QuasarStorage implements Storage {
   public set(key: string, value: string | null): void {
     SessionStorage.set(key, value);
   }
+
+  public clear(): void {
+    SessionStorage.clear();
+  }
 }
 
 export function installGlobalStorage(): void {

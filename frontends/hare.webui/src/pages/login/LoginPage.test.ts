@@ -12,6 +12,7 @@ import LoginSubmitButton from 'pages/login/LoginSubmitButton.vue';
 import MockAdapter from 'axios-mock-adapter';
 import {api} from 'commons/api/api';
 import LoginResultControl from 'pages/login/LoginResultControl.vue';
+import {globals} from 'commons/global/globals';
 
 setupComponentTest();
 
@@ -21,6 +22,7 @@ describe('LoginPage', () => {
   let mockApi: MockAdapter;
 
   beforeEach(async () => {
+    globals.storage.clear();
     mockApi = new MockAdapter(api);
     router = await installVueRouter();
     wrapper = mount(App, {global: {plugins: [router]}});

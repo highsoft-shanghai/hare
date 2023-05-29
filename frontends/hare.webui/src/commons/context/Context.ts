@@ -4,7 +4,7 @@ import {grantedAuthorities, GrantedAuthorities} from 'commons/context/GrantedAut
 import {ContextApi} from 'commons/context/ContextApi';
 import {string} from 'commons/payload/StringType';
 import {array} from 'commons/payload/ArrayType';
-import {SessionStorage} from 'quasar';
+import {globals} from 'commons/global/globals';
 
 export class Context {
   private api: ContextApi;
@@ -17,7 +17,7 @@ export class Context {
   }
 
   public async restore(): Promise<void> {
-    this._accessToken = SessionStorage.getItem('accessToken');
+    this._accessToken = globals.storage.get('accessToken');
     await this.reload();
   }
 
@@ -34,6 +34,7 @@ export class Context {
   public async reset(accessToken: string): Promise<void> {
     this._accessToken = accessToken;
     await this.reload();
+    globals.storage.set('accessToken', this._accessToken);
   }
 
   public clear(): void {
