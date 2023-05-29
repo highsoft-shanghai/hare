@@ -67,7 +67,7 @@ describe('LoginPage', () => {
   });
 
   it('should notice users when login failed', async () => {
-    mockApi.onPost('/api/logins').reply(201, {id: 'login.mock.id', success: false, message: 'Failed to login in from test'});
+    mockApi.onPost('/api/logins').reply(201, {id: 'login.mock.id', success: false, reason: 'Failed to login in from test'});
     const loginPage = wrapper.findComponent(LoginPage);
     await loginPage.findComponent(LoginNameControl).find('input').setValue('john@highsoft.ltd');
     await loginPage.findComponent(PasswordControl).find('input').setValue('invalid-password');

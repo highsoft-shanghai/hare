@@ -42,12 +42,12 @@ describe('LoginModel', () => {
   });
 
   it('should report error when submit failed', async () => {
-    mockApi.login.calledWith(any()).mockReturnValue(payload({success: false, message: 'message from server'}));
+    mockApi.login.calledWith(any()).mockReturnValue(payload({success: false, reason: 'message from server'}));
     model.loginName.handleInput('john@highsoft.ltd');
     model.password.handleInput('simple-password');
     await model.submit();
     expect(mockContext.reset).not.toBeCalled();
     expect(mockNavigator.goto).not.toBeCalled();
-    expect(model.lastAuthenticationResult).toEqual(authenticationResult(payload({success: false, message: 'message from server'})));
+    expect(model.lastAuthenticationResult).toEqual(authenticationResult(payload({success: false, reason: 'message from server'})));
   });
 });
