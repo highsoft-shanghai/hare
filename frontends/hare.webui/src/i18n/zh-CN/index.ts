@@ -4,4 +4,5 @@ export default {
   'label.start': '开始',
   'label.login-name': '用户名',
   'label.password': '密码',
+  'error.unknown': '未知道错误',
 };
