@@ -12,12 +12,16 @@ describe('error-handler', () => {
   });
 
   it('should be able to report errors', () => {
-    errorHandler('test');
-    expect(log).toBeCalledWith('test', undefined, undefined);
+    errorHandler('test', 'instance', 'info');
+    expect(log).toBeCalledWith('error: ', 'test');
+    expect(log).toBeCalledWith('instance: ', 'instance');
+    expect(log).toBeCalledWith('info: ', 'info');
   });
 
   it('should be able to report warnings', () => {
-    warningHandler('test', undefined, 'trace');
-    expect(log).toBeCalledWith('test', undefined, 'trace');
+    warningHandler('test', 'instance', 'trace');
+    expect(log).toBeCalledWith('message: ', 'test');
+    expect(log).toBeCalledWith('instance: ', 'instance');
+    expect(log).toBeCalledWith('trace: ', 'trace');
   });
 });
