@@ -16,8 +16,10 @@ describe('api', () => {
     mockApi.onAny().reply(200);
   });
 
-  it('should request with root prefix', () => {
-    expect(api.getUri({url: '/users'})).toBe('/api/users');
+  it('should request with root prefix', async () => {
+    await api.get('/users');
+    expect(mockApi.history.get[0].baseURL).toBe('/api');
+    expect(mockApi.history.get[0].url).toBe('/users');
   });
 
   it('should request with authorization headers when context is not anonymous', async () => {
