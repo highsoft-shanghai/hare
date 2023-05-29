@@ -3,11 +3,13 @@ import {reactive} from 'vue';
 import {Navigator} from 'commons/router/Navigator';
 import {Context} from 'commons/context/Context';
 import { LoadingIndicator } from './LoadingIndicator';
+import {Storage} from 'commons/global/Storage';
 
 export interface Globals {
   readonly application: Application;
   readonly navigator: Navigator;
   readonly context: Context;
+  readonly storage: Storage;
   readonly loadingIndicator: LoadingIndicator;
 }
 
@@ -15,6 +17,7 @@ export class ResettableGlobals implements Globals {
   private _application?: Application;
   private _navigator?: Navigator;
   private _context?: Context;
+  private _storage?: Storage;
   private _loadingIndicator?: LoadingIndicator;
 
   public get application(): Application {
@@ -30,6 +33,10 @@ export class ResettableGlobals implements Globals {
   public get context(): Context {
     if (!this._context) throw new Error('Global context not initialized');
     return this._context;
+  }
+
+  public get storage(): Storage {
+    return this._storage;
   }
 
   public get loadingIndicator(): LoadingIndicator {
@@ -49,6 +56,10 @@ export class ResettableGlobals implements Globals {
     this._context = context;
   }
 
+  public resetStorage(storage: Storage): void {
+    this._storage = storage;
+  }
+
   public resetLoadingIndicator(indicator: LoadingIndicator): void {
     this._loadingIndicator = indicator;
   }
@@ -57,6 +68,8 @@ export class ResettableGlobals implements Globals {
     this._application = undefined;
     this._navigator = undefined;
     this._context = undefined;
+    this._storage = undefined;
+    this._loadingIndicator = undefined;
   }
 }
 

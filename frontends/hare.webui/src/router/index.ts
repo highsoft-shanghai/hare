@@ -7,6 +7,7 @@ import {VueRouterNavigator} from 'commons/router/VueRouterNavigator';
 import {Context} from 'commons/context/Context';
 import {AxiosContextApi} from 'commons/context/AxiosContextApi';
 import {installGlobalLoadingIndicator} from 'commons/global/QuasarLoadingIndicator';
+import {installGlobalStorage} from 'commons/global/QuasarStorage';
 
 /*
  * If not building with SSR mode, you can
@@ -18,6 +19,7 @@ import {installGlobalLoadingIndicator} from 'commons/global/QuasarLoadingIndicat
  */
 
 installGlobalLoadingIndicator();
+installGlobalStorage();
 
 globals.loadingIndicator.show();
 
