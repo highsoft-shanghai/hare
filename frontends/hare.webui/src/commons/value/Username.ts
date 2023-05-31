@@ -1,4 +1,4 @@
-import {NullableValue} from 'commons/domain/NullableValue';
+import {NullableValue} from 'commons/value/NullableValue';
 import {payload} from 'commons/payload/Payload';
 import {string} from 'commons/payload/StringType';
 

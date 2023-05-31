@@ -1,5 +1,5 @@
 import {describe, expect, it} from '@jest/globals';
-import {Username} from 'commons/domain/Username';
+import {Username} from 'commons/value/Username';
 import {initializePayloadFactories} from 'commons/payload/FactoriesInitializer';
 
 initializePayloadFactories();

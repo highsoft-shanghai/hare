@@ -1,4 +1,4 @@
-import {Value} from 'commons/domain/Value';
+import {Value} from 'commons/value/Value';
 
 export abstract class NullableValue<T> extends Value {
   private _value: T | null;

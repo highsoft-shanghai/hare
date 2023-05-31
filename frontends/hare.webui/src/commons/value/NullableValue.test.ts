@@ -1,5 +1,5 @@
 import {describe, expect, it} from '@jest/globals';
-import {NullableValue} from 'commons/domain/NullableValue';
+import {NullableValue} from 'commons/value/NullableValue';
 
 class TestValue extends NullableValue<unknown> {
   public fromData(data: unknown): void {
