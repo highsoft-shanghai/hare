@@ -46,7 +46,8 @@ describe('LoginModel', () => {
     model.loginName.handleInput('john@highsoft.ltd');
     model.password.handleInput('simple-password');
     await model.submit();
-    expect(mockApi.history.post[0].data).toEqual(JSON.stringify({group: 'web', type: 'username-and-password', loginName: 'john@highsoft.ltd', password: 'simple-password'}));
+    const hashedPassword = '5c2ec978137ca1bb72b8433ca13878d44744bb93b142c8f4755970576a3de7476c4d47b38c48cfc16a7b68955dc266836101e4c9f40399389014ff35db62c294';
+    expect(mockApi.history.post[0].data).toEqual(JSON.stringify({group: 'web', type: 'username-and-password', loginName: 'john@highsoft.ltd', password: hashedPassword}));
     expect(mockContext.reset).toBeCalledWith('access-token.mock');
     expect(mockNavigator.goto).toBeCalledWith('route.home');
   });
