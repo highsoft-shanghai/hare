@@ -47,7 +47,7 @@ export class Context {
 
   private async loadAuthenticated(): Promise<void> {
     const payload = await this.api.get();
-    this.grantedAuthorities = grantedAuthorities(...(payload.get('grantedAuthorities').as(array()).map(x => x.as(string()))));
+    this.grantedAuthorities = grantedAuthorities(...(payload.get('authorities').as(array()).map(x => x.as(string()))));
   }
 
   private async loadAnonymous(): Promise<void> {

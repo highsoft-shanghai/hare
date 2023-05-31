@@ -19,8 +19,8 @@ export class Payload {
   }
 
   public get(key: string): Payload {
-    if (typeof this._value !== 'object') throw new Error(`type mismatch: require 'object' but got '${typeof this._value}', in path '${this.key}'`);
-    return new Payload('', (this._value as Record<string, unknown>)[key]);
+    if (typeof this._value !== 'object') throw new Error(`type mismatch: require 'object' but got '${typeof this._value}', in path '${this.key + '/' + key}'`);
+    return new Payload(this.key + '/' + key, (this._value as Record<string, unknown>)[key]);
   }
 
   public get value(): unknown {

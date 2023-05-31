@@ -58,7 +58,7 @@ describe('LoginPage', () => {
 
   it('should redirect to home page when login success', async () => {
     mockApi.onPost('/api/logins').reply(201, {id: 'login.mock.id', success: true, accessToken: 'access-token.mock'});
-    mockApi.onGet('/api/access-tokens/current').reply(200, {grantedAuthorities: []});
+    mockApi.onGet('/api/access-tokens/current').reply(200, {authorities: []});
     const loginPage = wrapper.findComponent(LoginPage);
     await loginPage.findComponent(UsernameControl).find('input').setValue('john@highsoft.ltd');
     await loginPage.findComponent(PasswordControl).find('input').setValue('simple-password');

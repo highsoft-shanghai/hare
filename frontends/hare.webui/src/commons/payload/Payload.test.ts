@@ -1,5 +1,5 @@
-import {describe, expect, it} from '@jest/globals'
-import {Payload} from './Payload';
+import {describe, expect, it} from '@jest/globals';
+import {payload, Payload} from './Payload';
 import {string} from './StringType';
 import {number} from './NumberType';
 
@@ -25,9 +25,10 @@ describe('Payload', () => {
   });
 
   it('should be failed to get values from non-objects', () => {
-    expect(() => new Payload('person', undefined).get('key')).toThrow(`type mismatch: require 'object' but got 'undefined', in path 'person'`)
-    expect(() => new Payload('person', 12).get('key')).toThrow(`type mismatch: require 'object' but got 'number', in path 'person'`)
-    expect(() => new Payload('person', 'john').get('key')).toThrow(`type mismatch: require 'object' but got 'string', in path 'person'`)
-    expect(() => new Payload('person', null).get('key')).toThrow(`null`)
+    expect(() => new Payload('person', undefined).get('key')).toThrow('type mismatch: require \'object\' but got \'undefined\', in path \'person/key\'');
+    expect(() => new Payload('person', 12).get('key')).toThrow('type mismatch: require \'object\' but got \'number\', in path \'person/key\'');
+    expect(() => new Payload('person', 'john').get('key')).toThrow('type mismatch: require \'object\' but got \'string\', in path \'person/key\'');
+    expect(() => new Payload('person', null).get('key')).toThrow('null');
+    expect(() => payload({name: 'john'}).get('age').as(number())).toThrow('type mismatch: require \'number\' but got \'undefined\', in path \'/age\'');
   });
 });

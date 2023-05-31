@@ -20,7 +20,7 @@ describe('ErrorNotFound', () => {
     mockApi = new MockAdapter(api);
     router = await installVueRouter();
     wrapper = mount(App, {global: {plugins: [router]}});
-    mockApi.onGet('/api/access-tokens/current').reply(200, {grantedAuthorities: []});
+    mockApi.onGet('/api/access-tokens/current').reply(200, {authorities: []});
     await globals.context.reset('access-token.test');
   });
 
