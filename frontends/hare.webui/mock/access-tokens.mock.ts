@@ -7,8 +7,8 @@ export default defineMock([
     delay: 3000,
     body: ({headers}: MockRequest) => {
       switch (headers['authorization']) {
-        case 'Bearer access-token.mock.admin' : return {id: 'access-token.mock.admin', grantedAuthorities: ['admin']};
-        case 'Bearer access-token.mock.user': return {id: 'access-token.mock.user', grantedAuthorities: []};
+        case 'Bearer access-token.mock.admin' : return {id: 'access-token.mock.admin', authorities: ['admin']};
+        case 'Bearer access-token.mock.user': return {id: 'access-token.mock.user', authorities: []};
         default: return {};
       }
     }
