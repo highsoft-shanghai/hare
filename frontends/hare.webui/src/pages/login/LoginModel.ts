@@ -55,6 +55,6 @@ export class LoginModel {
   }
 
   private get payload(): Payload {
-    return payload({loginName: this.loginName.value, secret: this.password.value});
+    return payload({group: 'web', type: 'username-and-password', loginName: this.loginName.value, password: this.password.value});
   }
 }
