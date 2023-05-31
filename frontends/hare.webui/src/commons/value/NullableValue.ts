@@ -8,6 +8,10 @@ export abstract class NullableValue<T> extends Value {
     this._value = value;
   }
 
+  public get present(): boolean {
+    return this._value !== null;
+  }
+
   public toJSON(): unknown {
     return this._value;
   }

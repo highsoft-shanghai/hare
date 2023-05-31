@@ -1,13 +1,13 @@
 import {describe, expect, it} from '@jest/globals';
-import {Username} from 'commons/value/Username';
+import {LoginName} from 'components/login/LoginName';
 import {initializePayloadFactories} from 'commons/payload/FactoriesInitializer';
 
 initializePayloadFactories();
 
-describe('Username', () => {
+describe('LoginName', () => {
   it('should be able to deserialize from string', () => {
-    const username = new Username();
-    username.fromData('new value');
-    expect(username).toEqual(new Username('new value'));
+    const loginName = new LoginName();
+    loginName.fromData('new value');
+    expect(loginName).toEqual(new LoginName('new value'));
   });
 });

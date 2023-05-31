@@ -1,3 +1,3 @@
 export interface Message {
-  readonly toString: () => string;
+  readonly toString: () => string | undefined;
 }

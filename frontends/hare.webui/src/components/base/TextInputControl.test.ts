@@ -5,6 +5,8 @@ import {TextInputModel} from 'components/base/TextInputModel';
 import {reactive, UnwrapRef} from 'vue';
 import {message} from 'commons/i18n/i18n';
 import TextInputControl from 'components/base/TextInputControl.vue';
+import {TextValue} from 'commons/value/TextValue';
+import {EmptyMessage} from 'commons/i18n/EmptyMessage';
 
 setupComponentTest();
 
@@ -12,7 +14,7 @@ describe('TextInputControl', () => {
   let model: UnwrapRef<TextInputModel>;
 
   beforeEach(() => {
-    model = reactive(new TextInputModel(message('Label Content')));
+    model = reactive(new TextInputModel(message('Label Content'), new TextValue()));
   });
 
   it('should present users a text input and a label', async () => {
@@ -22,7 +24,7 @@ describe('TextInputControl', () => {
   });
 
   it('should be able to configured without label', async () => {
-    const wrapper = mount(TextInputControl, {props: {model: reactive(new TextInputModel())}});
+    const wrapper = mount(TextInputControl, {props: {model: reactive(new TextInputModel(EmptyMessage.INSTANCE, new TextValue()))}});
     expect(wrapper.find('input').exists()).toBeTruthy();
     expect(wrapper.find('.q-field__label').exists()).toBeFalsy();
   });
@@ -37,7 +39,7 @@ describe('TextInputControl', () => {
   it('should update model when user input texts', async () => {
     const wrapper = mount(TextInputControl, {props: {model: model}});
     await wrapper.find('input').setValue('input text');
-    expect(model.value).toBe('input text');
+    expect(model.value).toEqual(new TextValue('input text'));
   });
 
   it('should be able to support prepend slot', async () => {

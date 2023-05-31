@@ -5,6 +5,7 @@ import {TextInputModel} from 'components/base/TextInputModel';
 import LoginNameControl from 'components/login/LoginNameControl.vue';
 import {reactive, UnwrapRef} from 'vue';
 import {message} from 'commons/i18n/i18n';
+import {LoginName} from 'components/login/LoginName';
 
 setupComponentTest();
 
@@ -12,7 +13,7 @@ describe('LoginNameControl', () => {
   let model: UnwrapRef<TextInputModel>;
 
   beforeEach(() => {
-    model = reactive(new TextInputModel(message('Label Content')));
+    model = reactive(new TextInputModel(message('Label Content'), new LoginName()));
   });
 
   it('should present users the an input box, a label and an icon', () => {
