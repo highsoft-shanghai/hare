@@ -23,4 +23,8 @@ describe('deepValueAsData', () => {
   it('should perform "asData" transformation when input is instance of value', () => {
     expect(deepValueAsData(new TestValue())).toBe('test-value');
   });
+
+  it('should perform "asData" transformation for elements when input is an array', () => {
+    expect(deepValueAsData([new TestValue()])).toEqual(['test-value']);
+  });
 });
