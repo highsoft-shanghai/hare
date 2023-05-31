@@ -1,5 +1,5 @@
 export abstract class Value {
-  public abstract setValueFromData(data: unknown): void;
+  public abstract fromData(data: unknown): void;
 
-  public abstract asData(): unknown;
+  public abstract toJSON(): unknown;
 }

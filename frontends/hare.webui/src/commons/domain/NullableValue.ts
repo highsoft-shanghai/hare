@@ -8,11 +8,15 @@ export abstract class NullableValue<T> extends Value {
     this._value = value;
   }
 
-  protected get value(): T | null {
+  public toJSON(): unknown {
     return this._value;
   }
 
-  protected set value(value: T | null) {
+  protected changeValue(value: T | null = null) {
     this._value = value;
+  }
+
+  protected get value(): T | null {
+    return this._value;
   }
 }
