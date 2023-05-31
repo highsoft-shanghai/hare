@@ -2,7 +2,8 @@ import {describe, expect, it} from '@jest/globals';
 import {NullableValue} from 'commons/domain/NullableValue';
 
 class TestValue extends NullableValue<unknown> {
-  public fromData(): void {
+  public fromData(data: unknown): void {
+    this.changeValue(data);
   }
 
   public get underlyingValue(): unknown {
@@ -23,5 +24,13 @@ describe('NullableValue', () => {
 
   it('should default to null', () => {
     expect(new TestValue().underlyingValue).toBeNull();
+    expect(new TestValue(undefined).underlyingValue).toBeNull();
+  });
+
+  it('should change value to null if input is undefined', () => {
+    const value = new TestValue('present');
+    value.fromData(undefined);
+    expect(value.underlyingValue).toBeNull();
+    expect(value.toJSON()).toBeNull();
   });
 });
