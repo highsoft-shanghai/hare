@@ -3,7 +3,7 @@ import {Value} from 'commons/domain/Value';
 export abstract class SimpleValue<T> extends Value {
   private _value: T;
 
-  public constructor(value: T) {
+  protected constructor(value: T) {
     super();
     this._value = value;
   }
