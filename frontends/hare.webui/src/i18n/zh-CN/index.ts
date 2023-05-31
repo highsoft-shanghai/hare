@@ -2,7 +2,7 @@ export default {
   'title.application': '瀚诚企业应用框架',
   'route.home': '首页',
   'label.start': '开始',
-  'label.login-name': '用户名',
+  'label.username': '用户名',
   'label.password': '密码',
   'message.application-loading': '瀚诚企业应用框架启动中<div class="text-amber-3 text-italic q-mt-sm">请稍候……</div>',
   'error.unknown': '未知错误',

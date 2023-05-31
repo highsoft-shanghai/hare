@@ -36,25 +36,25 @@ describe('LoginModel', () => {
   });
 
   it('should be un-submittable when both username and password are present', () => {
-    model.loginName.handleInput('john@highsoft.ltd');
+    model.username.handleInput('john@highsoft.ltd');
     model.password.handleInput('simple-password');
     expect(model.submittable).toBeTruthy();
   });
 
   it('should redirect to home page if submit success', async () => {
     mockApi.onPost('/api/logins').reply(201, {success: true, accessToken: 'access-token.mock'});
-    model.loginName.handleInput('john@highsoft.ltd');
+    model.username.handleInput('john@highsoft.ltd');
     model.password.handleInput('simple-password');
     await model.submit();
     const hashedPassword = '5c2ec978137ca1bb72b8433ca13878d44744bb93b142c8f4755970576a3de7476c4d47b38c48cfc16a7b68955dc266836101e4c9f40399389014ff35db62c294';
-    expect(mockApi.history.post[0].data).toEqual(JSON.stringify({group: 'web', type: 'username-and-password', loginName: 'john@highsoft.ltd', password: hashedPassword}));
+    expect(mockApi.history.post[0].data).toEqual(JSON.stringify({group: 'web', type: 'username-and-password', username: 'john@highsoft.ltd', password: hashedPassword}));
     expect(mockContext.reset).toBeCalledWith('access-token.mock');
     expect(mockNavigator.goto).toBeCalledWith('route.home');
   });
 
   it('should report error when submit failed', async () => {
     mockApi.onPost('/api/logins').reply(201, {success: false, reason: 'message from server'});
-    model.loginName.handleInput('john@highsoft.ltd');
+    model.username.handleInput('john@highsoft.ltd');
     model.password.handleInput('simple-password');
     await model.submit();
     expect(mockContext.reset).not.toBeCalled();
