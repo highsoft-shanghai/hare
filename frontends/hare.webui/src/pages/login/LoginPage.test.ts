@@ -12,6 +12,7 @@ import LoginSubmitButton from 'pages/login/LoginSubmitButton.vue';
 import MockAdapter from 'axios-mock-adapter';
 import {api} from 'commons/api/api';
 import LoginResultControl from 'pages/login/LoginResultControl.vue';
+import {globals} from 'commons/global/globals';
 
 setupComponentTest();
 
@@ -21,8 +22,9 @@ describe('LoginPage', () => {
   let mockApi: MockAdapter;
 
   beforeEach(async () => {
+    globals.storage.clear();
     mockApi = new MockAdapter(api);
-    router = installVueRouter();
+    router = await installVueRouter();
     wrapper = mount(App, {global: {plugins: [router]}});
     await router.replace('/login');
     await router.isReady();
@@ -56,7 +58,7 @@ describe('LoginPage', () => {
 
   it('should redirect to home page when login success', async () => {
     mockApi.onPost('/api/logins').reply(201, {id: 'login.mock.id', success: true, accessToken: 'access-token.mock'});
-    mockApi.onGet('/api/access-tokens/access-token.mock').reply(200, {grantedAuthorities: []});
+    mockApi.onGet('/api/access-tokens/current').reply(200, {grantedAuthorities: []});
     const loginPage = wrapper.findComponent(LoginPage);
     await loginPage.findComponent(LoginNameControl).find('input').setValue('john@highsoft.ltd');
     await loginPage.findComponent(PasswordControl).find('input').setValue('simple-password');

@@ -18,20 +18,10 @@
   }
 
   .q-tab__content {
-    padding: map-get($space-sm, 'y') map-get($space-xs, 'x');
+    padding: map-get($space-sm, 'y') map-get($space-lg, 'x') map-get($space-sm, 'y') 0;
     width: 100%;
     align-items: center;
-    justify-content: end;
-    flex-direction: row-reverse;
-
-    .q-tab__label {
-      padding: 0;
-    }
-
-    .q-tab__icon {
-      padding-left: map-get($space-sm, 'x');
-      padding-right: map-get($space-sm, 'x');
-    }
+    justify-content: start;
   }
 }
 

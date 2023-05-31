@@ -11,14 +11,14 @@ export class VueRouterNavigator implements Navigator {
   public constructor(router: Router, context: Context) {
     this.router = router;
     this.context = context;
-    this.router.beforeEach(async to => this.authorize(to));
+    this.router.beforeEach(async to => await this.authorize(to));
   }
 
   public async goto(page: string): Promise<void> {
     await this.router.replace(this.router.hasRoute(page) ? {name: page} : '/404');
   }
 
-  private authorize(to: RouteLocationNormalized): RedirectType {
-    return this.context.authorize(requiredAuthoritiesFromRoute(to)).redirect;
+  private async authorize(to: RouteLocationNormalized): Promise<RedirectType> {
+    return (await this.context.authorize(requiredAuthoritiesFromRoute(to))).redirect;
   }
 }

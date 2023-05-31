@@ -4,8 +4,11 @@ import {initializeGlobals} from 'src/initialize';
 import {App, isProxy} from 'vue';
 import {mock, mockDeep} from 'jest-mock-extended';
 import {Navigator} from 'commons/router/Navigator';
+import {installGlobalCulture} from 'commons/i18n/VueCulture';
 
 describe('globals', () => {
+  installGlobalCulture();
+
   it('should be able to provide global application instance', () => {
     initializeGlobals(mockDeep<App>() as App<never>);
     expect(globals.application).toBeDefined();
@@ -25,6 +28,11 @@ describe('globals', () => {
     expect(globals.navigator).toBeDefined();
   });
 
+  it('should report error when clients attempt to access uninitialized culture', () => {
+    resettableGlobals.clear();
+    expect(() => globals.culture).toThrowError('Global culture not initialized');
+  });
+
   it('should report error when clients attempt to access uninitialized navigator', () => {
     resettableGlobals.clear();
     expect(() => globals.navigator).toThrowError('Global navigator not initialized');
@@ -33,5 +41,15 @@ describe('globals', () => {
   it('should report error when clients attempt to access uninitialized context', () => {
     resettableGlobals.clear();
     expect(() => globals.context).toThrowError('Global context not initialized');
+  });
+
+  it('should report error when clients attempt to access uninitialized loading-indicator', () => {
+    resettableGlobals.clear();
+    expect(() => globals.loadingIndicator).toThrowError('Global loading-indicator not initialized');
+  });
+
+  it('should report error when clients attempt to access uninitialized storage', () => {
+    resettableGlobals.clear();
+    expect(() => globals.storage).toThrowError('Global storage not initialized');
   });
 });

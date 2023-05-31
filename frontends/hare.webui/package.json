@@ -20,6 +20,7 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^1.2.1",
+    "crypto-js": "^4.1.1",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",
     "vue-i18n": "^9.2.2",
@@ -35,6 +36,7 @@
     "@quasar/app-vite": "^1.0.0",
     "@quasar/quasar-app-extension-testing": "^2.1.0",
     "@quasar/quasar-app-extension-testing-unit-jest": "^3.0.0-beta.5",
+    "@types/crypto-js": "^4.1.1",
     "@types/node": "^12.20.21",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",

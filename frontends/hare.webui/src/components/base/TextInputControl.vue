@@ -1,5 +1,5 @@
 <template>
-  <q-input :label="model.label" :type="type" hint="" :hide-hint="false" :model-value="model.value" @update:model-value="e => model.handleInput(e)">
+  <q-input :label="model.label" :type="type" hint="" :hide-hint="false" :model-value="model.value.value" @update:model-value="e => model.handleInput(e)">
     <template v-if="$slots.prepend" #prepend>
       <slot name="prepend"/>
     </template>

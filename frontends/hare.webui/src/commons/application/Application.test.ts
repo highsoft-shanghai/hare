@@ -1,11 +1,9 @@
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
-import { setupComponentTest } from 'app/test/utils/component';
-import { Application } from 'commons/application/Application';
-import { AppFullscreen, Dialog, DialogChainObject } from 'quasar';
-import { PageModel } from "commons/page/PageModel";
-import { pagekey } from "commons/page/PageKey";
-import { mock } from "jest-mock-extended";
-import { Culture } from "commons/i18n/Culture";
+import {beforeEach, describe, expect, it, jest} from '@jest/globals';
+import {setupComponentTest} from 'app/test/utils/component';
+import {Application} from 'commons/application/Application';
+import {AppFullscreen, Dialog, DialogChainObject} from 'quasar';
+import {PageModel} from 'commons/page/PageModel';
+import {pagekey} from 'commons/page/PageKey';
 
 setupComponentTest();
 
@@ -15,11 +13,9 @@ const mockAppFullscreenToggle = async () => {
 
 describe('Application', () => {
   let application: Application;
-  let culture: Culture;
 
   beforeEach(() => {
-    culture = mock<Culture>();
-    application = new Application(culture, new PageModel(pagekey('route.home')));
+    application = new Application(new PageModel(pagekey('route.home')));
   });
 
   it('should provide correct application title', () => {
@@ -35,22 +31,18 @@ describe('Application', () => {
   it('should show under-construction message when toggle mini mode', () => {
     Dialog.create = jest.fn(() => ({} as DialogChainObject));
     application.toggleMiniMode();
-    expect(Dialog.create).toBeCalledWith({ 'message': '该功能正在建设中，敬请期待……', 'noBackdropDismiss': true, 'title': '收起标题栏' });
+    expect(Dialog.create).toBeCalledWith({'message': '该功能正在建设中，敬请期待……', 'noBackdropDismiss': true, 'title': '收起标题栏'});
   });
 
   it('should show under-construction message when toggle view list', () => {
     Dialog.create = jest.fn(() => ({} as DialogChainObject));
     application.toggleViewList();
-    expect(Dialog.create).toBeCalledWith({ 'message': '该功能正在建设中，敬请期待……', 'noBackdropDismiss': true, 'title': '显示视图列表' });
+    expect(Dialog.create).toBeCalledWith({'message': '该功能正在建设中，敬请期待……', 'noBackdropDismiss': true, 'title': '显示视图列表'});
   });
 
   it('should show under-construction message when toggle profile menu', () => {
     Dialog.create = jest.fn(() => ({} as DialogChainObject));
     application.toggleProfileMenu();
-    expect(Dialog.create).toBeCalledWith({ 'message': '该功能正在建设中，敬请期待……', 'noBackdropDismiss': true, 'title': '显示/隐藏用户菜单' });
-  });
-
-  it('should be able to hold culture', () => {
-    expect(application.culture).toBe(culture);
+    expect(Dialog.create).toBeCalledWith({'message': '该功能正在建设中，敬请期待……', 'noBackdropDismiss': true, 'title': '显示/隐藏用户菜单'});
   });
 });

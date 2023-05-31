@@ -5,6 +5,7 @@ import {TextInputModel} from 'components/base/TextInputModel';
 import {reactive, UnwrapRef} from 'vue';
 import {message} from 'commons/i18n/i18n';
 import PasswordControl from 'components/login/PasswordControl.vue';
+import {Password} from 'components/login/Password';
 
 setupComponentTest();
 
@@ -12,7 +13,7 @@ describe('PasswordControl', () => {
   let model: UnwrapRef<TextInputModel>;
 
   beforeEach(() => {
-    model = reactive(new TextInputModel(message('Label Content')));
+    model = reactive(new TextInputModel(message('Label Content'), new Password()));
   });
 
   it('should present users the a password input box, a label and an icon', () => {

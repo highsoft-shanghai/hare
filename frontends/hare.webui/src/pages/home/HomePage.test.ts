@@ -16,12 +16,12 @@ describe('HomePage', () => {
   let wrapper: VueWrapper;
   let mockApi: MockAdapter;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     mockApi = new MockAdapter(api);
-    router = installVueRouter();
+    router = await installVueRouter();
     wrapper = mount(App, {global: {plugins: [router]}});
-    mockApi.onGet('/api/access-tokens/access-token.test').reply(200, {grantedAuthorities: []});
-    globals.context.reset('access-token.test');
+    mockApi.onGet('/api/access-tokens/current').reply(200, {grantedAuthorities: []});
+    await globals.context.reset('access-token.test');
   });
 
   it('should be able to visited by router', async () => {
