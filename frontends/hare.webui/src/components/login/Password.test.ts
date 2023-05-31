@@ -7,7 +7,7 @@ initializePayloadFactories();
 describe('Password', () => {
   it('should be able to deserialize from string', () => {
     const password = new Password();
-    password.fromData('new value');
+    password.assign('new value');
     expect(password).toEqual(new Password('new value'));
   });
 });

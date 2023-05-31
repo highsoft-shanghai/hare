@@ -7,7 +7,7 @@ initializePayloadFactories();
 describe('LoginName', () => {
   it('should be able to deserialize from string', () => {
     const loginName = new LoginName();
-    loginName.fromData('new value');
+    loginName.assign('new value');
     expect(loginName).toEqual(new LoginName('new value'));
   });
 });

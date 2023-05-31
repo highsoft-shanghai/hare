@@ -12,7 +12,7 @@ export class TextInputModel implements ControlModel {
   }
 
   public handleInput(value: string | undefined): void {
-    this._value.fromData(value);
+    this._value.assign(value);
   }
 
   public get label(): string | undefined {

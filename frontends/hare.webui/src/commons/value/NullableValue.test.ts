@@ -2,7 +2,7 @@ import {describe, expect, it} from '@jest/globals';
 import {NullableValue} from 'commons/value/NullableValue';
 
 class TestValue extends NullableValue<unknown> {
-  public fromData(data: unknown): void {
+  public assign(data: unknown): void {
     this.changeValue(data);
   }
 
@@ -29,7 +29,7 @@ describe('NullableValue', () => {
 
   it('should change value to null if input is undefined', () => {
     const value = new TestValue('present');
-    value.fromData(undefined);
+    value.assign(undefined);
     expect(value.underlyingValue).toBeNull();
     expect(value.toJSON()).toBeNull();
   });
