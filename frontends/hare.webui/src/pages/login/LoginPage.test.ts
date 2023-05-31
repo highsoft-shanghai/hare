@@ -6,7 +6,7 @@ import {installVueRouter} from 'src/router';
 import {Router} from 'vue-router';
 import LoginPage from 'pages/login/LoginPage.vue';
 import BlankLayoutControl from 'layouts/blank/BlankLayoutControl.vue';
-import LoginNameControl from 'components/login/LoginNameControl.vue';
+import UsernameControl from 'components/login/UsernameControl.vue';
 import PasswordControl from 'components/login/PasswordControl.vue';
 import LoginSubmitButton from 'pages/login/LoginSubmitButton.vue';
 import MockAdapter from 'axios-mock-adapter';
@@ -40,7 +40,7 @@ describe('LoginPage', () => {
 
   it('should present users the login form', async () => {
     const loginPage = wrapper.findComponent(LoginPage);
-    expect(loginPage.findComponent(LoginNameControl).find('.q-field__label').text()).toBe('用户名');
+    expect(loginPage.findComponent(UsernameControl).find('.q-field__label').text()).toBe('用户名');
     expect(loginPage.findComponent(PasswordControl).find('.q-field__label').text()).toBe('密码');
   });
 
@@ -51,7 +51,7 @@ describe('LoginPage', () => {
 
   it('should present normal submit button if login form is submittable', async () => {
     const loginPage = wrapper.findComponent(LoginPage);
-    await loginPage.findComponent(LoginNameControl).find('input').setValue('john@highsoft.ltd');
+    await loginPage.findComponent(UsernameControl).find('input').setValue('john@highsoft.ltd');
     await loginPage.findComponent(PasswordControl).find('input').setValue('simple-password');
     expect(loginPage.findComponent(LoginSubmitButton).find('button').element.disabled).toBeFalsy();
   });
@@ -60,7 +60,7 @@ describe('LoginPage', () => {
     mockApi.onPost('/api/logins').reply(201, {id: 'login.mock.id', success: true, accessToken: 'access-token.mock'});
     mockApi.onGet('/api/access-tokens/current').reply(200, {grantedAuthorities: []});
     const loginPage = wrapper.findComponent(LoginPage);
-    await loginPage.findComponent(LoginNameControl).find('input').setValue('john@highsoft.ltd');
+    await loginPage.findComponent(UsernameControl).find('input').setValue('john@highsoft.ltd');
     await loginPage.findComponent(PasswordControl).find('input').setValue('simple-password');
     await loginPage.findComponent(LoginSubmitButton).find('button').trigger('submit');
     await flushPromises();
@@ -71,7 +71,7 @@ describe('LoginPage', () => {
   it('should notice users when login failed', async () => {
     mockApi.onPost('/api/logins').reply(201, {id: 'login.mock.id', success: false, reason: 'Failed to login in from test'});
     const loginPage = wrapper.findComponent(LoginPage);
-    await loginPage.findComponent(LoginNameControl).find('input').setValue('john@highsoft.ltd');
+    await loginPage.findComponent(UsernameControl).find('input').setValue('john@highsoft.ltd');
     await loginPage.findComponent(PasswordControl).find('input').setValue('invalid-password');
     await loginPage.findComponent(LoginSubmitButton).find('button').trigger('submit');
     await flushPromises();
