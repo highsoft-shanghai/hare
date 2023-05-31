@@ -20,4 +20,8 @@ describe('NullableValue', () => {
   it('should be able to provide underlying value', () => {
     expect(new TestValue('hello').underlyingValue).toBe('hello');
   })
+
+  it('should default to null', () => {
+    expect(new TestValue().underlyingValue).toBeNull();
+  });
 });
