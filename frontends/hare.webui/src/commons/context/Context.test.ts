@@ -15,7 +15,7 @@ describe('Context', () => {
   beforeEach(() => {
     installGlobalStorage();
     mockContextApi = mock<ContextApi>();
-    mockContextApi.get.calledWith().mockReturnValue(payload({grantedAuthorities: ['user.add']}));
+    mockContextApi.get.calledWith().mockReturnValue(payload({authorities: ['user.add']}));
     context = new Context(mockContextApi);
   });
 
