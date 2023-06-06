@@ -16,11 +16,11 @@ export abstract class NullableValue<T> extends Value {
     return this._value;
   }
 
-  protected changeValue(value: T | null = null) {
-    this._value = value;
+  public get value(): T | null {
+    return this._value;
   }
 
-  protected get value(): T | null {
-    return this._value;
+  protected changeValue(value: T | null = null) {
+    this._value = value;
   }
 }
