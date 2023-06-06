@@ -4,7 +4,8 @@ import {initializeGlobals} from 'src/initialize';
 import {App} from 'vue';
 import {mock} from 'jest-mock-extended';
 import {AxiosError, AxiosHeaders} from 'axios';
-import {installGlobalCulture} from 'commons/i18n/VueCulture';
+import {installGlobalCulture, VueCulture} from 'commons/i18n/VueCulture';
+import {resettableGlobals} from 'commons/global/globals';
 
 describe('ErrorFormatter', () => {
   installGlobalCulture();
@@ -25,5 +26,11 @@ describe('ErrorFormatter', () => {
     expect(formatter.format(new AxiosError('network error', 'ERROR', undefined, undefined, {data: {message: 'message from server'}, status: 404, ...others}))).toBe('message from server');
     expect(formatter.format(new AxiosError('network error', 'ERROR', undefined, undefined, {data: {message: ''}, status: 400, ...others}))).toBe('数据格式错误');
     expect(formatter.format(new AxiosError('network error', 'ERROR', undefined, undefined, {data: {message: ''}, status: 404, ...others}))).toBe('资源不存在');
+  });
+
+  it('should format as empty string when i18n returned undefined', () => {
+    const mockCulture = mock<VueCulture>();
+    resettableGlobals.resetCulture(mockCulture);
+    expect(formatter.format(undefined)).toBe('');
   });
 });
