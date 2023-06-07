@@ -61,4 +61,12 @@ describe('LoginModel', () => {
     expect(mockNavigator.goto).not.toBeCalled();
     expect(model.lastAuthenticationResult).toEqual(authenticationResult(payload({success: false, reason: 'message from server'})));
   });
+
+  it('should be un-submittable when both username and password are cleared', () => {
+    model.username.handleInput('john@highsoft.ltd');
+    model.password.handleInput('simple-password');
+    model.username.handleInput('');
+    model.password.handleInput('');
+    expect(model.submittable).toBeFalsy();
+  });
 });

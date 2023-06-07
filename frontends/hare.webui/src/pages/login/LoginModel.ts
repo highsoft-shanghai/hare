@@ -45,7 +45,7 @@ export class LoginModel {
   }
 
   public get submittable(): boolean {
-    return this.username.valuePresent && this.password.valuePresent;
+    return !this.username.blank && !this.password.blank;
   }
 
   public get loading(): boolean {

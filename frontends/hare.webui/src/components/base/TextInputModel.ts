@@ -23,7 +23,7 @@ export class TextInputModel implements ControlModel {
     return this._value;
   }
 
-  public get valuePresent(): boolean {
-    return this._value.present;
+  public get blank(): boolean {
+    return !this._value.present || !this._value.value?.trim().length;
   }
 }
