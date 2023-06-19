@@ -28,4 +28,8 @@ export default {
     '<rootDir>/test/jest/__tests__/**/*.(spec|test).+(ts|js)?(x)',
     '<rootDir>/src/**/*.(spec|test).+(ts|js)?(x)',
   ],
+  reporters: [
+    'default',
+    ['./node_modules/jest-html-reporter', {'pageTitle': 'Fusion WebUI Test Report', outputPath: 'test/jest/report.html'}]
+  ]
 };
