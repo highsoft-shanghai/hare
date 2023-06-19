@@ -30,6 +30,6 @@ export default {
   ],
   reporters: [
     'default',
-    ['./node_modules/jest-html-reporter', {'pageTitle': 'Fusion WebUI Test Report', outputPath: 'test/jest/report.html'}]
+    ['./node_modules/jest-html-reporter', {'pageTitle': 'Fusion WebUI Test Report', outputPath: 'test/jest/reports/report.html'}]
   ]
 };
